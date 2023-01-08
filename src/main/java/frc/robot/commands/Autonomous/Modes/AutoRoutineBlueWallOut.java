@@ -8,11 +8,11 @@ import frc.robot.Robot;
 import frc.robot.commands.Autonomous.AutoCommands;
 import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
-public class AutoRoutineRedWallLoad extends SequentialCommandGroup {
+public class AutoRoutineBlueWallOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/RedWallOut/pathA.wpilib.json";
-  String file_path_b = "paths/RedWallOut/pathB.wpilib.json";
-  String file_path_c = "paths/RedWallOut/pathC.wpilib.json";
+  String file_path_a = "paths/BlueWallOut/pathA.wpilib.json";
+  String file_path_b = "paths/BlueWallOut/pathB.wpilib.json";
+  String file_path_c = "paths/BlueWallOut/pathC.wpilib.json";
   
   // trajectories
   private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
@@ -24,21 +24,15 @@ public class AutoRoutineRedWallLoad extends SequentialCommandGroup {
   private Command movementB = AutoCommands.drivetrainMotion(traj_path_b);
   private Command movementC = AutoCommands.drivetrainMotion(traj_path_c);
 
-  public AutoRoutineRedWallLoad(){
+  public AutoRoutineBlueWallOut(){
     
     addCommands(
-        //score(2)
-        //movementA
+        //score
+        movementA,
         //grab
-        //movementB
-        //score(2)
-        //movementC
-          movementA,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip),
-          movementB,
-          new InstantCommand(Robot.ledStrip::mardiGras, Robot.ledStrip),
-          movementC,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip)
+        movementB,
+        //score
+        movementC
       );
   }
 } 

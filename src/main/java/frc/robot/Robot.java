@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -30,15 +31,19 @@ public class Robot extends TimedRobot {
     Constants.LEFT_DRIVE_TRAIN_1,
     Constants.RIGHT_DRIVE_TRAIN_0,
     Constants.RIGHT_DRIVE_TRAIN_1
+    //Need Additional Motors for drop wheels - 2 for raise/lower and 2 to drive the drop wheels
   );
+
+  //Need Subsystems for the Arm and Claw, TBD if more systems will get added
   
   public static final Limelight limelight = new Limelight();
 
+  //Buffer Size is TBD - need a new programmer to develop the color scheme/feedback methods
   public static final LEDs ledStrip = new LEDs(0,32);
 
-  //Controllers
+  //Controllers - Need to make a call on PS4 vs. XBox Controllers
   public static final PS4Controller controller0 = new PS4Controller(Constants.DRIVER_CONTROLLER_0);
-  public static final PS4Controller controller1 = new PS4Controller(Constants.DRIVER_CONTROLLER_1);
+  public static final XboxController controller1 = new XboxController(Constants.DRIVER_CONTROLLER_1);
 
   //Test Timer & Flag
   Timer timer = new Timer();
@@ -65,14 +70,12 @@ public class Robot extends TimedRobot {
     HDD.m_field.setRobotPose(drivetrain.odometry.getPoseMeters());
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
-    SmartDashboard.putData("Scheduler", CommandScheduler.getInstance());
   }
 
   @Override
   public void autonomousInit() {
     CommandScheduler.getInstance().cancelAll();
-    Constants.teamColor = DriverStation.getAlliance().toString();
-    ledStrip.stripeRB();
+    //Need LED Indicator Here
     autoMode = HDD.m_chooser.getSelected();
     autoMode.schedule();
   }
@@ -103,7 +106,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     HDD.updateStartupConfig();
-    ledStrip.mardiGras();
+    // Need LED Display Here
     SmartDashboard.putString("AUTO MODE", HDD.m_chooser.getSelected().getName());
   }
 

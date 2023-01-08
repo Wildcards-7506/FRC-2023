@@ -30,9 +30,7 @@ public class AutoRoutineExample extends SequentialCommandGroup {
           movementA,
           new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip),
           movementB,
-          new InstantCommand(Robot.ledStrip::mardiGras, Robot.ledStrip),
-          movementC,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip)
+          movementC
       );
   }
 } 

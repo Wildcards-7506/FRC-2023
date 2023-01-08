@@ -10,9 +10,9 @@ import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
 public class AutoRoutineRedLoadOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/RedWallOut/pathA.wpilib.json";
-  String file_path_b = "paths/RedWallOut/pathB.wpilib.json";
-  String file_path_c = "paths/RedWallOut/pathC.wpilib.json";
+  String file_path_a = "paths/RedLoadOut/pathA.wpilib.json";
+  String file_path_b = "paths/RedLoadOut/pathB.wpilib.json";
+  String file_path_c = "paths/RedLoadOut/pathC.wpilib.json";
   
   // trajectories
   private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
@@ -27,18 +27,12 @@ public class AutoRoutineRedLoadOut extends SequentialCommandGroup {
   public AutoRoutineRedLoadOut(){
     
     addCommands(
-        //score(2)
-        //movementA
+        //score
+        movementA,
         //grab
-        //movementB
-        //score(2)
-        //movementC
-          movementA,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip),
-          movementB,
-          new InstantCommand(Robot.ledStrip::mardiGras, Robot.ledStrip),
-          movementC,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip)
+        movementB,
+        //score
+        movementC
       );
   }
 } 

@@ -21,19 +21,21 @@ public class DrivetrainTOCom extends CommandBase{
 
     @Override
     public void execute(){
-
+        //Need to adapt this to the drive method in Drivetrain.java - We want field-oriented control
         turnSpeed = PlayerConfigs.turnMovement * PlayerConfigs.turnSpeed;
 
         if(driveMode){
-            //Mecanum Drive
+            //Mecanum Drive, Strafing Enabled
+            //Drop Wheel Raised
             driveVolts.frontLeftVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement + PlayerConfigs.xMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFLeft;
             driveVolts.frontRightVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement - PlayerConfigs.xMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFRight;
             driveVolts.rearLeftVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement - PlayerConfigs.xMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevBLeft;
             driveVolts.rearRightVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement + PlayerConfigs.xMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevBRight;
         } else {
-            //Tank Drive
-            driveVolts.frontLeftVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFLeft;
-            driveVolts.frontRightVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFRight;
+            //Tank Drive, Strafing Disabled
+            //Drop Wheel Lowered
+            driveVolts.frontLeftVoltage = DriveConstants.RAMP_RATE * (12 * (PlayerConfigs.yMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFLeft;
+            driveVolts.frontRightVoltage = DriveConstants.RAMP_RATE * (12 * (PlayerConfigs.yMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFRight;
             driveVolts.rearLeftVoltage = driveVolts.frontLeftVoltage;
             driveVolts.rearRightVoltage = driveVolts.frontRightVoltage;
         }

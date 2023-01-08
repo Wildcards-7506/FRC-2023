@@ -16,24 +16,19 @@ public class HDD {
 
     //Auto Commands
     public static AutoRoutineExample example = new AutoRoutineExample();
+    //Need Additional Auto Modes added in the format above
 
     public static SequentialCommandGroup desiredMode;
     public static SequentialCommandGroup prevMode;
-  
-    public static double x = 0.0;
-    public static double y = 0.0;
-    public static double angle = 0.0;
 
     public static void initBot(){
 
         m_chooser.setDefaultOption("Example", example);
+        //Need Additional Modes added, follow format below
         //m_chooser.addOption("Additional Mode", DesiredMode.ADDITIONAL_MODE);
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(m_chooser);
-        SmartDashboard.putNumber("Custom X",4);
-        SmartDashboard.putNumber("Custom Y",4.1);
-        SmartDashboard.putNumber("Custom Angle",0.0);
         SmartDashboard.putNumber("Startup Time",1.5);
         
         // Create and push Field2d to SmartDashboard.

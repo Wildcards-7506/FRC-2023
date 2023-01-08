@@ -34,7 +34,6 @@ public class Drivetrain extends SubsystemBase{
     public AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
     public MecanumDriveOdometry odometry;
-    public MecanumDriveWheelPositions wheelPositions;
     
     public double initPose = 0.0;
 
@@ -56,11 +55,11 @@ public class Drivetrain extends SubsystemBase{
 
         resetEncoders();
 
-        odometry = new MecanumDriveOdometry(DriveConstants.kinematics, Rotation2d.fromDegrees(getHeading()), wheelPositions);
-        m_leftEncoder0.setPositionConversionFactor(4.1/42);
-        m_rightEncoder0.setPositionConversionFactor(4.1/42);
-        m_leftEncoder1.setPositionConversionFactor(4.1/42);
-        m_rightEncoder1.setPositionConversionFactor(4.1/42);
+        odometry = new MecanumDriveOdometry(DriveConstants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
+        m_leftEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        m_rightEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        m_leftEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        m_rightEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
@@ -69,7 +68,7 @@ public class Drivetrain extends SubsystemBase{
         // Update the odometry in the periodic block
         odometry.update(
             gyro.getRotation2d(),
-            wheelPositions);
+            getWheelPositions());
         HDD.m_field.setRobotPose(odometry.getPoseMeters());
 
         setDefaultCommand(new DrivetrainTOCom());
@@ -85,7 +84,7 @@ public class Drivetrain extends SubsystemBase{
      * @param pose The pose to which to set the odometry.
      */
     public void resetOdometry(Pose2d pose) {
-        odometry.resetPosition(gyro.getRotation2d(), wheelPositions, pose);
+        odometry.resetPosition(gyro.getRotation2d(), getWheelPositions(), pose);
     }
 
     public MecanumDriveWheelSpeeds getWheelSpeeds(){
@@ -97,9 +96,18 @@ public class Drivetrain extends SubsystemBase{
         ); 
     }
 
+    public MecanumDriveWheelPositions getWheelPositions() {
+        return new MecanumDriveWheelPositions(
+            m_leftEncoder0.getPosition(),
+            m_rightEncoder0.getPosition(),
+            m_leftEncoder1.getPosition(),
+            m_rightEncoder1.getPosition()
+        );
+    }
+
     /**
      * Drives the robot at given x, y and theta speeds. Speeds range from [-1, 1] and the linear
-     * speeds have no effect on the angular speed.
+     * speeds have no effect on the angular speed. THIS IS TO BE USED IN TELEOP
      *
      * @param xSpeed Speed of the robot in the x direction (forward/backwards).
      * @param ySpeed Speed of the robot in the y direction (sideways).
@@ -115,7 +123,8 @@ public class Drivetrain extends SubsystemBase{
         }
     }
 
-    /** Sets the front left drive MotorController to a voltage. */
+    
+    /** Sets the front left drive MotorController to a voltage. FOR USE IN AUTO ONLY */
     public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
         motorLeft0.setVoltage(volts.frontLeftVoltage);
         motorRight0.setVoltage(volts.rearLeftVoltage);
@@ -123,55 +132,17 @@ public class Drivetrain extends SubsystemBase{
         motorRight1.setVoltage(volts.rearRightVoltage);
     }
 
+    /*We need the following methods:
+     * Limelight Alignment
+     * Snapping to a specific degree orientation (0 and 180 degrees at a minimum)
+     * Depending on Herron's desires, a NOX method (Fullspeed forward with drop wheels engaged)
+    */
+
     public void resetEncoders() {
         m_leftEncoder0.setPosition(0);
         m_rightEncoder0.setPosition(0);
         m_leftEncoder1.setPosition(0);
         m_rightEncoder1.setPosition(0);
-    }
-
-    /**
-     * Gets the front left drive encoder.
-     *
-     * @return the front left drive encoder
-     */
-    public RelativeEncoder getFrontLeftEncoder() {
-        return m_leftEncoder0;
-    }
-
-    /**
-     * Gets the rear left drive encoder.
-     *
-     * @return the rear left drive encoder
-     */
-    public RelativeEncoder getRearLeftEncoder() {
-        return m_leftEncoder1;
-    }
-
-    /**
-     * Gets the front right drive encoder.
-     *
-     * @return the front right drive encoder
-     */
-    public RelativeEncoder getFrontRightEncoder() {
-        return m_rightEncoder0;
-    }
-
-    /**
-     * Gets the rear right drive encoder.
-     *
-     * @return the rear right encoder
-     */
-    public RelativeEncoder getRearRightEncoder() {
-        return m_rightEncoder1;
-    }
-
-    public MecanumDriveWheelPositions getWheelPositions() {
-        wheelPositions.frontLeftMeters = m_leftEncoder0.getPosition();
-        wheelPositions.frontRightMeters = m_rightEncoder0.getPosition();
-        wheelPositions.rearLeftMeters = m_leftEncoder1.getPosition();
-        wheelPositions.rearRightMeters = m_rightEncoder1.getPosition();
-        return wheelPositions;
     }
 
     public void setMaxOutput(double maxOutput) {

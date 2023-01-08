@@ -27,18 +27,12 @@ public class AutoRoutineRedWallOut extends SequentialCommandGroup {
   public AutoRoutineRedWallOut(){
     
     addCommands(
-        //score(2)
-        //movementA
+        //score
+        movementA,
         //grab
-        //movementB
-        //score(2)
-        //movementC
-          movementA,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip),
-          movementB,
-          new InstantCommand(Robot.ledStrip::mardiGras, Robot.ledStrip),
-          movementC,
-          new InstantCommand(Robot.ledStrip::rainbow, Robot.ledStrip)
+        movementB,
+        //score
+        movementC
       );
   }
 } 

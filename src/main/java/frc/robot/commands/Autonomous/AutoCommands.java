@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 
 public class AutoCommands {
-    public static Trajectory trajectoryA;
-
+    //Returns a series of waypoints to the controller to run complex motion paths
     public static Command drivetrainMotion(Trajectory trajectory) {
     
         MecanumControllerCommand mecanumControllerCommand =
@@ -45,4 +44,10 @@ public class AutoCommands {
         // Run path following command, then stop at the end.
         return mecanumControllerCommand.andThen(() -> Robot.drivetrain.drive(0, 0, 0, false));
       }
+
+    /*Need the following methods:
+     * Score High
+     * Score Mid?
+     * Align on Charge Station
+    */
 }

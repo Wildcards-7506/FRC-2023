@@ -15,6 +15,10 @@ public final class Constants {
         public static final int RIGHT_DRIVE_TRAIN_0 = 1;
         public static final int RIGHT_DRIVE_TRAIN_1 = 2;
 
+        //Arm
+
+        //Claw
+
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
         public static final int DRIVER_CONTROLLER_1 = 1;
@@ -47,33 +51,6 @@ public final class Constants {
 
         //FMS Data
         public static String teamColor;
-
-    //Characterization Constants
-    public static final class DriveConstants {
-        public static final double kTrackwidthMeters = Units.inchesToMeters(19.25);
-        // Distance between centers of right and left wheels on robot
-        public static final double kWheelBase = 0.7;
-        // Distance between centers of front and back wheels on robot
-        public static final double kEncoderDistancePerPulse = 1/6 * 2 * Math.PI * Units.inchesToMeters(4);
-
-        public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
-            new Translation2d(kWheelBase / 2, kTrackwidthMeters / 2),
-            new Translation2d(kWheelBase / 2, -kTrackwidthMeters / 2),
-            new Translation2d(-kWheelBase / 2, kTrackwidthMeters / 2),
-            new Translation2d(-kWheelBase / 2, -kTrackwidthMeters / 2));
-
-            public static final SimpleMotorFeedforward kFeedforward =
-            new SimpleMotorFeedforward(1, 0.8, 0.15);
-    
-            // Example value only - as above, this must be tuned for your drive!
-            public static final double kPFrontLeftVel = 0.5;
-            public static final double kPRearLeftVel = 0.5;
-            public static final double kPFrontRightVel = 0.5;
-            public static final double kPRearRightVel = 0.5;
-
-            //Speed Variables
-            public static final double RAMP_RATE = 0.01;
-    }
         
     public static final class AutoConstants {
         public static final double kMaxSpeedMetersPerSecond = 3;
@@ -96,5 +73,32 @@ public final class Constants {
                 AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                 // Add kinematics to ensure max speed is actually obeyed
                 .setKinematics(DriveConstants.kinematics);
+    }
+
+    public static final class DriveConstants {
+        public static final double kTrackwidthMeters = Units.inchesToMeters(19.25);
+        // Distance between centers of right and left wheels on robot
+        public static final double kWheelBase = 0.7;
+        // Distance between centers of front and back wheels on robot
+        //Current Gear ratio is 9:1 - THIS MAY CHANGE
+        public static final double kEncoderDistancePerPulse = 1/9 * 2 * Math.PI * Units.inchesToMeters(4);
+
+        public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
+            new Translation2d(kWheelBase / 2, kTrackwidthMeters / 2),
+            new Translation2d(kWheelBase / 2, -kTrackwidthMeters / 2),
+            new Translation2d(-kWheelBase / 2, kTrackwidthMeters / 2),
+            new Translation2d(-kWheelBase / 2, -kTrackwidthMeters / 2));
+
+            public static final SimpleMotorFeedforward kFeedforward =
+            new SimpleMotorFeedforward(1, 0.8, 0.15);
+    
+            // Example value only - as above, this must be tuned for your drive!
+            public static final double kPFrontLeftVel = 0.5;
+            public static final double kPRearLeftVel = 0.5;
+            public static final double kPFrontRightVel = 0.5;
+            public static final double kPRearRightVel = 0.5;
+
+            //Speed Variables
+            public static final double RAMP_RATE = 0.01;
     }
 }

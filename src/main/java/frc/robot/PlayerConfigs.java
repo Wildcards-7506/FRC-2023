@@ -28,6 +28,13 @@ public class PlayerConfigs {
         switchPipeline = Robot.controller0.getCircleButton();
     }
 
+    /*Need to add Co-Driver controls
+     * Arm Positioning (Ground, Middle Score, High Score, Shelf Pickup)
+     * Arm Extension (Ground, Middle Score, High Score, Shelf Pickup)
+     * Claw/Pincher Release
+     * Fine-Detail Driving control (Scoring and Endgame)
+    */
+
     public static void getCoDriverConfig(){  
     }
 

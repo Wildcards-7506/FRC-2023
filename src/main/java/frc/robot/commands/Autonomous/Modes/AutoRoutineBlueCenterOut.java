@@ -8,26 +8,21 @@ import frc.robot.Robot;
 import frc.robot.commands.Autonomous.AutoCommands;
 import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
-public class AutoRoutineRedCenterCharge extends SequentialCommandGroup {
+public class AutoRoutineBlueCenterOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/RedCenterCharge/pathA.wpilib.json";
-  String file_path_b = "paths/RedCenterCharge/pathB.wpilib.json";
+  String file_path_a = "paths/BlueCenterOut/pathA.wpilib.json";
   
   // trajectories
   private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_b);
 
   //Commands
   private Command movementA = AutoCommands.drivetrainMotion(traj_path_a);
-  private Command movementB = AutoCommands.drivetrainMotion(traj_path_b);
 
-  public AutoRoutineRedCenterCharge(){
+  public AutoRoutineBlueCenterOut(){
     
     addCommands(
         //score
-        movementA,
-        movementB
-        //align
+        movementA
       );
   }
 } 
