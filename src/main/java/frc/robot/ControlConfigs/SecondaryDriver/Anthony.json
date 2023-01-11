@@ -1,0 +1,12 @@
+{
+    "property": "vlue",
+    "number": 1.2,
+    "objecty": {
+        "property": "value"
+    },
+    "array": [
+        {
+            "property": "value"
+        }
+    ]
+}
