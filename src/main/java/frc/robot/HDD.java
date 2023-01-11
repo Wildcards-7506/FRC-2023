@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Autonomous.Modes.AutoRoutineExample;
 
+// adding this because i am dumb and have dementia, this is the Heads Down Display
+
 public class HDD {    
     public static SendableChooser<SequentialCommandGroup> m_chooser = new SendableChooser<>();
 
@@ -26,6 +28,7 @@ public class HDD {
         m_chooser.setDefaultOption("Example", example);
         //Need Additional Modes added, follow format below
         //m_chooser.addOption("Additional Mode", DesiredMode.ADDITIONAL_MODE);
+        m_chooser.addOption("Player Configuration", null);
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(m_chooser);
