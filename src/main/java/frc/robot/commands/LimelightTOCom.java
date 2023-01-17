@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.PlayerConfigs;
 import frc.robot.Robot;
+import frc.robot.ControlConfigs.PlayerConfigs;
 
 public class LimelightTOCom extends CommandBase{
 
