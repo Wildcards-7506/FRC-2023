@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Autonomous.Modes.AutoRoutineExample;
 
-// adding this because i am dumb and have dementia, this is the Heads Down Display
-
 public class HDD {    
     public static SendableChooser<SequentialCommandGroup> m_chooser = new SendableChooser<>();
 
