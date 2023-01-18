@@ -1,6 +1,8 @@
-package frc.robot;
+package frc.robot.ControlConfigs;
 
 public class PlayerConfigs {
+
+    //buttons used: left joystick, right joystick, circle, entire d pad, L1, L2, R1, R2
     
     //drivetrain
     public static double xMovement;
@@ -9,23 +11,29 @@ public class PlayerConfigs {
     public static double turnSpeed;
     public static double driveSpeed;
     public static boolean modeSwitch;
+    public static double fineControlX;
+    public static double fineControlY;
+    public static double fineTurn;
+    public static double fineTurnSpeed;
+    public static double fineDriveSpeed;
+
+    //crane
+    public static boolean collectPos;
+    public static boolean groundGrab;
+    public static boolean highGoal;
+    public static boolean lowGoal;
+    public static boolean openClaw;
 
     //limelight
     public static boolean switchPipeline;
 
+    //LEDs
+    public static boolean signalCone;
+    public static boolean signalCube;
+    public static boolean toggleLeds;
+
     public static void getDriverConfig(){
-        //drivetrain
-        xMovement = Robot.controller0.getLeftX();
-        yMovement = Robot.controller0.getLeftY();
-        turnMovement = Robot.controller0.getRightX();
-        turnSpeed = 0.1;
-        driveSpeed = 0.5;
-
-        //Drivetrain change
-        modeSwitch = Robot.controller0.getCircleButtonReleased();
-
-        //limelight
-        switchPipeline = Robot.controller0.getCircleButton();
+        
     }
 
     /*Need to add Co-Driver controls
@@ -36,7 +44,6 @@ public class PlayerConfigs {
     */
 
     public static void getCoDriverConfig(){  
+        
     }
-
-    
 }

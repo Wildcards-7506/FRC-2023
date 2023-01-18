@@ -26,6 +26,7 @@ public class HDD {
         m_chooser.setDefaultOption("Example", example);
         //Need Additional Modes added, follow format below
         //m_chooser.addOption("Additional Mode", DesiredMode.ADDITIONAL_MODE);
+        m_chooser.addOption("Player Configuration", null);
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(m_chooser);

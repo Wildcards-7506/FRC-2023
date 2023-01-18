@@ -2,7 +2,7 @@ package frc.robot.commands;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.PlayerConfigs;
+import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
 
 public class DrivetrainTOCom extends CommandBase{
