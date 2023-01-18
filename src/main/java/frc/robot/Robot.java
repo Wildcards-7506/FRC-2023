@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
-    autoMode = HDD.m_chooser.getSelected();
+    autoMode = HDD.auto_chooser.getSelected();
     autoMode.schedule();
   }
 
@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     HDD.updateStartupConfig();
     // Need LED Display Here
-    SmartDashboard.putString("AUTO MODE", HDD.m_chooser.getSelected().getName());
+    SmartDashboard.putString("AUTO MODE", HDD.auto_chooser.getSelected().getName());
   }
 
   /** This function is called once when test mode is enabled. */
