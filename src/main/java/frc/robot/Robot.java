@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot {
   //Test Timer & Flag
   Timer timer = new Timer();
 
+  public static Alliance teamColor;
+
   /*
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -88,7 +91,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    Constants.teamColor = DriverStation.getAlliance().toString();
+    teamColor = DriverStation.getAlliance();
   }
 
   /** This function is called periodically during operator control. */
