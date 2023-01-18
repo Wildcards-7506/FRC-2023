@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -55,11 +56,11 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
-    public void teamColor(String isRed) {
+    public void teamColor(Alliance isRed) {
         // For every pixel
         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
           // Set the value
-          int hue = (isRed == "Red") ? 0 : 120;
+          int hue = (isRed == Alliance.Red) ? 0 : 120;
           m_ledBuffer.setHSV(i, hue, 255, 255);
         }
         update();
