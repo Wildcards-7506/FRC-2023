@@ -31,10 +31,10 @@ public class Robot extends TimedRobot {
   //Subsystem Declarations
 
   public static final Drivetrain drivetrain = new Drivetrain(
-    Constants.LEFT_DRIVE_TRAIN_0,
-    Constants.LEFT_DRIVE_TRAIN_1,
-    Constants.RIGHT_DRIVE_TRAIN_0,
-    Constants.RIGHT_DRIVE_TRAIN_1
+    Constants.LEFT_DRIVE_TRAIN_FORWARD,
+    Constants.LEFT_DRIVE_TRAIN_BACK,
+    Constants.RIGHT_DRIVE_TRAIN_FORWARD,
+    Constants.RIGHT_DRIVE_TRAIN_BACK
     //Need Additional Motors for drop wheels - 2 for raise/lower and 2 to drive the drop wheels
   );
 

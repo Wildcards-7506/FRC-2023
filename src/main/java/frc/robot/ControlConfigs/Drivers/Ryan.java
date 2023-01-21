@@ -5,7 +5,7 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 
 public class Ryan extends PlayerConfigs {
     
-    public static void getDriverConfig() {
+    public void getDriverConfig() {
         //Constants
         PlayerConfigs.turnSpeed = 0.3;
         PlayerConfigs.driveSpeed = 0.5;
@@ -24,7 +24,7 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.toggleLeds = Robot.controller0.getTouchpad();
     }
 
-    public static void getCoDriverConfig() {
+    public void getCoDriverConfig() {
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;
         PlayerConfigs.fineDriveSpeed = 0.2;

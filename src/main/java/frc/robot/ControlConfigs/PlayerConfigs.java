@@ -37,7 +37,7 @@ public class PlayerConfigs {
     public static boolean signalCube;
     public static boolean toggleLeds;
 
-    public static void getDriverConfig(){
+    public void getDriverConfig(){
         
     }
 
@@ -48,7 +48,7 @@ public class PlayerConfigs {
      * Fine-Detail Driving control (Scoring and Endgame)
     */
 
-    public static void getCoDriverConfig(){  
+    public void getCoDriverConfig(){  
         
     }
 }

@@ -5,7 +5,7 @@ import frc.robot.Robot;
 
 public class Shannon extends PlayerConfigs {
     
-    public static void getDriverConfig() {
+    public void getDriverConfig() {
         turnSpeed = 0.3;
         driveSpeed = 0.5;
 
@@ -22,7 +22,7 @@ public class Shannon extends PlayerConfigs {
         toggleLeds = Robot.controller0.getCircleButton();
     }
 
-    public static void getCoDriverConfig() {
+    public void getCoDriverConfig() {
         fineTurnSpeed = 0.15;
         fineDriveSpeed = 0.25;
 

@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.HDD;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -20,10 +19,10 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain extends SubsystemBase{
-    private CANSparkMax motorLeft0;
-    private CANSparkMax motorLeft1;
-    private CANSparkMax motorRight0;
-    private CANSparkMax motorRight1;
+    private CANSparkMax motorLeftFront;
+    private CANSparkMax motorLeftBack;
+    private CANSparkMax motorRightFront;
+    private CANSparkMax motorRightBack;
     public RelativeEncoder m_leftEncoder0;
     public RelativeEncoder m_rightEncoder0; 
     public RelativeEncoder m_leftEncoder1;
@@ -38,29 +37,29 @@ public class Drivetrain extends SubsystemBase{
     
     public double initPose = 0.0;
 
-    public Drivetrain (int l0, int l1, int r0, int r1){
-        motorLeft0 = new CANSparkMax(l0, MotorType.kBrushless);
-        motorLeft1 = new CANSparkMax(l1, MotorType.kBrushless);
-        motorRight0 = new CANSparkMax(r0, MotorType.kBrushless);
-        motorRight1 = new CANSparkMax(r1, MotorType.kBrushless);
+    public Drivetrain (int lf, int lb, int rf, int rb){
+        motorLeftFront = new CANSparkMax(lf, MotorType.kBrushless);
+        motorLeftBack = new CANSparkMax(lb, MotorType.kBrushless);
+        motorRightFront = new CANSparkMax(rf, MotorType.kBrushless);
+        motorRightBack = new CANSparkMax(rb, MotorType.kBrushless);
 
-        m_leftEncoder0 = motorLeft0.getEncoder();
-        m_rightEncoder0 = motorRight0.getEncoder();
-        m_leftEncoder1 = motorLeft1.getEncoder();
-        m_rightEncoder1 = motorRight1.getEncoder();
+        m_leftEncoder0 = motorLeftFront.getEncoder();
+        m_rightEncoder0 = motorRightFront.getEncoder();
+        m_leftEncoder1 = motorLeftBack.getEncoder();
+        m_rightEncoder1 = motorRightBack.getEncoder();
 
-        motorRight1.setInverted(true);
-        motorRight0.setInverted(true);
+        motorRightBack.setInverted(true);
+        motorRightFront.setInverted(true);
 
-        m_drive = new MecanumDrive(motorLeft0, motorLeft1, motorRight0, motorRight1);
+        m_drive = new MecanumDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
 
         resetEncoders();
 
         odometry = new MecanumDriveOdometry(DriveConstants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
-        m_leftEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        m_rightEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        m_leftEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        m_rightEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        // m_leftEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        // m_rightEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        // m_leftEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        // m_rightEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
@@ -116,21 +115,21 @@ public class Drivetrain extends SubsystemBase{
      * @param fieldRelative Whether the provided x and y speeds are relative to the field.
      */
     @SuppressWarnings("ParameterName")
-    public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
+    public void drive(double ySpeed, double xSpeed, double rot, boolean fieldRelative) {
         if (fieldRelative) {
-        m_drive.driveCartesian(ySpeed, xSpeed, rot, new Rotation2d(-gyro.getAngle()));
+        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(-gyro.getAngle()));
         } else {
-        m_drive.driveCartesian(ySpeed, xSpeed, rot);
+        m_drive.driveCartesian(-ySpeed, xSpeed, rot);
         }
     }
 
     
     /** Sets the front left drive MotorController to a voltage. FOR USE IN AUTO ONLY */
     public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
-        motorLeft0.setVoltage(volts.frontLeftVoltage);
-        motorRight0.setVoltage(volts.rearLeftVoltage);
-        motorLeft1.setVoltage(volts.frontRightVoltage);
-        motorRight1.setVoltage(volts.rearRightVoltage);
+        motorLeftFront.setVoltage(volts.frontLeftVoltage);
+        motorRightFront.setVoltage(volts.rearLeftVoltage);
+        motorLeftBack.setVoltage(volts.frontRightVoltage);
+        motorRightBack.setVoltage(volts.rearRightVoltage);
     }
 
     /*We need the following methods:

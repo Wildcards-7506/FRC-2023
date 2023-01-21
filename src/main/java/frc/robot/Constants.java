@@ -10,10 +10,10 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 public final class Constants {
     //Motor IDs
         //Drivetrain
-        public static final int LEFT_DRIVE_TRAIN_0 = 11;
-        public static final int LEFT_DRIVE_TRAIN_1 = 20;
-        public static final int RIGHT_DRIVE_TRAIN_0 = 1;
-        public static final int RIGHT_DRIVE_TRAIN_1 = 10;
+        public static final int LEFT_DRIVE_TRAIN_BACK = 11;
+        public static final int LEFT_DRIVE_TRAIN_FORWARD = 10;
+        public static final int RIGHT_DRIVE_TRAIN_BACK = 1;
+        public static final int RIGHT_DRIVE_TRAIN_FORWARD = 20;
     //Crane
         public static final int CRANE_EXTENDOR = 19;
         public static final int CRANE_ROTATION = 2;
@@ -85,7 +85,7 @@ public final class Constants {
         public static final double kWheelBase = 0.7;
         // Distance between centers of front and back wheels on robot
         //Current Gear ratio is 9:1 - THIS MAY CHANGE
-        public static final double kEncoderDistancePerPulse = 1/9 * 2 * Math.PI * Units.inchesToMeters(4);
+        // public static final double kEncoderDistancePerPulse = 1/9 * 2 * Math.PI * Units.inchesToMeters(4);
 
         public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
             new Translation2d(kWheelBase / 2, kTrackwidthMeters / 2),
