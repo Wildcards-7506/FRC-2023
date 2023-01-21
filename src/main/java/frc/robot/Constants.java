@@ -53,56 +53,81 @@ public final class Constants {
         public static final int LEFT_JOYSTICK_BUTTON = 11;
         public static final int RIGHT_JOYSTICK_BUTTON = 12;
 
-        //FMS Data
-        public static String teamColor;
-        
-    public static final class AutoConstants {
+    //Drive Constants   
+
+        //Speed and Power Limits
+        public static final int kDrivetrainCurrentLimit = 30;
+        public static final double kRampRate = 0.01;
+        public static final int kDropWheelDistance = 16;
+        public static final double kAlignmentSpeed = 0.2;
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
-    
+
+        //Movement Controller Constants
         public static final double kPXController = 0.5;
         public static final double kPYController = 0.5;
         public static final double kPThetaController = 0.5;
-    
-        // Constraint for the motion profilied robot angle controller
+        public static final double ffKS = 1;
+        public static final double ffKV = 0.8;
+        public static final double ffKA = 0.15;
+
+        //Wheel Controller Constants
+        public static final double kPFrontLeftVel = 0.5;
+        public static final double kPRearLeftVel = 0.5;
+        public static final double kPFrontRightVel = 0.5;
+        public static final double kPRearRightVel = 0.5;
+        
+        //Robot Size Parameters
+        public static final double kTrackwidthMeters = Units.inchesToMeters(20.176);
+        public static final double kTrackLengthMeters = Units.inchesToMeters(21.911);;
+        public static final double driveTrainGearRatio = 1/9;
+        public static final double kEncoderDistancePerPulse = driveTrainGearRatio * Math.PI * Units.inchesToMeters(8);
+
+        // Robot Movement Profiles
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
+        public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
+            new Translation2d(kTrackLengthMeters / 2, kTrackwidthMeters / 2),
+            new Translation2d(kTrackLengthMeters / 2, -kTrackwidthMeters / 2),
+            new Translation2d(-kTrackLengthMeters / 2, kTrackwidthMeters / 2),
+            new Translation2d(-kTrackLengthMeters / 2, -kTrackwidthMeters / 2));
+
         public static final  TrajectoryConfig kconfig =  
             new TrajectoryConfig(
-                AutoConstants.kMaxSpeedMetersPerSecond,
-                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                kMaxSpeedMetersPerSecond,
+                kMaxAccelerationMetersPerSecondSquared)
                 // Add kinematics to ensure max speed is actually obeyed
-                .setKinematics(DriveConstants.kinematics);
-    }
+                .setKinematics(kinematics);
 
-    public static final class DriveConstants {
-        public static final double kTrackwidthMeters = Units.inchesToMeters(19.25);
-        // Distance between centers of right and left wheels on robot
-        public static final double kWheelBase = 0.7;
-        // Distance between centers of front and back wheels on robot
-        //Current Gear ratio is 9:1 - THIS MAY CHANGE
-        // public static final double kEncoderDistancePerPulse = 1/9 * 2 * Math.PI * Units.inchesToMeters(4);
+        public static final SimpleMotorFeedforward kFeedforward =
+        new SimpleMotorFeedforward(ffKS, ffKV, ffKA);
 
-        public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
-            new Translation2d(kWheelBase / 2, kTrackwidthMeters / 2),
-            new Translation2d(kWheelBase / 2, -kTrackwidthMeters / 2),
-            new Translation2d(-kWheelBase / 2, kTrackwidthMeters / 2),
-            new Translation2d(-kWheelBase / 2, -kTrackwidthMeters / 2));
+    //Crane Constants
+        public static final int kRotateCurrentLimit = 30;
+        public static final double kRotateEncoderDistancePerPulse = 1/375 * 360;
+        public static final double kRotatorKP = 1.0;
+        public static final double kRotatorGround = 10.0;
+        public static final double kRotatorHi = 210.0;
+        public static final double kRotatorMid = 220.0;
+        public static final double kRotatorCollect = 60.0;
+        public static final double kRotatorClosed = 0.0;
 
-            public static final SimpleMotorFeedforward kFeedforward =
-            new SimpleMotorFeedforward(1, 0.8, 0.15);
-    
-            // Example value only - as above, this must be tuned for your drive!
-            public static final double kPFrontLeftVel = 0.5;
-            public static final double kPRearLeftVel = 0.5;
-            public static final double kPFrontRightVel = 0.5;
-            public static final double kPRearRightVel = 0.5;
-
-            //Speed Variables
-            public static final double RAMP_RATE = 0.01;
-    }
+        public static final int kExtenderCurrentLimit = 30;
+        public static final double kExtendEncoderDistancePerPulse = 0.125;
+        public static final double kExtenderGround = 24.0;
+        public static final double kExtenderMid = 2.5;
+        public static final double kExtenderHi = 20.0;
+        public static final double kExtenderCollect = 12.0;
+        public static final double kExtenderClosed = 0.0;
+        public static final double kExtenderHeightLimit = 20.0;
+        
+        public static final int kClawCurrentLimit = 10;
+        public static final double kClawEncoderDistancePerPulse = 1/125 * 360;
+        public static final double kClawKP = 1.0;
+        public static final double kClawOpen = 85.0;
+        public static final double kClawClosed = 0.0;
 }

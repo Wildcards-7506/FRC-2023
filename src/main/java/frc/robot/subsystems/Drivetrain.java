@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -55,11 +55,11 @@ public class Drivetrain extends SubsystemBase{
 
         resetEncoders();
 
-        odometry = new MecanumDriveOdometry(DriveConstants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
-        // m_leftEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        // m_rightEncoder0.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        // m_leftEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
-        // m_rightEncoder1.setPositionConversionFactor(DriveConstants.kEncoderDistancePerPulse);
+        odometry = new MecanumDriveOdometry(Constants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
+        // m_leftEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        // m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        // m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        // m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards

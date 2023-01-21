@@ -1,6 +1,6 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
 
@@ -33,15 +33,15 @@ public class DrivetrainTOCom extends CommandBase{
             double inputRot = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
                 PlayerConfigs.driveSpeed * turnSpeed;
-            xspeed = DriveConstants.RAMP_RATE * xInputSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
-            yspeed = DriveConstants.RAMP_RATE * yInputSpeed + (1 - DriveConstants.RAMP_RATE) * prevYspeed;
-            rot = DriveConstants.RAMP_RATE * inputRot + (1 - DriveConstants.RAMP_RATE) * prevRot;
+            xspeed = Constants.kRampRate * xInputSpeed + (1 - Constants.kRampRate) * prevXspeed;
+            yspeed = Constants.kRampRate * yInputSpeed + (1 - Constants.kRampRate) * prevYspeed;
+            rot = Constants.kRampRate * inputRot + (1 - Constants.kRampRate) * prevRot;
 
         } else {
             //Tank Drive
-            yspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            yspeed = Constants.kRampRate * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - Constants.kRampRate) * prevXspeed;
             xspeed = 0;
-            rot = DriveConstants.RAMP_RATE * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            rot = Constants.kRampRate * turnSpeed + (1 - Constants.kRampRate) * prevXspeed;
         }
 
         prevXspeed = xspeed;

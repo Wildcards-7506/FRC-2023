@@ -4,8 +4,7 @@ import frc.robot.Robot;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.Trajectory;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 
@@ -17,23 +16,23 @@ public class AutoCommands {
             new MecanumControllerCommand(
                 trajectory,
                 Robot.drivetrain::getPose,
-                DriveConstants.kFeedforward,
-                DriveConstants.kinematics,
+                Constants.kFeedforward,
+                Constants.kinematics,
     
                 // Position contollers
-                new PIDController(AutoConstants.kPXController, 0, 0),
-                new PIDController(AutoConstants.kPYController, 0, 0),
+                new PIDController(Constants.kPXController, 0, 0),
+                new PIDController(Constants.kPYController, 0, 0),
                 new ProfiledPIDController(
-                    AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints),
+                    Constants.kPThetaController, 0, 0, Constants.kThetaControllerConstraints),
     
                 // Needed for normalizing wheel speeds
-                AutoConstants.kMaxSpeedMetersPerSecond,
+                Constants.kMaxSpeedMetersPerSecond,
     
                 // Velocity PID's
-                new PIDController(DriveConstants.kPFrontLeftVel, 0, 0),
-                new PIDController(DriveConstants.kPRearLeftVel, 0, 0),
-                new PIDController(DriveConstants.kPFrontRightVel, 0, 0),
-                new PIDController(DriveConstants.kPRearRightVel, 0, 0),
+                new PIDController(Constants.kPFrontLeftVel, 0, 0),
+                new PIDController(Constants.kPRearLeftVel, 0, 0),
+                new PIDController(Constants.kPFrontRightVel, 0, 0),
+                new PIDController(Constants.kPRearRightVel, 0, 0),
                 Robot.drivetrain::getWheelSpeeds,
                 Robot.drivetrain::setDriveMotorControllersVolts, // Consumer for the output motor voltages
                 Robot.drivetrain);
