@@ -43,7 +43,7 @@ public class DrivetrainTOCom extends CommandBase{
         }
 
         //Set motors
-        Robot.drivetrain.drive(xspeed, yspeed, rot, false);
+        Robot.drivetrain.drive(xspeed, yspeed, rot, driveMode);
         
     }
 }
