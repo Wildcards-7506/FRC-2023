@@ -17,9 +17,10 @@ public class PlayerConfigs {
     //secondary drive train controls
     public static double fineControlX;
     public static double fineControlY;
-    public static double fineTurn;
+    public static double fineTurnMovement;
     public static double fineTurnSpeed;
     public static double fineDriveSpeed;
+    public static boolean fineControlToggle;
 
     //crane
     public static boolean collectPos;

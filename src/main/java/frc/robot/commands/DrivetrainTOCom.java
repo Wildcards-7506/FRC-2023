@@ -24,14 +24,24 @@ public class DrivetrainTOCom extends CommandBase{
 
         if(driveMode){
             //Mecanum Drive
-            xspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.xMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
-            yspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - DriveConstants.RAMP_RATE) * prevYspeed;
-            rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevRot;
+            double xInputSpeed = PlayerConfigs.fineControlToggle ? 
+                PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlX :
+                PlayerConfigs.driveSpeed * PlayerConfigs.xMovement;
+            double yInputSpeed = PlayerConfigs.fineControlToggle ? 
+                PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlY : 
+                PlayerConfigs.driveSpeed * PlayerConfigs.yMovement;
+            double inputRot = PlayerConfigs.fineControlToggle ? 
+                PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
+                PlayerConfigs.driveSpeed * turnSpeed;
+            xspeed = DriveConstants.RAMP_RATE * xInputSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            yspeed = DriveConstants.RAMP_RATE * yInputSpeed + (1 - DriveConstants.RAMP_RATE) * prevYspeed;
+            rot = DriveConstants.RAMP_RATE * inputRot + (1 - DriveConstants.RAMP_RATE) * prevRot;
+
         } else {
             //Tank Drive
             yspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
             xspeed = 0;
-            rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            rot = DriveConstants.RAMP_RATE * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
         }
 
         prevXspeed = xspeed;
