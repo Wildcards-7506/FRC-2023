@@ -31,7 +31,8 @@ public class Anthony extends PlayerConfigs {
         //Fine movement
         PlayerConfigs.fineControlX = Robot.controller1.getLeftX();
         PlayerConfigs.fineControlY = Robot.controller1.getLeftY();
-        PlayerConfigs.fineTurn = Robot.controller1.getRightX();
+        PlayerConfigs.fineTurnMovement = Robot.controller1.getRightX();
+        PlayerConfigs.fineControlToggle = Robot.controller1.getRightTriggerAxis() > .2;
 
         //Scoring and grabbing objects
         PlayerConfigs.groundGrab = Robot.controller1.getRightBumper();

@@ -28,7 +28,8 @@ public class Chantell extends PlayerConfigs{
 
         fineControlX = Robot.controller1.getLeftX();
         fineControlY = Robot.controller1.getLeftY();
-        fineTurn = Robot.controller1.getRightX();
+        fineTurnMovement = Robot.controller1.getRightX();
+        PlayerConfigs.fineControlToggle = Robot.controller1.getRightTriggerAxis() > .2;
 
         collectPos = Robot.controller1.getAButton();
         groundGrab = Robot.controller1.getBButton();
