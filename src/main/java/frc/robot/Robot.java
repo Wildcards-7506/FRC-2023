@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    //HDD.initBot();
+    HDD.initBot();
   }
 
   /**
@@ -115,7 +115,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     HDD.updateStartupConfig();
     // Need LED Display Here
-    SmartDashboard.putString("AUTO MODE", HDD.auto_chooser.getSelected().getName());
+    // SmartDashboard.putString("AUTO MODE", HDD.auto_chooser.getSelected().getName());
   }
 
   /** This function is called once when test mode is enabled. */

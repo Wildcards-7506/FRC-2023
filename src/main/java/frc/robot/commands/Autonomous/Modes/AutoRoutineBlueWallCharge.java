@@ -10,14 +10,14 @@ import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
 public class AutoRoutineBlueWallCharge extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/BlueWallCharge/pathA.wpilib.json";
-  String file_path_b = "paths/BlueWallCharge/pathB.wpilib.json";
-  String file_path_c = "paths/BlueWallCharge/pathC.wpilib.json";
+  String wall_a = "paths/BlueWallCharge/blue_wall_a.wpilib.json";
+  String wall_b = "paths/BlueWallCharge/blue_wall_b.wpilib.json";
+  String wallcharge_c = "paths/BlueWallCharge/blue_wallcharge_c.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_b);
-  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_c);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(wall_a);
+  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(wall_b);
+  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(wallcharge_c);
 
   //Commands
   private Command movementA = AutoCommands.drivetrainMotion(traj_path_a);
