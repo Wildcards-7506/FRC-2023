@@ -10,10 +10,10 @@ import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
 public class AutoRoutineBlueCenterOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/BlueCenterOut/pathA.wpilib.json";
+  String centerout_a = "paths/BlueCenterOut/blue_centerout_a.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(centerout_a);
 
   //Commands
   private Command movementA = AutoCommands.drivetrainMotion(traj_path_a);

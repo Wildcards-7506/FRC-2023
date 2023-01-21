@@ -10,23 +10,19 @@ import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
 public class AutoRoutineBlueCenterCharge extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/BlueCenterCharge/pathA.wpilib.json";
-  String file_path_b = "paths/BlueCenterCharge/pathB.wpilib.json";
+  String centercharge_a = "paths/BlueCenterCharge/blue_centercharge_a.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_b);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(centercharge_a);
 
   //Commands
   private Command movementA = AutoCommands.drivetrainMotion(traj_path_a);
-  private Command movementB = AutoCommands.drivetrainMotion(traj_path_b);
 
   public AutoRoutineBlueCenterCharge(){
     
     addCommands(
         //score
-        movementA,
-        movementB
+        movementA
         //align
       );
   }

@@ -10,14 +10,14 @@ import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 
 public class AutoRoutineRedWallOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String file_path_a = "paths/RedWallOut/pathA.wpilib.json";
-  String file_path_b = "paths/RedWallOut/pathB.wpilib.json";
-  String file_path_c = "paths/RedWallOut/pathC.wpilib.json";
+  String wall_a = "paths/RedWallOut/red_wall_a.wpilib.json";
+  String wall_b = "paths/RedWallOut/red_wall_b.wpilib.json";
+  String wallout_c = "paths/RedWallOut/red_wallout_c.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_b);
-  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(file_path_c);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(wall_a);
+  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(wall_b);
+  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(wallout_c);
 
   //Commands
   private Command movementA = AutoCommands.drivetrainMotion(traj_path_a);
