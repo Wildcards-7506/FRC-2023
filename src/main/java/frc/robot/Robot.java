@@ -17,7 +17,6 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LEDs;
-import frc.robot.ControlConfigs.Drivers.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -61,7 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    HDD.initBot();
+    //HDD.initBot();
   }
 
   /**
@@ -74,7 +73,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    HDD.m_field.setRobotPose(drivetrain.odometry.getPoseMeters());
+    // HDD.m_field.setRobotPose(drivetrain.odometry.getPoseMeters());
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }

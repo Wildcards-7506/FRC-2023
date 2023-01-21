@@ -1,5 +1,4 @@
 package frc.robot.commands;
-import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.ControlConfigs.PlayerConfigs;
@@ -8,12 +7,11 @@ import frc.robot.Robot;
 public class DrivetrainTOCom extends CommandBase{
 
     private boolean driveMode = true;
-    double prevFLeft = 0;
-    double prevBLeft = 0;
-    double prevFRight = 0;
-    double prevBRight = 0;
+    double prevRot = 0;
+    double prevYspeed = 0;
+    double prevXspeed = 0;
     double turnSpeed;
-    private MecanumDriveMotorVoltages driveVolts = new MecanumDriveMotorVoltages(0, 0, 0, 0);
+    
 
     public DrivetrainTOCom() {
         addRequirements(Robot.drivetrain);
@@ -21,36 +19,31 @@ public class DrivetrainTOCom extends CommandBase{
 
     @Override
     public void execute(){
-        //Need to adapt this to the drive method in Drivetrain.java - We want field-oriented control
+        double rot, yspeed, xspeed;
         turnSpeed = PlayerConfigs.turnMovement * PlayerConfigs.turnSpeed;
 
         if(driveMode){
-            //Mecanum Drive, Strafing Enabled
-            //Drop Wheel Raised
-            driveVolts.frontLeftVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement + PlayerConfigs.xMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFLeft;
-            driveVolts.frontRightVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement - PlayerConfigs.xMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFRight;
-            driveVolts.rearLeftVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement - PlayerConfigs.xMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevBLeft;
-            driveVolts.rearRightVoltage = DriveConstants.RAMP_RATE * (12 * PlayerConfigs.driveSpeed * (PlayerConfigs.yMovement + PlayerConfigs.xMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevBRight;
+            //Mecanum Drive
+            xspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.xMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            yspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - DriveConstants.RAMP_RATE) * prevYspeed;
+            rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevRot;
         } else {
-            //Tank Drive, Strafing Disabled
-            //Drop Wheel Lowered
-            driveVolts.frontLeftVoltage = DriveConstants.RAMP_RATE * (12 * (PlayerConfigs.yMovement - turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFLeft;
-            driveVolts.frontRightVoltage = DriveConstants.RAMP_RATE * (12 * (PlayerConfigs.yMovement + turnSpeed)) + (1 - DriveConstants.RAMP_RATE) * prevFRight;
-            driveVolts.rearLeftVoltage = driveVolts.frontLeftVoltage;
-            driveVolts.rearRightVoltage = driveVolts.frontRightVoltage;
+            //Tank Drive
+            xspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.xMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            yspeed = 0;
+            rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
         }
 
-        prevFLeft = driveVolts.frontLeftVoltage;
-        prevBLeft = driveVolts.rearLeftVoltage;
-        prevFRight = driveVolts.frontRightVoltage;
-        prevBRight = driveVolts.rearRightVoltage;
+        prevXspeed = xspeed;
+        prevYspeed = yspeed;
+        prevRot = rot;
 
         if (PlayerConfigs.modeSwitch){
             driveMode = !driveMode;
         }
 
         //Set motors
-        Robot.drivetrain.setDriveMotorControllersVolts(driveVolts);
+        Robot.drivetrain.drive(xspeed, yspeed, rot, false);
         
     }
 }

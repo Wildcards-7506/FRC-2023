@@ -34,6 +34,7 @@ public class Drivetrain extends SubsystemBase{
     public AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
     public MecanumDriveOdometry odometry;
+    public MecanumDriveWheelPositions wheelPositions = new MecanumDriveWheelPositions();
     
     public double initPose = 0.0;
 
@@ -65,11 +66,11 @@ public class Drivetrain extends SubsystemBase{
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){
-        // Update the odometry in the periodic block
-        odometry.update(
-            gyro.getRotation2d(),
-            getWheelPositions());
-        HDD.m_field.setRobotPose(odometry.getPoseMeters());
+        //Update the odometry in the periodic block
+        // odometry.update(
+        //     gyro.getRotation2d(),
+        //     wheelPositions);
+        // HDD.m_field.setRobotPose(odometry.getPoseMeters());
 
         setDefaultCommand(new DrivetrainTOCom());
     }
