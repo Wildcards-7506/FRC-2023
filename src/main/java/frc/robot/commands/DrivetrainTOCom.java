@@ -29,8 +29,8 @@ public class DrivetrainTOCom extends CommandBase{
             rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevRot;
         } else {
             //Tank Drive
-            xspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.xMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
-            yspeed = 0;
+            yspeed = DriveConstants.RAMP_RATE * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
+            xspeed = 0;
             rot = DriveConstants.RAMP_RATE * PlayerConfigs.turnMovement * turnSpeed + (1 - DriveConstants.RAMP_RATE) * prevXspeed;
         }
 
