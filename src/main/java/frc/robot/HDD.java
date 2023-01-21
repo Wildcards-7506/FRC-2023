@@ -49,6 +49,8 @@ public class HDD {
     public static PlayerConfigs ryan = new Ryan();
     public static PlayerConfigs anthony = new Anthony();
     public static PlayerConfigs shannon = new Shannon();
+    
+    //public static AutoRoutineExample example = new AutoRoutineExample();
 
     public static SequentialCommandGroup desiredMode;
     public static SequentialCommandGroup prevMode;
@@ -82,6 +84,14 @@ public class HDD {
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(auto_chooser);
+        //m_chooser.setDefaultOption("Example", example);
+        //m_chooser.addOption("Additional Mode", DesiredMode.ADDITIONAL_MODE);
+
+        // Put the choosers on the dashboard
+        //SmartDashboard.putData(m_chooser);
+        SmartDashboard.putNumber("Custom X",4);
+        SmartDashboard.putNumber("Custom Y",4.1);
+        SmartDashboard.putNumber("Custom Angle",0.0);
         SmartDashboard.putNumber("Startup Time",1.5);
         SmartDashboard.putData(driver_chooser);
         SmartDashboard.putData(coDriver_chooser);
