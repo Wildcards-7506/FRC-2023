@@ -50,11 +50,6 @@ public class HDD {
     public static PlayerConfigs anthony = new Anthony();
     public static PlayerConfigs shannon = new Shannon();
 
-    //Co-Drivers options
-    public static PlayerConfigs co_ryan = new Ryan();
-    public static PlayerConfigs co_anthony = new Anthony();
-    public static PlayerConfigs co_shannon = new Shannon();
-
     public static SequentialCommandGroup desiredMode;
     public static SequentialCommandGroup prevMode;
 
@@ -81,9 +76,9 @@ public class HDD {
         driver_chooser.addOption("Shannon", shannon);
 
         // Co-Driver choosers
-        coDriver_chooser.setDefaultOption("Anthony", co_anthony);
-        coDriver_chooser.addOption("Ryan", co_ryan);
-        coDriver_chooser.addOption("Shannon", co_shannon);
+        coDriver_chooser.setDefaultOption("Anthony", anthony);
+        coDriver_chooser.addOption("Ryan", ryan);
+        coDriver_chooser.addOption("Shannon", shannon);
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(auto_chooser);

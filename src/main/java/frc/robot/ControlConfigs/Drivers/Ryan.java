@@ -15,6 +15,8 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
         PlayerConfigs.modeSwitch = Robot.controller0.getCircleButton();
+        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
@@ -36,12 +38,12 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.groundGrab = Robot.controller1.getPOV() == 180;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 270;
-        PlayerConfigs.openClaw = Robot.controller1.getPOV() == 90;
+        PlayerConfigs.collectPos = Robot.controller1.getPOV() == 90;
 
         //Claw
         PlayerConfigs.openClaw = Robot.controller1.getStartButton();
 
         //Limelight Switch
-        PlayerConfigs.switchPipeline = Robot.controller1.getBackButton();
+        PlayerConfigs.switchPipeline = Robot.controller1.getYButton();
     }
 }
