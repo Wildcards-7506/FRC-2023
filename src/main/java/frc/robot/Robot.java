@@ -17,6 +17,7 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LEDs;
+import frc.robot.ControlConfigs.Drivers.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +27,8 @@ import frc.robot.subsystems.LEDs;
  */
 public class Robot extends TimedRobot {  
   private SequentialCommandGroup autoMode;
+  public PlayerConfigs driver;
+  public PlayerConfigs coDriver;
   //Subsystem Declarations
 
   public static final Drivetrain drivetrain = new Drivetrain(
@@ -80,7 +83,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
-    autoMode = HDD.m_chooser.getSelected();
+    autoMode = HDD.auto_chooser.getSelected();
     autoMode.schedule();
   }
 
@@ -92,14 +95,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     teamColor = DriverStation.getAlliance();
+    driver = HDD.driver_chooser.getSelected();
+    coDriver = HDD.coDriver_chooser.getSelected();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    PlayerConfigs.getDriverConfig();
-    PlayerConfigs.getCoDriverConfig();
+    driver.getDriverConfig();
+    coDriver.getCoDriverConfig();
   }
 
   /** This function is called once when the robot is disabled. */
@@ -111,7 +116,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     HDD.updateStartupConfig();
     // Need LED Display Here
-    SmartDashboard.putString("AUTO MODE", HDD.m_chooser.getSelected().getName());
+    SmartDashboard.putString("AUTO MODE", HDD.auto_chooser.getSelected().getName());
   }
 
   /** This function is called once when test mode is enabled. */

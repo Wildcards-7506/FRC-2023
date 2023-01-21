@@ -1,9 +1,9 @@
 package frc.robot.ControlConfigs.Drivers;
 
-import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
+import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class Shannon extends PlayerConfigs {
+public class Chantell extends PlayerConfigs{
     
     public static void getDriverConfig() {
         turnSpeed = 0.3;
@@ -13,9 +13,9 @@ public class Shannon extends PlayerConfigs {
         yMovement = Robot.controller0.getLeftY();
         turnMovement = Robot.controller0.getRightX();
 
-        modeSwitch = Robot.controller0.getL2Button();
-        snapZero = Robot.controller0.getL3Button();
-        snap180 = Robot.controller0.getR3Button();
+        modeSwitch = Robot.controller0.getR2ButtonReleased();
+        snapZero = Robot.controller0.getL2ButtonReleased();
+        snap180 = Robot.controller0.getL1Button();
 
         signalCone = Robot.controller0.getTriangleButton();
         signalCube = Robot.controller0.getSquareButton();
@@ -30,12 +30,12 @@ public class Shannon extends PlayerConfigs {
         fineControlY = Robot.controller1.getLeftY();
         fineTurn = Robot.controller1.getRightX();
 
-        collectPos = Robot.controller1.getLeftBumper();
-        groundGrab = Robot.controller1.getLeftTriggerAxis() >= 0.15;
-        highGoal = Robot.controller1.getRightBumper();
-        lowGoal = Robot.controller1.getRightTriggerAxis() >= 0.15;
-        openClaw = Robot.controller1.getAButton();
+        collectPos = Robot.controller1.getAButton();
+        groundGrab = Robot.controller1.getBButton();
+        highGoal = Robot.controller1.getPOV() == 0;
+        lowGoal = Robot.controller1.getPOV() == 180;
+        openClaw = Robot.controller1.getLeftBumper();
 
-        switchPipeline = Robot.controller1.getLeftStickButton();
+        switchPipeline = Robot.controller1.getRightStickButton();
     }
 }
