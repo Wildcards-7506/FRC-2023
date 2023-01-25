@@ -21,7 +21,14 @@ public class LEDTOCom extends CommandBase{
             Robot.ledStrip.solid(30);
         } else if (PlayerConfigs.toggleLeds){
             lockLed = false;
+        } else if (Robot.limelight.getTV() == 1){
+            if (Math.abs(Robot.limelight.getTX()) < 2){
+                Robot.ledStrip.solid(60);
+            } else {
+                Robot.ledStrip.solid(15);
+            }
         } else if (!lockLed){
+
             Robot.ledStrip.teamColor(Robot.teamColor); 
         }
     }
