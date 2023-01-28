@@ -11,6 +11,7 @@ public class Jayden extends PlayerConfigs{
         PlayerConfigs.driveSpeed = 0.5;
 
         //Driving and rotation
+
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();

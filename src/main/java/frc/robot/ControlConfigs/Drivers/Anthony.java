@@ -14,10 +14,10 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
         PlayerConfigs.modeSwitch = Robot.controller0.getSquareButton();
-        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
-        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
+        PlayerConfigs.snap0 = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
-        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
+        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
@@ -34,7 +34,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.fineControlX = Robot.controller1.getLeftX();
         PlayerConfigs.fineControlY = Robot.controller1.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller1.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller1.getRightTriggerAxis() > .2;
+        PlayerConfigs.fineControlToggle = Robot.controller1.getLeftTriggerAxis() > .2;
 
         //Scoring and grabbing objects
         PlayerConfigs.groundGrab = Robot.controller1.getRightBumper();

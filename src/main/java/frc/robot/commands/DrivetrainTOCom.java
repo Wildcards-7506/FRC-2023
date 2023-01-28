@@ -1,4 +1,5 @@
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.ControlConfigs.PlayerConfigs;
@@ -33,9 +34,16 @@ public class DrivetrainTOCom extends CommandBase{
             double inputRot = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
                 PlayerConfigs.driveSpeed * turnSpeed;
-            xspeed = Constants.kRampRate * xInputSpeed + (1 - Constants.kRampRate) * prevXspeed;
-            yspeed = Constants.kRampRate * yInputSpeed + (1 - Constants.kRampRate) * prevYspeed;
-            rot = Constants.kRampRate * inputRot + (1 - Constants.kRampRate) * prevRot;
+            if(PlayerConfigs.fineControlToggle){
+                xspeed = xInputSpeed;
+                yspeed = yInputSpeed;
+                rot = inputRot;
+            } else {
+                xspeed = Constants.kRampRate * xInputSpeed + (1 - Constants.kRampRate) * prevXspeed;
+                yspeed = Constants.kRampRate * yInputSpeed + (1 - Constants.kRampRate) * prevYspeed;
+                rot = Constants.kRampRate * inputRot + (1 - Constants.kRampRate) * prevRot;
+            }
+            
 
         } else {
             //Tank Drive
@@ -57,7 +65,17 @@ public class DrivetrainTOCom extends CommandBase{
         }
 
         //Set motors
-        Robot.drivetrain.drive(yspeed, xspeed, rot, false);
+        if(PlayerConfigs.snap0){
+            Robot.drivetrain.snap(0);
+        } else if(PlayerConfigs.snap90) {
+            Robot.drivetrain.snap(90);
+        } else if(PlayerConfigs.snap180) {
+            Robot.drivetrain.snap(180);
+        } else if(PlayerConfigs.snap270){
+            Robot.drivetrain.snap(270);
+        } else {
+            Robot.drivetrain.drive(yspeed, xspeed, rot, true);
+        }    
         
     }
 }

@@ -8,7 +8,7 @@ public class Ryan extends PlayerConfigs {
     public void getDriverConfig() {
         //Constants
         PlayerConfigs.turnSpeed = 0.7;
-        PlayerConfigs.driveSpeed = 0.5;
+        PlayerConfigs.driveSpeed = 0.75;
 
         //Driving and rotation
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();

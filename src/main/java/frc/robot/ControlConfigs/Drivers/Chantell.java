@@ -6,6 +6,7 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 public class Chantell extends PlayerConfigs{
     
     public void getDriverConfig() {
+
         PlayerConfigs.turnSpeed = 0.3;
         PlayerConfigs.driveSpeed = 0.5;
 
