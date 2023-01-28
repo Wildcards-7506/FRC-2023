@@ -28,6 +28,8 @@ public class Drivetrain extends SubsystemBase{
     public RelativeEncoder m_leftEncoder1;
     public RelativeEncoder m_rightEncoder1; 
 
+
+    
     public final MecanumDrive m_drive;
 
     public AHRS gyro = new AHRS(SerialPort.Port.kUSB);
@@ -56,10 +58,14 @@ public class Drivetrain extends SubsystemBase{
         resetEncoders();
 
         odometry = new MecanumDriveOdometry(Constants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
-        // m_leftEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        // m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        // m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        // m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        m_leftEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+    }
+
+    public void Crane(int claw, int rotator, int extender) {
+        
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards

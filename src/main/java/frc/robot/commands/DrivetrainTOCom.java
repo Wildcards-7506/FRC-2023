@@ -52,6 +52,10 @@ public class DrivetrainTOCom extends CommandBase{
             driveMode = !driveMode;
         }
 
+        if (PlayerConfigs.brake) {
+            driveMode = !driveMode;
+        }
+
         //Set motors
         Robot.drivetrain.drive(yspeed, xspeed, rot, false);
         
