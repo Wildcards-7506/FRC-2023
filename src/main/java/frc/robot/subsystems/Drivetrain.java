@@ -117,7 +117,7 @@ public class Drivetrain extends SubsystemBase{
     @SuppressWarnings("ParameterName")
     public void drive(double ySpeed, double xSpeed, double rot, boolean fieldRelative) {
         if (fieldRelative) {
-        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(-gyro.getAngle()));
+        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(Math.toRadians(gyro.getAngle())));
         } else {
         m_drive.driveCartesian(-ySpeed, xSpeed, rot);
         }
@@ -166,5 +166,12 @@ public class Drivetrain extends SubsystemBase{
      */
     public double getTurnRate() {
         return -gyro.getRate();
+    }
+
+    public void snap(double angle){
+        if(Math.abs(getHeading() % 360 - angle) > 10){
+            double rotation = (getHeading() % 360 - angle)/360;
+            drive(0, 0, rotation, true);
+        }
     }
 }

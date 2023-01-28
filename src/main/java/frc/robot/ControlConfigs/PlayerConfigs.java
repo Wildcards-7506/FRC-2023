@@ -11,8 +11,10 @@ public class PlayerConfigs {
     public static double turnSpeed;
     public static double driveSpeed;
     public static boolean modeSwitch;
-    public static boolean snapZero;
+    public static boolean snap0;
+    public static boolean snap90;
     public static boolean snap180;
+    public static boolean snap270;
 
     //secondary drive train controls
     public static double fineControlX;

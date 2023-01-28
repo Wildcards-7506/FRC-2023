@@ -14,8 +14,12 @@ public class Chantell extends PlayerConfigs{
         turnMovement = Robot.controller0.getRightX();
 
         modeSwitch = Robot.controller0.getR2ButtonReleased();
-        snapZero = Robot.controller0.getL2ButtonReleased();
-        snap180 = Robot.controller0.getL1Button();
+        // snapZero = Robot.controller0.getL2ButtonReleased();
+        // snap180 = Robot.controller0.getL1Button();
+        PlayerConfigs.snap0 = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
+        PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
+        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
 
         signalCone = Robot.controller0.getTriangleButton();
         signalCube = Robot.controller0.getSquareButton();
