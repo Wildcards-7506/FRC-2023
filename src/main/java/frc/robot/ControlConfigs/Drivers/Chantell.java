@@ -9,6 +9,7 @@ public class Chantell extends PlayerConfigs{
 
         PlayerConfigs.turnSpeed = 0.3;
         PlayerConfigs.driveSpeed = 0.5;
+        PlayerConfigs.rampRate = 0.01;
 
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();

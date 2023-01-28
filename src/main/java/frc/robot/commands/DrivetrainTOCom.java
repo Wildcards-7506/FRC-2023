@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
 
@@ -39,17 +38,17 @@ public class DrivetrainTOCom extends CommandBase{
                 yspeed = yInputSpeed;
                 rot = inputRot;
             } else {
-                xspeed = Constants.kRampRate * xInputSpeed + (1 - Constants.kRampRate) * prevXspeed;
-                yspeed = Constants.kRampRate * yInputSpeed + (1 - Constants.kRampRate) * prevYspeed;
-                rot = Constants.kRampRate * inputRot + (1 - Constants.kRampRate) * prevRot;
+                xspeed = PlayerConfigs.rampRate * xInputSpeed + (1 - PlayerConfigs.rampRate) * prevXspeed;
+                yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
+                rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;
             }
             
 
         } else {
             //Tank Drive
-            yspeed = Constants.kRampRate * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - Constants.kRampRate) * prevXspeed;
+            yspeed = PlayerConfigs.rampRate * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - PlayerConfigs.rampRate) * prevXspeed;
             xspeed = 0;
-            rot = Constants.kRampRate * turnSpeed + (1 - Constants.kRampRate) * prevXspeed;
+            rot = PlayerConfigs.rampRate * turnSpeed + (1 - PlayerConfigs.rampRate) * prevXspeed;
         }
 
         prevXspeed = xspeed;

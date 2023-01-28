@@ -17,10 +17,15 @@ import frc.robot.commands.Autonomous.Modes.AutoRoutineRedLoadCharge;
 import frc.robot.commands.Autonomous.Modes.AutoRoutineRedLoadOut;
 import frc.robot.commands.Autonomous.Modes.AutoRoutineRedWallCharge;
 import frc.robot.commands.Autonomous.Modes.AutoRoutineRedWallOut;
-import frc.robot.ControlConfigs.Drivers.Ryan;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.ControlConfigs.Drivers.Ryan;
 import frc.robot.ControlConfigs.Drivers.Anthony;
 import frc.robot.ControlConfigs.Drivers.Shannon;
+import frc.robot.ControlConfigs.Drivers.Chantell;
+import frc.robot.ControlConfigs.Drivers.Jayden;
+import frc.robot.ControlConfigs.Drivers.Lam;
+import frc.robot.ControlConfigs.Drivers.Thao;
+import frc.robot.ControlConfigs.Drivers.Vasquez;
 
 public class HDD {    
     public static SendableChooser<SequentialCommandGroup> auto_chooser = new SendableChooser<>();
@@ -49,6 +54,11 @@ public class HDD {
     public static PlayerConfigs ryan = new Ryan();
     public static PlayerConfigs anthony = new Anthony();
     public static PlayerConfigs shannon = new Shannon();
+    public static PlayerConfigs chantell = new Chantell();
+    public static PlayerConfigs jayden = new Jayden();
+    public static PlayerConfigs lam = new Lam();
+    public static PlayerConfigs thao = new Thao();
+    public static PlayerConfigs vasquez = new Vasquez();
     
     //public static AutoRoutineExample example = new AutoRoutineExample();
 
@@ -76,25 +86,26 @@ public class HDD {
         driver_chooser.setDefaultOption("Ryan", ryan);
         driver_chooser.addOption("Anthony", anthony);
         driver_chooser.addOption("Shannon", shannon);
+        driver_chooser.addOption("Chantell", chantell);
+        driver_chooser.addOption("Jayden", jayden);
+        driver_chooser.addOption("Lam", lam);
+        driver_chooser.addOption("Thao", thao);
+        driver_chooser.addOption("Vasquez", vasquez);
 
         // Co-Driver choosers
         coDriver_chooser.setDefaultOption("Anthony", anthony);
         coDriver_chooser.addOption("Ryan", ryan);
         coDriver_chooser.addOption("Shannon", shannon);
+        coDriver_chooser.addOption("Chantell", chantell);
+        coDriver_chooser.addOption("Jayden", jayden);
+        coDriver_chooser.addOption("Lam", lam);
+        coDriver_chooser.addOption("Thao", thao);
+        coDriver_chooser.addOption("Vasquez", vasquez);
 
         // Put the choosers on the dashboard
-        SmartDashboard.putData(auto_chooser);
-        //m_chooser.setDefaultOption("Example", example);
-        //m_chooser.addOption("Additional Mode", DesiredMode.ADDITIONAL_MODE);
-
-        // Put the choosers on the dashboard
-        //SmartDashboard.putData(m_chooser);
-        SmartDashboard.putNumber("Custom X",4);
-        SmartDashboard.putNumber("Custom Y",4.1);
-        SmartDashboard.putNumber("Custom Angle",0.0);
-        SmartDashboard.putNumber("Startup Time",1.5);
         SmartDashboard.putData(driver_chooser);
         SmartDashboard.putData(coDriver_chooser);
+        SmartDashboard.putData(auto_chooser);
         
         // Create and push Field2d to SmartDashboard.
         m_field = new Field2d();

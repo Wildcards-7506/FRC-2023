@@ -9,6 +9,7 @@ public class Jayden extends PlayerConfigs{
         //Constants
         PlayerConfigs.turnSpeed = 0.7;
         PlayerConfigs.driveSpeed = 0.5;
+        PlayerConfigs.rampRate = 0.01;
 
         //Driving and rotation
 

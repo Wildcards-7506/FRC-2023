@@ -57,22 +57,24 @@ public final class Constants {
 
         //Speed and Power Limits
         public static final int kDrivetrainCurrentLimit = 30;
-        public static final double kRampRate = 0.01;
         public static final int kDropWheelDistance = 16;
         public static final double kAlignmentSpeed = 0.2;
+        public static final double kSnapRange = 10;
+        public static final double kSnapSpeed = 1.0/360;
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
         //Movement Controller Constants
-        public static final double kPXController = 0.5;
+        public static final double kPXController = 0.1;
         public static final double kPYController = 0.5;
         public static final double kPThetaController = 0.5;
+        public static final double kAlignKP = 0.01;
         public static final double ffKS = 1;
         public static final double ffKV = 0.8;
         public static final double ffKA = 0.15;
-
+        
         //Wheel Controller Constants
         public static final double kPFrontLeftVel = 0.5;
         public static final double kPRearLeftVel = 0.5;
