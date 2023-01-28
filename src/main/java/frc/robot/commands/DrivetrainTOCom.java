@@ -60,6 +60,10 @@ public class DrivetrainTOCom extends CommandBase{
             driveMode = !driveMode;
         }
 
+        if (PlayerConfigs.brake) {
+            driveMode = !driveMode;
+        }
+
         //Set motors
         if(PlayerConfigs.snap0){
             Robot.drivetrain.snap(0);

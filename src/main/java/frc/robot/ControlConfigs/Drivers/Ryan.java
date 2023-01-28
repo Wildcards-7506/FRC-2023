@@ -14,8 +14,9 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getCircleButton();
-        PlayerConfigs.snap0 = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.modeSwitch = Robot.controller0.getCrossButton();
+        PlayerConfigs.brake = Robot.controller0.getCircleButton();
+        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
