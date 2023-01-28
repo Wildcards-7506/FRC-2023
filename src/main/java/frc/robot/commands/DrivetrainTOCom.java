@@ -65,7 +65,8 @@ public class DrivetrainTOCom extends CommandBase{
         }
 
         //Set motors
-        if(PlayerConfigs.snap0){
+
+        if(PlayerConfigs.snapZero){
             Robot.drivetrain.snap(0);
         } else if(PlayerConfigs.snap90) {
             Robot.drivetrain.snap(90);
@@ -73,6 +74,8 @@ public class DrivetrainTOCom extends CommandBase{
             Robot.drivetrain.snap(180);
         } else if(PlayerConfigs.snap270){
             Robot.drivetrain.snap(270);
+        } else if((PlayerConfigs.highGoal || PlayerConfigs.lowGoal)){
+            Robot.drivetrain.align(Robot.limelight.getTX());
         } else {
             Robot.drivetrain.drive(yspeed, xspeed, rot, true);
         }    

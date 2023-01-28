@@ -180,4 +180,12 @@ public class Drivetrain extends SubsystemBase{
             drive(0, 0, rotation, true);
         }
     }
+
+    public void align(double distance){
+        if(Math.abs(distance) > 10){
+            drive(0, -distance * 0.01, 0, true);
+        } else {
+            drive(0, 0, 0, false);
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
         PlayerConfigs.modeSwitch = Robot.controller0.getSquareButton();
-        PlayerConfigs.snap0 = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;

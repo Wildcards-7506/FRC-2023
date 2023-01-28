@@ -16,7 +16,7 @@ public class Shannon extends PlayerConfigs {
         modeSwitch = Robot.controller0.getL2Button();
         // snapZero = Robot.controller0.getL3Button();
         // snap180 = Robot.controller0.getR3Button();
-        PlayerConfigs.snap0 = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
