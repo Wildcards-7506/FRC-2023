@@ -13,6 +13,33 @@ public class Crane extends SubsystemBase {
     public RelativeEncoder clawEncoder;
     public RelativeEncoder rotatorEncoder;
     public RelativeEncoder extenderEncoder;
-    
-    // claw.enableSoftLimit();
+
+    @Override
+    public void periodic() {
+        
+    }
+
+    // public static double getRotatorEncoder() {
+
+    // }
+
+    // public static double getClawEncoder() {
+
+    // }
+
+    // public static double getExtenderEncoder() {
+
+    // }
+
+    // public static double setRotator() {
+
+    // }
+
+    // public static double setClaw() {
+
+    // }
+
+    //public static double setExtender() {
+
+    // }
 }

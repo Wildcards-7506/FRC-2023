@@ -84,7 +84,7 @@ public final class Constants {
         //Robot Size Parameters
         public static final double kTrackwidthMeters = Units.inchesToMeters(20.176);
         public static final double kTrackLengthMeters = Units.inchesToMeters(21.911);;
-        public static final double driveTrainGearRatio = 1/9;
+        public static final double driveTrainGearRatio = 1.0/9;
         public static final double kEncoderDistancePerPulse = driveTrainGearRatio * Math.PI * Units.inchesToMeters(8);
 
         // Robot Movement Profiles
@@ -93,10 +93,10 @@ public final class Constants {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
         public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
-            new Translation2d(kTrackLengthMeters / 2, kTrackwidthMeters / 2),
-            new Translation2d(kTrackLengthMeters / 2, -kTrackwidthMeters / 2),
-            new Translation2d(-kTrackLengthMeters / 2, kTrackwidthMeters / 2),
-            new Translation2d(-kTrackLengthMeters / 2, -kTrackwidthMeters / 2));
+            new Translation2d(kTrackLengthMeters / 2.0, kTrackwidthMeters / 2.0),
+            new Translation2d(kTrackLengthMeters / 2.0, -kTrackwidthMeters / 2.0),
+            new Translation2d(-kTrackLengthMeters / 2.0, kTrackwidthMeters / 2.0),
+            new Translation2d(-kTrackLengthMeters / 2.0, -kTrackwidthMeters / 2.0));
 
         public static final  TrajectoryConfig kconfig =  
             new TrajectoryConfig(
@@ -110,7 +110,7 @@ public final class Constants {
 
     //Crane Constants
         public static final int kRotateCurrentLimit = 30;
-        public static final double kRotateEncoderDistancePerPulse = 1/375 * 360;
+        public static final double kRotateEncoderDistancePerPulse = 1.0/375 * 360;
         public static final double kRotatorKP = 1.0;
         public static final double kRotatorGround = 10.0;
         public static final double kRotatorHi = 210.0;
@@ -128,7 +128,7 @@ public final class Constants {
         public static final double kExtenderHeightLimit = 20.0;
         
         public static final int kClawCurrentLimit = 10;
-        public static final double kClawEncoderDistancePerPulse = 1/125 * 360;
+        public static final double kClawEncoderDistancePerPulse = 1.0/125 * 360;
         public static final double kClawKP = 1.0;
         public static final double kClawOpen = 85.0;
         public static final double kClawClosed = 0.0;

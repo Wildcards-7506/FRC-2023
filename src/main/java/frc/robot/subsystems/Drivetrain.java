@@ -64,10 +64,6 @@ public class Drivetrain extends SubsystemBase{
         m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
     }
 
-    public void Crane(int claw, int rotator, int extender) {
-        
-    }
-
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){
@@ -123,7 +119,7 @@ public class Drivetrain extends SubsystemBase{
     @SuppressWarnings("ParameterName")
     public void drive(double ySpeed, double xSpeed, double rot, boolean fieldRelative) {
         if (fieldRelative) {
-        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(Math.toRadians(gyro.getAngle())));
+        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(-gyro.getAngle()));
         } else {
         m_drive.driveCartesian(-ySpeed, xSpeed, rot);
         }
