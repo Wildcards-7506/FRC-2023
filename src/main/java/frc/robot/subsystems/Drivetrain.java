@@ -169,4 +169,19 @@ public class Drivetrain extends SubsystemBase{
     public double getTurnRate() {
         return -gyro.getRate();
     }
+
+    public void snap(double angle){
+        if(Math.abs(getHeading() % 360 - angle) > Constants.kSnapRange){
+            double rotation = (getHeading() % 360 - angle) * Constants.kSnapSpeed;
+            drive(0, 0, rotation, true);
+        }
+    }
+
+    public void align(double distance){
+        if(Math.abs(distance) > 10){
+            drive(0, -distance * Constants.kAlignKP, 0, true);
+        } else {
+            drive(0, 0, 0, false);
+        }
+    }
 }

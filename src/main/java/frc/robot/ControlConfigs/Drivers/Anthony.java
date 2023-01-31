@@ -8,6 +8,7 @@ public class Anthony extends PlayerConfigs {
         //Constants
         PlayerConfigs.turnSpeed = 0.3;
         PlayerConfigs.driveSpeed = 0.5;
+        PlayerConfigs.rampRate = 0.01;
 
         //Driving and rotation
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
