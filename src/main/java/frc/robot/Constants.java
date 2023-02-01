@@ -17,7 +17,9 @@ public final class Constants {
     //Crane
         public static final int CRANE_EXTENDOR = 19;
         public static final int CRANE_ROTATION = 2;
-        public static final int CRANE_CLAW = 18;
+        public static final int CRANE_ROTATION_2 = 3;
+        public static final int CRANE_CLAW_ROLLER = 18;
+        public static final int CRANE_WRIST = 17;
 
         //Arm
 
@@ -132,4 +134,8 @@ public final class Constants {
         public static final double kClawKP = 1.0;
         public static final double kClawOpen = 85.0;
         public static final double kClawClosed = 0.0;
+
+        public static final int kWristCurrentLimit = 10;
+        public static final double kWristEncoderDistancePerPulse = 1.0/125 * 360;
+        public static final double kWristKP = 1.0;
 }
