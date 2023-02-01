@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LEDs;
@@ -36,6 +37,15 @@ public class Robot extends TimedRobot {
     Constants.RIGHT_DRIVE_TRAIN_FORWARD,
     Constants.RIGHT_DRIVE_TRAIN_BACK
     //Need Additional Motors for drop wheels - 2 for raise/lower and 2 to drive the drop wheels
+  );
+
+  public static final Crane crane = new Crane(
+    Constants.CRANE_CLAW_ROLLER,
+    Constants.CRANE_ROTATION,
+    Constants.CRANE_ROTATION_2,
+    Constants.CRANE_EXTENDOR,
+    Constants.CRANE_WRIST,
+    true
   );
 
   //Need Subsystems for the Arm and Claw, TBD if more systems will get added
@@ -61,10 +71,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     HDD.initBot();
-  }
-
-  public void crane(int claw, int rotator, int extender) {
-    
   }
 
   /**

@@ -41,6 +41,9 @@ public class PlayerConfigs {
     public static boolean signalCube;
     public static boolean toggleLeds;
 
+    //Roller
+    public static boolean rollerForward;
+
     public void getDriverConfig(){
         
     }
