@@ -14,7 +14,7 @@ public class CraneTOCom extends CommandBase {
     @Override
     public void execute() {
         if (PlayerConfigs.openClaw) {
-            if (Robot.crane.rollerOrClaw) {
+            if (Robot.crane.rollerInUse) {
                 Robot.crane.setRoller(8);
             }
             Robot.crane.setClaw(Constants.kClawOpen);
@@ -22,7 +22,7 @@ public class CraneTOCom extends CommandBase {
         } else if (PlayerConfigs.rollerForward) {
             Robot.crane.setRoller(-8);
         } else {
-            if (Robot.crane.rollerOrClaw) {
+            if (Robot.crane.rollerInUse) {
                 Robot.crane.setRoller(0);
             } else {
                 Robot.crane.setClaw(Constants.kClawClosed);
