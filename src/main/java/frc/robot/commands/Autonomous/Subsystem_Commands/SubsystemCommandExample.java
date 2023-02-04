@@ -6,11 +6,11 @@ import frc.robot.Robot;
 
 public class SubsystemCommandExample extends CommandBase{
     //Declare required variables here, initialize if necessary
-    //This example drives the robot forward for one second and stops.
+    //This example drives the robot forward for a provided time and stops.
     int time;
     Timer timer = null;
 
-    /** Creates a new Subsyste, Command. */
+    /** Creates a new Subsystem Command. */
     public SubsystemCommandExample(int setPoint) {
         //Use this. format below to set class variables as soon as the class is created
         this.time = setPoint;
