@@ -15,10 +15,10 @@ public final class Constants {
         public static final int RIGHT_DRIVE_TRAIN_BACK = 1;
         public static final int RIGHT_DRIVE_TRAIN_FORWARD = 20;
     //Crane
-        public static final int CRANE_EXTENDOR = 19;
-        public static final int CRANE_ROTATION = 2;
-        public static final int CRANE_ROTATION_2 = 3;
-        public static final int CRANE_CLAW_ROLLER = 18;
+        public static final int CRANE_EXTENDER = 19;
+        public static final int CRANE_ROTATION_LEAD = 2;
+        public static final int CRANE_ROTATION_FOLLOW = 3;
+        public static final int CRANE_END_EFFECTOR = 18;
         public static final int CRANE_WRIST = 17;
 
         //Arm

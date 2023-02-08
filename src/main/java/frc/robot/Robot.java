@@ -40,10 +40,10 @@ public class Robot extends TimedRobot {
   );
 
   public static final Crane crane = new Crane(
-    Constants.CRANE_CLAW_ROLLER,
-    Constants.CRANE_ROTATION,
-    Constants.CRANE_ROTATION_2,
-    Constants.CRANE_EXTENDOR,
+    Constants.CRANE_ROTATION_LEAD,
+    Constants.CRANE_ROTATION_FOLLOW,
+    Constants.CRANE_EXTENDER,
+    Constants.CRANE_END_EFFECTOR,
     Constants.CRANE_WRIST,
     true
   );

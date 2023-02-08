@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -30,39 +31,48 @@ public class CraneTOCom extends CommandBase {
         }
 
         if (PlayerConfigs.groundGrab) {
-            Robot.crane.setExtender(Constants.kExtenderGround);
             Robot.crane.setRotator(Constants.kRotatorGround);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setExtender(Constants.kExtenderGround);
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            SmartDashboard.putString("Arm Position", "Ground");
             
         } else if (PlayerConfigs.collectPos){
-            Robot.crane.setExtender(Constants.kExtenderCollect);
             Robot.crane.setRotator(Constants.kRotatorCollect);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setExtender(Constants.kExtenderCollect);
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            SmartDashboard.putString("Arm Position", "Collect");
+
 
         } else if (PlayerConfigs.lowGoal) {
-            Robot.crane.setExtender(Constants.kExtenderMid);
             Robot.crane.setRotator(Constants.kRotatorMid);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setExtender(Constants.kExtenderMid);
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            SmartDashboard.putString("Arm Position", "Low");
+
             
         } else if (PlayerConfigs.highGoal) {
-            Robot.crane.setExtender(Constants.kExtenderHi);
             Robot.crane.setRotator(Constants.kRotatorHi);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setExtender(Constants.kExtenderHi);
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            SmartDashboard.putString("Arm Position", "Hi");
 
-        } else if (Robot.crane.getRotatorEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
+
+        } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             Robot.crane.setExtender(Constants.kExtenderClosed);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
 
-        } else if (Robot.crane.getRotatorEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
+        } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
             Robot.crane.setRotator(Constants.kRotatorHi);
             Robot.crane.setExtender(Constants.kExtenderHeightLimit);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
 
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             Robot.crane.setExtender(Constants.kExtenderClosed);
-            Robot.crane.setWrist(Robot.crane.getRotatorEncoder());
+            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            SmartDashboard.putString("Arm Position", "Close");
+
         }
     }
 }
