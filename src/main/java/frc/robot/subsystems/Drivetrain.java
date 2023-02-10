@@ -27,8 +27,6 @@ public class Drivetrain extends SubsystemBase{
     public RelativeEncoder m_rightEncoder0; 
     public RelativeEncoder m_leftEncoder1;
     public RelativeEncoder m_rightEncoder1; 
-
-
     
     public final MecanumDrive m_drive;
 
@@ -133,12 +131,6 @@ public class Drivetrain extends SubsystemBase{
         motorLeftBack.setVoltage(volts.frontRightVoltage);
         motorRightBack.setVoltage(volts.rearRightVoltage);
     }
-
-    /*We need the following methods:
-     * Limelight Alignment
-     * Snapping to a specific degree orientation (0 and 180 degrees at a minimum)
-     * Depending on Herron's desires, a NOX method (Fullspeed forward with drop wheels engaged)
-    */
 
     public void resetEncoders() {
         m_leftEncoder0.setPosition(0);

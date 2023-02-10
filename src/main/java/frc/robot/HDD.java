@@ -12,6 +12,7 @@ import frc.robot.ControlConfigs.Drivers.Shannon;
 import frc.robot.ControlConfigs.Drivers.Chantell;
 import frc.robot.ControlConfigs.Drivers.Jayden;
 import frc.robot.ControlConfigs.Drivers.Lam;
+import frc.robot.ControlConfigs.Drivers.Mentor;
 import frc.robot.ControlConfigs.Drivers.Thao;
 import frc.robot.ControlConfigs.Drivers.Vasquez;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueCenterCharge;
@@ -59,6 +60,7 @@ public class HDD {
     public static PlayerConfigs lam = new Lam();
     public static PlayerConfigs thao = new Thao();
     public static PlayerConfigs vasquez = new Vasquez();
+    public static PlayerConfigs mentor = new Mentor();
     
     //public static AutoRoutineExample example = new AutoRoutineExample();
 
@@ -91,6 +93,7 @@ public class HDD {
         driver_chooser.addOption("Lam", lam);
         driver_chooser.addOption("Thao", thao);
         driver_chooser.addOption("Vasquez", vasquez);
+        driver_chooser.addOption("Mentor", mentor);
 
         // Co-Driver choosers
         coDriver_chooser.setDefaultOption("Anthony", anthony);
@@ -101,6 +104,7 @@ public class HDD {
         coDriver_chooser.addOption("Lam", lam);
         coDriver_chooser.addOption("Thao", thao);
         coDriver_chooser.addOption("Vasquez", vasquez);
+        coDriver_chooser.addOption("Mentor", mentor);
 
         // Put the choosers on the dashboard
         SmartDashboard.putData(driver_chooser);
