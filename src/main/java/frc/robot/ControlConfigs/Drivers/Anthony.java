@@ -38,10 +38,10 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.fineControlToggle = Robot.controller1.getLeftTriggerAxis() > .2;
 
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getRightBumper();
+        PlayerConfigs.groundGrab = Robot.controller1.getPOV() == 180;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
-        PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.collectPos = Robot.controller1.getXButton();
+        PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 90;
+        PlayerConfigs.collectPos = Robot.controller1.getPOV() == 270;
 
         //Claw
         PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();

@@ -14,7 +14,7 @@ import frc.robot.commands.CraneTOCom;
 
 public class Crane extends SubsystemBase {
     private CANSparkMax endEffector;
-    private CANSparkMax rotatorLeader;
+    public CANSparkMax rotatorLeader;
     private CANSparkMax rotatorFollower;
     private CANSparkMax extender;
     private CANSparkMax wrist;
@@ -80,10 +80,10 @@ public class Crane extends SubsystemBase {
 
         rotatorLeader.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorLeader.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 0);
-        rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 330);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 0);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, 28);
+        rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
+        rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
+        extender.setSoftLimit(SoftLimitDirection.kForward, 28);
+        extender.setSoftLimit(SoftLimitDirection.kReverse, 0);
 
         rotatorPID = rotatorLeader.getPIDController();
         clawPID = endEffector.getPIDController();

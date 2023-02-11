@@ -6,7 +6,7 @@ import frc.robot.Robot;
 public class Shannon extends PlayerConfigs {
     
     public void getDriverConfig() {
-        turnSpeed = 0.3;
+        turnSpeed = 0.4;
         driveSpeed = 0.5;
         PlayerConfigs.rampRate = 0.01;
 
@@ -18,9 +18,9 @@ public class Shannon extends PlayerConfigs {
         // snapZero = Robot.controller0.getL3Button();
         // snap180 = Robot.controller0.getR3Button();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
-        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
+        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
-        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
+        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90 ;
 
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
         PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
