@@ -61,12 +61,8 @@ public class HDD {
     public static PlayerConfigs thao = new Thao();
     public static PlayerConfigs vasquez = new Vasquez();
     public static PlayerConfigs mentor = new Mentor();
-    
-    //public static AutoRoutineExample example = new AutoRoutineExample();
 
     public static SequentialCommandGroup desiredMode;
-    public static SequentialCommandGroup prevMode;
-
 
     public static void initBot(){
 

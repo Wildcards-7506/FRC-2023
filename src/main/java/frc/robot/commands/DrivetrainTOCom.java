@@ -22,8 +22,8 @@ public class DrivetrainTOCom extends CommandBase{
         double rot, yspeed, xspeed;
         turnSpeed = PlayerConfigs.turnMovement * PlayerConfigs.turnSpeed;
 
+        //Mecanum Drive
         if(driveMode){
-            //Mecanum Drive
             double xInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlX :
                 PlayerConfigs.driveSpeed * PlayerConfigs.xMovement;
@@ -33,6 +33,7 @@ public class DrivetrainTOCom extends CommandBase{
             double inputRot = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
                 PlayerConfigs.driveSpeed * turnSpeed;
+            //Fine Control
             if(PlayerConfigs.fineControlToggle){
                 xspeed = xInputSpeed;
                 yspeed = yInputSpeed;
@@ -41,14 +42,26 @@ public class DrivetrainTOCom extends CommandBase{
                 xspeed = PlayerConfigs.rampRate * xInputSpeed + (1 - PlayerConfigs.rampRate) * prevXspeed;
                 yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
                 rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;
-            }
-            
-
+            }            
+        //Tank Drive
         } else {
-            //Tank Drive
-            yspeed = PlayerConfigs.rampRate * PlayerConfigs.driveSpeed * PlayerConfigs.yMovement + (1 - PlayerConfigs.rampRate) * prevXspeed;
+            //Need to add drop motors here
             xspeed = 0;
-            rot = PlayerConfigs.rampRate * turnSpeed + (1 - PlayerConfigs.rampRate) * prevXspeed;
+            
+            double yInputSpeed = PlayerConfigs.fineControlToggle ? 
+                PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlY : 
+                PlayerConfigs.driveSpeed * PlayerConfigs.yMovement;
+            double inputRot = PlayerConfigs.fineControlToggle ? 
+                PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
+                PlayerConfigs.driveSpeed * turnSpeed;
+            //Fine Control
+            if(PlayerConfigs.fineControlToggle){
+                yspeed = yInputSpeed;
+                rot = inputRot;
+            } else {
+                yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
+                rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;
+            }    
         }
 
         prevXspeed = xspeed;
@@ -63,8 +76,7 @@ public class DrivetrainTOCom extends CommandBase{
             driveMode = !driveMode;
         }
 
-        //Set motors
-
+        //Snap if needed, otherwise set drive motors
         if(PlayerConfigs.snapZero){
             Robot.drivetrain.snap(0);
         } else if(PlayerConfigs.snap90) {

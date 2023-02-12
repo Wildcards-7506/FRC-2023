@@ -139,10 +139,7 @@ public class Crane extends SubsystemBase {
     }
 
     public void setRotator(double setPoint) {
-        SmartDashboard.putNumber("Arm Setpoint", setPoint);
         rotatorPID.setReference(setPoint, ControlType.kPosition);
-        SmartDashboard.putNumber("Leader Output", rotatorLeader.getAppliedOutput());
-        SmartDashboard.putNumber("Follower Output", rotatorFollower.getAppliedOutput());
     }
 
     public void setClaw(double setPoint) {

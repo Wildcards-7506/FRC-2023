@@ -15,6 +15,7 @@ public class LimelightTOCom extends CommandBase{
     @Override
     public void execute(){
         Robot.limelight.updateData();
+        //Need to change this to swap between pipelines 0 and 1
         if(PlayerConfigs.switchPipeline != prev_StartButton){
             prev_StartButton = PlayerConfigs.switchPipeline;
             if(PlayerConfigs.switchPipeline){
