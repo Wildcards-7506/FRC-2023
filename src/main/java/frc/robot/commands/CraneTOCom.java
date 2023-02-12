@@ -57,15 +57,15 @@ public class CraneTOCom extends CommandBase {
             SmartDashboard.putString("Arm Position", "Hi");
 
 
-        } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
-            Robot.crane.setRotator(Constants.kRotatorGround);
-            Robot.crane.setExtender(Constants.kExtenderClosed);
-            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+        // } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
+        //     Robot.crane.setRotator(Constants.kRotatorGround);
+        //     Robot.crane.setExtender(Constants.kExtenderClosed);
+        //     // Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
 
-        } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
-            Robot.crane.setRotator(Constants.kRotatorHi);
-            Robot.crane.setExtender(Constants.kExtenderHeightLimit);
-            Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+        // } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
+        //     Robot.crane.setRotator(Constants.kRotatorHi);
+        //     Robot.crane.setExtender(Constants.kExtenderHeightLimit);
+        //     // Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
 
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
@@ -74,5 +74,6 @@ public class CraneTOCom extends CommandBase {
             SmartDashboard.putString("Arm Position", "Close");
 
         }
+
     }
 }

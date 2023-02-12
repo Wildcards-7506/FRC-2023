@@ -112,8 +112,8 @@ public final class Constants {
 
     //Crane Constants
         public static final int kRotateCurrentLimit = 30;
-        public static final double kRotateEncoderDistancePerPulse = 1.0/375 * 360;
-        public static final double kRotatorKP = 1.0;
+        public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 360;
+        public static final double kRotatorKP = 0.005;
         public static final double kRotatorGround = 10.0;
         public static final double kRotatorHi = 210.0;
         public static final double kRotatorMid = 220.0;
