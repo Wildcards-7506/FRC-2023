@@ -14,7 +14,7 @@ import frc.robot.commands.CraneTOCom;
 
 public class Crane extends SubsystemBase {
     private CANSparkMax endEffector;
-    public CANSparkMax rotatorLeader;
+    private CANSparkMax rotatorLeader;
     private CANSparkMax rotatorFollower;
     private CANSparkMax extender;
     private CANSparkMax wrist;
