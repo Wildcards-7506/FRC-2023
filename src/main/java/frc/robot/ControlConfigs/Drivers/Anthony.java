@@ -20,6 +20,16 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
+        //Constants turn speed drive speed
+        PlayerConfigs.fineTurnSpeed = 0.175;
+        PlayerConfigs.fineDriveSpeed = 0.2;
+
+        //Fine movement
+        PlayerConfigs.fineControlX = Robot.controller0.getLeftX();
+        PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
+        PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
+        PlayerConfigs.fineControlToggle = Robot.controller0.getL2Button();
+
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
         PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
@@ -27,24 +37,18 @@ public class Anthony extends PlayerConfigs {
     } 
 
     public void getCoDriverConfig() {
-        //Constants turn speed drive speed
-        PlayerConfigs.fineTurnSpeed = 0.175;
-        PlayerConfigs.fineDriveSpeed = 0.2;
-
-        //Fine movement
-        PlayerConfigs.fineControlX = Robot.controller1.getLeftX();
-        PlayerConfigs.fineControlY = Robot.controller1.getLeftY();
-        PlayerConfigs.fineTurnMovement = Robot.controller1.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller1.getLeftTriggerAxis() > .2;
-
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
-        PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 90;
-        PlayerConfigs.collectPos = Robot.controller1.getPOV() == 270;
+        PlayerConfigs.groundGrab = Robot.controller1.getAButton();
+        PlayerConfigs.highGoal = Robot.controller1.getYButton();
+        PlayerConfigs.lowGoal = Robot.controller1.getBButton();
+        PlayerConfigs.collectPos = Robot.controller1.getXButton();
 
-        //Claw
+        //Claw or Roller
         PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();
+        PlayerConfigs.rollerForward = Robot.controller1.getRightTriggerAxis() > 0.2;
+        PlayerConfigs.rollerRelease = Robot.controller1.getRightBumper();
+        PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.cranePos = Robot.controller1.getPOV();
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getYButton();

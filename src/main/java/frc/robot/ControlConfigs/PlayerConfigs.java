@@ -17,6 +17,7 @@ public class PlayerConfigs {
     public static boolean snap90;
     public static boolean snap180;
     public static boolean snap270;
+    public static boolean align;
 
     //secondary drive train controls
     public static double fineControlX;
@@ -32,6 +33,8 @@ public class PlayerConfigs {
     public static boolean highGoal;
     public static boolean lowGoal;
     public static boolean openClaw;
+    public static double cranePos;
+    public static boolean craneControl;
 
     //limelight
     public static boolean switchPipeline;
@@ -43,6 +46,7 @@ public class PlayerConfigs {
 
     //Roller
     public static boolean rollerForward;
+    public static boolean rollerRelease;
 
     public void getDriverConfig(){
         

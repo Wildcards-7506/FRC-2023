@@ -14,13 +14,19 @@ public class Shannon extends PlayerConfigs {
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
 
-        modeSwitch = Robot.controller0.getL2Button();
-        // snapZero = Robot.controller0.getL3Button();
-        // snap180 = Robot.controller0.getR3Button();
+        PlayerConfigs.fineTurnSpeed = 0.15;
+        PlayerConfigs.fineDriveSpeed = 0.25;
+
+        PlayerConfigs.fineControlX = Robot.controller0.getLeftX();
+        PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
+        PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
+        PlayerConfigs.fineControlToggle = Robot.controller0.getCrossButton();
+
+        PlayerConfigs.modeSwitch = Robot.controller0.getL2Button();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
-        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90 ;
+        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
         PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
@@ -28,19 +34,16 @@ public class Shannon extends PlayerConfigs {
     }
 
     public void getCoDriverConfig() {
-        PlayerConfigs.fineTurnSpeed = 0.15;
-        PlayerConfigs.fineDriveSpeed = 0.25;
-
-        PlayerConfigs.fineControlX = Robot.controller1.getLeftX();
-        PlayerConfigs.fineControlY = Robot.controller1.getLeftY();
-        PlayerConfigs.fineTurnMovement = Robot.controller1.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller1.getRightTriggerAxis() > .2;
-
         PlayerConfigs.collectPos = Robot.controller1.getLeftBumper();
         PlayerConfigs.groundGrab = Robot.controller1.getLeftTriggerAxis() >= 0.15;
         PlayerConfigs.highGoal = Robot.controller1.getRightBumper();
         PlayerConfigs.lowGoal = Robot.controller1.getRightTriggerAxis() >= 0.15;
         PlayerConfigs.openClaw = Robot.controller1.getAButton();
+
+        PlayerConfigs.rollerForward = Robot.controller1.getAButton();
+        PlayerConfigs.rollerRelease = Robot.controller1.getBButton();
+        PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.craneControl = Robot.controller1.getYButton();
 
         PlayerConfigs.switchPipeline = Robot.controller1.getLeftStickButton();
     }
