@@ -16,12 +16,12 @@ public class CraneTOCom extends CommandBase {
     public void execute() {
         if (PlayerConfigs.openClaw) {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(8);
+                Robot.crane.setRoller(4);
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.rollerForward && Robot.crane.rollerInUse) {
-            Robot.crane.setRoller(-8);
+            Robot.crane.setRoller(-4);
         } else {
             if (Robot.crane.rollerInUse) {
                 Robot.crane.setRoller(0);
