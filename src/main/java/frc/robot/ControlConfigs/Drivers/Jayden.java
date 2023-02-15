@@ -46,7 +46,7 @@ public class Jayden extends PlayerConfigs{
         PlayerConfigs.collectPos = Robot.controller1.getYButton();
 
         //Claw
-        PlayerConfigs.openClaw = Robot.controller1.getPOV() == 180;
+        PlayerConfigs.intake = Robot.controller1.getPOV() == 180;
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();

@@ -19,6 +19,7 @@ public class Limelight extends SubsystemBase {
     private NetworkTableEntry ta;
     private NetworkTableEntry tv;
     private NetworkTableEntry ty;
+    private NetworkTableEntry pipeline;
 
     //The following five methods retrieve and make data available from the Limelight Network Table
     public void updateData() {
@@ -28,6 +29,7 @@ public class Limelight extends SubsystemBase {
         tv = table.getEntry("tv");
         tx = table.getEntry("tx");
         ty = table.getEntry("ty");
+        pipeline = table.getEntry("pipeline");
     }
 
     public double getTX() {
@@ -48,6 +50,11 @@ public class Limelight extends SubsystemBase {
     public double getTV() {
         updateData();
         return tv.getDouble(0.0);
+    }
+
+    public double getPipeline() {
+        updateData();
+        return pipeline.getDouble(0.0);
     }
 
     //Switches modes - manual

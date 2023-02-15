@@ -44,9 +44,8 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.collectPos = Robot.controller1.getXButton();
 
         //Claw or Roller
-        PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();
-        PlayerConfigs.rollerForward = Robot.controller1.getRightTriggerAxis() > 0.2;
-        PlayerConfigs.rollerRelease = Robot.controller1.getRightBumper();
+        PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
+        PlayerConfigs.release = Robot.controller1.getRightBumper();
         PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.cranePos = Robot.controller1.getPOV();
 

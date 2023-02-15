@@ -47,9 +47,8 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.collectPos = Robot.controller1.getPOV() == 90;
 
         //Claw or Roller
-        PlayerConfigs.openClaw = Robot.controller1.getStartButton();
-        PlayerConfigs.rollerForward = Robot.controller1.getRightTriggerAxis() > 0.2;
-        PlayerConfigs.rollerRelease = Robot.controller1.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
+        PlayerConfigs.release = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.craneControl = Robot.controller1.getAButton();
 

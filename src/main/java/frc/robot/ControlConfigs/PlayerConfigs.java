@@ -32,7 +32,6 @@ public class PlayerConfigs {
     public static boolean groundGrab;
     public static boolean highGoal;
     public static boolean lowGoal;
-    public static boolean openClaw;
     public static double cranePos;
     public static boolean craneControl;
 
@@ -45,8 +44,8 @@ public class PlayerConfigs {
     public static boolean toggleLeds;
 
     //Roller
-    public static boolean rollerForward;
-    public static boolean rollerRelease;
+    public static boolean intake;
+    public static boolean release;
 
     public void getDriverConfig(){
         

@@ -45,9 +45,8 @@ public class Lam extends PlayerConfigs{
         PlayerConfigs.collectPos = Robot.controller1.getRightBumper();
 
         //Claw
-        PlayerConfigs.openClaw = Robot.controller1.getBButton();
-        PlayerConfigs.rollerForward = Robot.controller1.getLeftTriggerAxis() > 0.2;
-        PlayerConfigs.rollerRelease = Robot.controller1.getLeftBumper();
+        PlayerConfigs.intake = Robot.controller1.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.release = Robot.controller1.getLeftBumper();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.craneControl = Robot.controller1.getAButton();
 

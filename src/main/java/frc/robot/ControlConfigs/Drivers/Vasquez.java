@@ -45,7 +45,7 @@ public class Vasquez extends PlayerConfigs{
         PlayerConfigs.collectPos = Robot.controller1.getAButton();
 
         //Claw
-        PlayerConfigs.openClaw = Robot.controller1.getBButton();
+        PlayerConfigs.intake = Robot.controller1.getBButton();
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getXButton();

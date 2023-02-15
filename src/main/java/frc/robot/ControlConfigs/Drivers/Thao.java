@@ -45,9 +45,8 @@ public class Thao extends PlayerConfigs{
         PlayerConfigs.collectPos = Robot.controller1.getPOV() == 90;
 
         //Claw
-        PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();
-        PlayerConfigs.rollerForward = Robot.controller1.getYButton();
-        PlayerConfigs.rollerRelease = Robot.controller1.getBButton();
+        PlayerConfigs.intake = Robot.controller1.getYButton();
+        PlayerConfigs.release = Robot.controller1.getBButton();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.craneControl = Robot.controller1.getBackButton();
 

@@ -44,7 +44,7 @@ public class Mentor extends PlayerConfigs {
         PlayerConfigs.collectPos = Robot.controller1.getXButton();
 
         //Claw
-        PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();
+        PlayerConfigs.intake = Robot.controller1.getLeftBumper();
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();
