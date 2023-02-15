@@ -9,6 +9,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight extends SubsystemBase {
 
+    public double targetArea = 0.1;
+    
     public double distance;
     public double offset;
 
@@ -48,10 +50,22 @@ public class Limelight extends SubsystemBase {
         return tv.getDouble(0.0);
     }
 
-    //Switches from thresholding mode to pure camera mode
+    //Switches modes - manual
     public void switchCameraMode(){
-        table.getEntry("camMode").setNumber(table.getEntry("camMode").getDouble(0.0) == 0 ? 1 : 0);
-        table.getEntry("ledMode").setNumber(table.getEntry("ledMode").getDouble(0.0) == 0 ? 3 : 0);
+        table.getEntry("pipeline").setNumber(table.getEntry("pipeline").getDouble(0.0) == 0 ? 1 : 0);
+        targetArea = (targetArea == 0.1 ? 0.5 : 0.1);
+    }
+
+    //Force Cone Mode
+    public void conePipeline(){
+        table.getEntry("pipeline").setNumber(0);
+        targetArea = 0.1;
+    }
+
+    //Force Cube Mode
+    public void cubePipeline(){
+        table.getEntry("pipeline").setNumber(1);
+        targetArea = 0.5;
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the limelight.

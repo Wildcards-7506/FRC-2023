@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoDrive;
+import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 
 public class AutoRoutineBlueCenterOut extends SequentialCommandGroup {
   // required PathWeaver file paths
@@ -19,7 +20,7 @@ public class AutoRoutineBlueCenterOut extends SequentialCommandGroup {
   public AutoRoutineBlueCenterOut(){
     
     addCommands(
-        //score
+        new AutoScore(0,-10),
         movementA
       );
   }
