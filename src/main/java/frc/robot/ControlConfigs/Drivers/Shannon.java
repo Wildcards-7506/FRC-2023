@@ -38,10 +38,9 @@ public class Shannon extends PlayerConfigs {
         PlayerConfigs.groundGrab = Robot.controller1.getLeftTriggerAxis() >= 0.15;
         PlayerConfigs.highGoal = Robot.controller1.getRightBumper();
         PlayerConfigs.lowGoal = Robot.controller1.getRightTriggerAxis() >= 0.15;
-        PlayerConfigs.openClaw = Robot.controller1.getAButton();
 
-        PlayerConfigs.rollerForward = Robot.controller1.getAButton();
-        PlayerConfigs.rollerRelease = Robot.controller1.getBButton();
+        PlayerConfigs.intake = Robot.controller1.getAButton();
+        PlayerConfigs.release = Robot.controller1.getBButton();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.craneControl = Robot.controller1.getYButton();
 

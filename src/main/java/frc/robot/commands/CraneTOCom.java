@@ -14,13 +14,14 @@ public class CraneTOCom extends CommandBase {
 
     @Override
     public void execute() {
-        if (PlayerConfigs.openClaw) {
+        //End Effector
+        if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
                 Robot.crane.setRoller(4);
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
-        } else if (PlayerConfigs.rollerForward && Robot.crane.rollerInUse) {
+        } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
             Robot.crane.setRoller(-4);
         } else {
             if (Robot.crane.rollerInUse) {
@@ -30,25 +31,26 @@ public class CraneTOCom extends CommandBase {
             }
         }
 
+        //Craneworks
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             Robot.crane.setExtender(Constants.kExtenderGround);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorGround + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect);
             Robot.crane.setExtender(Constants.kExtenderCollect);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
             Robot.crane.setExtender(Constants.kExtenderMid);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorMid + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
             Robot.crane.setExtender(Constants.kExtenderHi);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorHi + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Hi");
         } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
             Robot.crane.setRotator(Constants.kRotatorGround);
@@ -63,7 +65,7 @@ public class CraneTOCom extends CommandBase {
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             Robot.crane.setExtender(Constants.kExtenderClosed);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorClosed);
             SmartDashboard.putString("Arm Position", "Close");
         }
     }

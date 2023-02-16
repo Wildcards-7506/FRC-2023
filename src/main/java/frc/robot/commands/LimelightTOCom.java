@@ -21,7 +21,7 @@ public class LimelightTOCom extends CommandBase{
                 Robot.limelight.switchCameraMode();
             }
         } else if(PlayerConfigs.signalCone){
-                Robot.limelight.conePipeline();
+            Robot.limelight.conePipeline();
         } else if(PlayerConfigs.signalCube){
             Robot.limelight.cubePipeline();
         }

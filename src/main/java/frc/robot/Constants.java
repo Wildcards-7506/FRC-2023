@@ -142,4 +142,5 @@ public final class Constants {
         public static final int kWristCurrentLimit = 10;
         public static final double kWristEncoderDistancePerPulse = 12.0/340 * 360;
         public static final double kWristKP = 1.0;
+        public static final double cubeOffset = 80.0;
 }

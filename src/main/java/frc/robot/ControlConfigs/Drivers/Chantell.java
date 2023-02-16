@@ -39,7 +39,7 @@ public class Chantell extends PlayerConfigs{
         PlayerConfigs.groundGrab = Robot.controller1.getBButton();
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.openClaw = Robot.controller1.getLeftBumper();
+        PlayerConfigs.intake = Robot.controller1.getLeftBumper();
 
         PlayerConfigs.switchPipeline = Robot.controller1.getRightStickButton();
     }
