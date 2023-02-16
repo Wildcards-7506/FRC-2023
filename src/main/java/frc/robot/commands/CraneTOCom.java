@@ -52,6 +52,8 @@ public class CraneTOCom extends CommandBase {
             Robot.crane.setExtender(Constants.kExtenderHi);
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorHi + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Hi");
+        } else if (PlayerConfigs.craneControl){
+            Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (0.001 * PlayerConfigs.cranePos));
         } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             Robot.crane.setExtender(Constants.kExtenderClosed);
