@@ -51,6 +51,6 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.cranePos = Robot.controller1.getPOV();
 
         //Limelight Switch
-        PlayerConfigs.switchPipeline = Robot.controller1.getYButton();
+        PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();
     }
 }

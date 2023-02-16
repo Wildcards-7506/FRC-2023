@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.LEDTOCom;
 
 public class LEDs extends SubsystemBase{
     private AddressableLED m_led;
@@ -56,6 +57,15 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
+    public void solidSection(int hue) {
+      // For every pixel
+      for (var i = m_ledBuffer.getLength()/2 - 5; i < m_ledBuffer.getLength()/2 + 5; i++) {
+        // Set the value
+        m_ledBuffer.setHSV(i, hue, 255, 255);
+      }
+      update();
+  }
+
     public void teamColor(Alliance isRed) {
         // For every pixel
         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
@@ -65,4 +75,7 @@ public class LEDs extends SubsystemBase{
         }
         update();
     }
+
+    @Override
+    public void periodic(){setDefaultCommand(new LEDTOCom());}
 }

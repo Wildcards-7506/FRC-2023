@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
   public static final Limelight limelight = new Limelight();
 
   //Buffer Size is TBD - need a new programmer to develop the color scheme/feedback methods
-  public static final LEDs ledStrip = new LEDs(0,32);
+  public static final LEDs ledStrip = new LEDs(0,30);
 
   //Controllers - Need to make a call on PS4 vs. XBox Controllers
   public static final PS4Controller controller0 = new PS4Controller(Constants.DRIVER_CONTROLLER_0);
@@ -123,6 +123,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {
+    ledStrip.rainbow();
     HDD.updateStartupConfig();
   }
 

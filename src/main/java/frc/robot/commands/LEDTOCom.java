@@ -19,16 +19,15 @@ public class LEDTOCom extends CommandBase{
         } else if (PlayerConfigs.signalCone){
             lockLed = true;
             Robot.ledStrip.solid(30);
-        } else if (PlayerConfigs.toggleLeds){
+        } else if (PlayerConfigs.switchPipeline){
             lockLed = false;
         } else if (Robot.limelight.getTV() == 1){
             if (Math.abs(Robot.limelight.getTX()) < 2){
-                Robot.ledStrip.solid(60);
+                Robot.ledStrip.solidSection(60);
             } else {
-                Robot.ledStrip.solid(15);
+                Robot.ledStrip.solidSection(15);
             }
         } else if (!lockLed){
-
             Robot.ledStrip.teamColor(Robot.teamColor); 
         }
     }
