@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.HDD;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -35,8 +36,6 @@ public class Drivetrain extends SubsystemBase{
     public MecanumDriveOdometry odometry;
     public MecanumDriveWheelPositions wheelPositions = new MecanumDriveWheelPositions();
     
-    public double initPose = 0.0;
-
     public Drivetrain (int lf, int lb, int rf, int rb){
         motorLeftFront = new CANSparkMax(lf, MotorType.kBrushless);
         motorLeftBack = new CANSparkMax(lb, MotorType.kBrushless);
@@ -66,10 +65,10 @@ public class Drivetrain extends SubsystemBase{
     @Override
     public void periodic(){
         //Update the odometry in the periodic block
-        // odometry.update(
-        //     gyro.getRotation2d(),
-        //     wheelPositions);
-        // HDD.m_field.setRobotPose(odometry.getPoseMeters());
+        odometry.update(
+            gyro.getRotation2d(),
+            wheelPositions);
+        HDD.m_field.setRobotPose(odometry.getPoseMeters());
 
         setDefaultCommand(new DrivetrainTOCom());
     }
