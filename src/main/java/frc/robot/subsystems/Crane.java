@@ -149,7 +149,7 @@ public class Crane extends SubsystemBase {
     public void setExtender(double setPoint) {
         if (Math.abs(setPoint - getExtenderEncoder()) > 0.5) {
             double voltage = 12 * (setPoint -getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
-            extender.setVoltage(voltage);
+            extender.setVoltage(-voltage);
         } else {
             extender.setVoltage(0);
         }
@@ -157,6 +157,7 @@ public class Crane extends SubsystemBase {
 
     public void setWrist(double setPoint) {
         wristPID.setReference(setPoint, ControlType.kPosition);
+        System.out.print(setPoint);
     }
 
     public void setRoller (double setPoint) {

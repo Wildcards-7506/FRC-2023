@@ -118,20 +118,20 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 360;
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
-        public static final double kRotatorGround = 10.0;
-        public static final double kRotatorHi = 210.0;
-        public static final double kRotatorMid = 220.0;
+        public static final double kRotatorGround = 20.0;
+        public static final double kRotatorHi = 160.0;
+        public static final double kRotatorMid = 170.0;
         public static final double kRotatorCollect = 60.0;
         public static final double kRotatorClosed = 0.0;
 
         public static final int kExtenderCurrentLimit = 30;
         public static final double kExtendEncoderDistancePerPulse = 0.125;
-        public static final double kExtenderGround = 24.0;
-        public static final double kExtenderMid = 2.5;
-        public static final double kExtenderHi = 20.0;
-        public static final double kExtenderCollect = 12.0;
+        public static final double kExtenderGround = -24.0;
+        public static final double kExtenderMid = -2.5;
+        public static final double kExtenderHi = -20.0;
+        public static final double kExtenderCollect = -12.0;
         public static final double kExtenderClosed = 0.0;
-        public static final double kExtenderHeightLimit = 20.0;
+        public static final double kExtenderHeightLimit = -20.0;
         
         public static final int kClawCurrentLimit = 10;
         public static final double kClawEncoderDistancePerPulse = 1.0/125 * 360;
@@ -140,7 +140,7 @@ public final class Constants {
         public static final double kClawClosed = 0.0;
 
         public static final int kWristCurrentLimit = 10;
-        public static final double kWristEncoderDistancePerPulse = 12.0/340 * 360;
-        public static final double kWristKP = 1.0;
+        public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
+        public static final double kWristKP = 0.01;
         public static final double cubeOffset = 80.0;
 }
