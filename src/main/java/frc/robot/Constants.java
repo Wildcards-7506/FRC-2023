@@ -14,6 +14,8 @@ public final class Constants {
         public static final int LEFT_DRIVE_TRAIN_FORWARD = 10;
         public static final int RIGHT_DRIVE_TRAIN_BACK = 1;
         public static final int RIGHT_DRIVE_TRAIN_FORWARD = 20;
+        public static final int DROP_WHEEL_LEFT = 4;
+        public static final int DROP_WHEEL_RIGHT = 5;
         
         //Crane
         public static final int CRANE_EXTENDER = 19;
@@ -133,7 +135,7 @@ public final class Constants {
         public static final double kExtenderClosed = 0.0;
         public static final double kExtenderHeightLimit = -20.0;
         
-        public static final int kClawCurrentLimit = 10;
+        public static final int kClawCurrentLimit = 40;
         public static final double kClawEncoderDistancePerPulse = 1.0/125 * 360;
         public static final double kClawKP = 1.0;
         public static final double kClawOpen = 85.0;

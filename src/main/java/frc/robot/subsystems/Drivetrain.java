@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.HDD;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -23,10 +24,14 @@ public class Drivetrain extends SubsystemBase{
     private CANSparkMax motorLeftBack;
     private CANSparkMax motorRightFront;
     private CANSparkMax motorRightBack;
+    private CANSparkMax dropWheelLeft;
+    private CANSparkMax dropWheelRight;
     public RelativeEncoder m_leftEncoder0;
     public RelativeEncoder m_rightEncoder0; 
     public RelativeEncoder m_leftEncoder1;
     public RelativeEncoder m_rightEncoder1; 
+    public RelativeEncoder dwlEncoder;
+    public RelativeEncoder dwrEncoder; 
     
     public final MecanumDrive m_drive;
 
@@ -34,22 +39,26 @@ public class Drivetrain extends SubsystemBase{
 
     public MecanumDriveOdometry odometry;
     public MecanumDriveWheelPositions wheelPositions = new MecanumDriveWheelPositions();
-    
-    public double initPose = 0.0;
 
-    public Drivetrain (int lf, int lb, int rf, int rb){
+    public Drivetrain (int lf, int lb, int rf, int rb, int dwl, int dwr){
         motorLeftFront = new CANSparkMax(lf, MotorType.kBrushless);
         motorLeftBack = new CANSparkMax(lb, MotorType.kBrushless);
         motorRightFront = new CANSparkMax(rf, MotorType.kBrushless);
         motorRightBack = new CANSparkMax(rb, MotorType.kBrushless);
+        dropWheelLeft = new CANSparkMax(dwl, MotorType.kBrushless);
+        dropWheelRight = new CANSparkMax(dwr, MotorType.kBrushless);
 
         m_leftEncoder0 = motorLeftFront.getEncoder();
         m_rightEncoder0 = motorRightFront.getEncoder();
         m_leftEncoder1 = motorLeftBack.getEncoder();
         m_rightEncoder1 = motorRightBack.getEncoder();
+        dwlEncoder = dropWheelLeft.getEncoder();
+        dwrEncoder = dropWheelRight.getEncoder();
 
         motorRightBack.setInverted(true);
         motorRightFront.setInverted(true);
+        dropWheelLeft.setInverted(true);
+        dropWheelRight.setInverted(true);
 
         m_drive = new MecanumDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
 
@@ -66,10 +75,10 @@ public class Drivetrain extends SubsystemBase{
     @Override
     public void periodic(){
         //Update the odometry in the periodic block
-        // odometry.update(
-        //     gyro.getRotation2d(),
-        //     wheelPositions);
-        // HDD.m_field.setRobotPose(odometry.getPoseMeters());
+        odometry.update(
+            gyro.getRotation2d(),
+            wheelPositions);
+        HDD.m_field.setRobotPose(odometry.getPoseMeters());
 
         setDefaultCommand(new DrivetrainTOCom());
     }
@@ -132,6 +141,17 @@ public class Drivetrain extends SubsystemBase{
         motorRightBack.setVoltage(volts.rearRightVoltage);
     }
 
+    public void setDropWheels(int level){
+        double marginL = level - dwlEncoder.getPosition();
+        double marginR = level - dwrEncoder.getPosition();
+        if(Math.abs(marginL) > 0.1){
+            dropWheelLeft.setVoltage(12*marginL/Math.abs(marginL));
+        } else {dropWheelLeft.setVoltage(0);}
+        if(Math.abs(marginR) > 0.1){
+            dropWheelLeft.setVoltage(12*marginR/Math.abs(marginR));
+        } else {dropWheelLeft.setVoltage(0);}
+    }
+
     public void resetEncoders() {
         m_leftEncoder0.setPosition(0);
         m_rightEncoder0.setPosition(0);
@@ -175,5 +195,13 @@ public class Drivetrain extends SubsystemBase{
         } else {
             drive(0, 0, 0, false);
         }
+    }
+
+    public double getDWL(){
+        return dwlEncoder.getPosition();
+    }
+
+    public double getDWR(){
+        return dwrEncoder.getPosition();
     }
 }

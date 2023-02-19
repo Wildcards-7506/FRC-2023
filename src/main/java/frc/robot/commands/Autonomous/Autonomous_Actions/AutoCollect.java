@@ -7,6 +7,7 @@ import frc.robot.Robot;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoClawPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoRotatorPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoWristPosition;
 
 public class AutoCollect extends SequentialCommandGroup {
   double action;
@@ -21,8 +22,9 @@ public class AutoCollect extends SequentialCommandGroup {
 
     addCommands(
       new ParallelCommandGroup(
-        new AutoRotatorPosition(Constants.kRotatorGround, Constants.kRotatorGround + offset),
+        new AutoRotatorPosition(Constants.kRotatorGround),
         new AutoExtenderPosition(Constants.kExtenderGround),
+        new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline()),
         new AutoClawPosition(action)),
       new AutoClawPosition(0),
       new AutoExtenderPosition(Constants.kExtenderClosed)

@@ -35,7 +35,9 @@ public class Robot extends TimedRobot {
     Constants.LEFT_DRIVE_TRAIN_FORWARD,
     Constants.LEFT_DRIVE_TRAIN_BACK,
     Constants.RIGHT_DRIVE_TRAIN_FORWARD,
-    Constants.RIGHT_DRIVE_TRAIN_BACK
+    Constants.RIGHT_DRIVE_TRAIN_BACK,
+    Constants.DROP_WHEEL_LEFT,
+    Constants.DROP_WHEEL_RIGHT
     //Need Additional Motors for drop wheels - 2 for raise/lower and 2 to drive the drop wheels
   );
 
