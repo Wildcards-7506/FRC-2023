@@ -42,6 +42,7 @@ public class Shannon extends PlayerConfigs {
         PlayerConfigs.intake = Robot.controller1.getAButton();
         PlayerConfigs.release = Robot.controller1.getBButton();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.extendPos = Robot.controller1.getRightY();
         PlayerConfigs.craneControl = Robot.controller1.getYButton();
 
         PlayerConfigs.switchPipeline = Robot.controller1.getLeftStickButton();

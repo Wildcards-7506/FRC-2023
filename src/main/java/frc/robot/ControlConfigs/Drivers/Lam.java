@@ -48,6 +48,7 @@ public class Lam extends PlayerConfigs{
         PlayerConfigs.intake = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.release = Robot.controller1.getLeftBumper();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.extendPos = Robot.controller1.getRightY();
         PlayerConfigs.craneControl = Robot.controller1.getAButton();
 
         //Limelight Switch

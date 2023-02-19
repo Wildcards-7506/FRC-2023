@@ -140,27 +140,32 @@ public class Crane extends SubsystemBase {
 
     public void setRotator(double setPoint) {
         rotatorPID.setReference(setPoint, ControlType.kPosition);
+        System.out.println("Rotator: " + setPoint);
     }
 
     public void setClaw(double setPoint) {
         clawPID.setReference(setPoint, ControlType.kPosition);
     }
 
-    public void setExtender(double setPoint) {
-        if (Math.abs(setPoint - getExtenderEncoder()) > 0.5) {
-            double voltage = 12 * (setPoint -getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
+    public void setExtender(double setPoint, boolean manual) {
+        System.out.println("Extender: " + setPoint);
+        if (Math.abs(setPoint - getExtenderEncoder()) > 0.5 && !manual) {
+            double voltage = 12 * (setPoint - getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
             extender.setVoltage(-voltage);
+        } else if (manual){
+            extender.setVoltage(setPoint);
         } else {
             extender.setVoltage(0);
         }
     }
 
     public void setWrist(double setPoint) {
+        System.out.println("Wrist: " + setPoint);
         wristPID.setReference(setPoint, ControlType.kPosition);
-        System.out.print(setPoint);
     }
 
     public void setRoller (double setPoint) {
+        System.out.println("Roller: " + setPoint);
         endEffector.setVoltage(setPoint);
     }
 }
