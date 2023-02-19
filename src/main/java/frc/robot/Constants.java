@@ -118,10 +118,10 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 360;
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
-        public static final double kRotatorGround = 20.0;
+        public static final double kRotatorGround = 40.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 170.0;
-        public static final double kRotatorCollect = 60.0;
+        public static final double kRotatorCollect = 80.0;
         public static final double kRotatorClosed = 0.0;
 
         public static final int kExtenderCurrentLimit = 30;
@@ -143,4 +143,8 @@ public final class Constants {
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
         public static final double kWristKP = 0.01;
         public static final double cubeOffset = 80.0;
+        public static final double kWristHi = -180.0;
+        public static final double kWristMid = -190.0;
+        public static final double kWristCollect = -35.0;
+        public static final double kWristGround = 5.0;
 }
