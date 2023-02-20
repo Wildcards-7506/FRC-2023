@@ -125,6 +125,7 @@ public final class Constants {
         public static final double kRotatorMid = 170.0;
         public static final double kRotatorCollect = 80.0;
         public static final double kRotatorClosed = 0.0;
+        public static final double rotatorHorizontalOffset = 60;
 
         public static final int kExtenderCurrentLimit = 30;
         public static final double kExtendEncoderDistancePerPulse = 0.125;

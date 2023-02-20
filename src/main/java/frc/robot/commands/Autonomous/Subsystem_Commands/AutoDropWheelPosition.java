@@ -14,6 +14,12 @@ public class AutoDropWheelPosition extends CommandBase{
         this.dropWheelSetPoint = setPoint;
     }
 
+     // Called when the command is initially scheduled.
+     @Override
+     public void initialize() {
+         System.out.println("Drop Wheel Started");
+     }
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {

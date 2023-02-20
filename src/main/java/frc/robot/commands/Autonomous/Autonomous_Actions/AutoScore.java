@@ -20,8 +20,8 @@ public class AutoScore extends SequentialCommandGroup {
       action = Constants.kClawOpen;
     }
     addCommands(
+        new AutoScoringAlign(pipeline),
         new ParallelCommandGroup(
-          new AutoScoringAlign(pipeline),
           new AutoRotatorPosition(Constants.kRotatorHi),
           new AutoWristPosition(Constants.kWristHi),
           new AutoExtenderPosition(Constants.kExtenderHi)),

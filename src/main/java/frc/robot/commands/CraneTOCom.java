@@ -72,5 +72,7 @@ public class CraneTOCom extends CommandBase {
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorClosed);
             SmartDashboard.putString("Arm Position", "Close");
         }
+
+        Robot.crane.updateEncoderValues();
     }
 }

@@ -14,6 +14,12 @@ public class AutoRotatorPosition extends CommandBase{
         this.rotatorSetPoint = setPoint;
     }
 
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        System.out.println("Rotation Started");
+    }
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
@@ -23,6 +29,7 @@ public class AutoRotatorPosition extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Rotate Complete");
         Robot.crane.setRotator(rotatorSetPoint);
     }
 
