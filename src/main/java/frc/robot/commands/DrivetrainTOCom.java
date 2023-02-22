@@ -80,6 +80,6 @@ public class DrivetrainTOCom extends CommandBase{
             Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
         }   
         
-        Robot.drivetrain.updateDisplay(!PlayerConfigs.modeSwitch);
+        //Robot.drivetrain.updateDisplay(!PlayerConfigs.modeSwitch);
     }
 }

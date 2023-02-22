@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoDropWheelPosition extends CommandBase{
     
-    int dropWheelSetPoint;
+    double dropWheelSetPoint;
     Timer timer = null;
 
     /** Creates a new Claw Positioning Command. */
-    public AutoDropWheelPosition(int setPoint) {
+    public AutoDropWheelPosition(double setPoint) {
         this.dropWheelSetPoint = setPoint;
     }
 

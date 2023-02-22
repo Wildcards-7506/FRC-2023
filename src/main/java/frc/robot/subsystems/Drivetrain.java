@@ -69,6 +69,8 @@ public class Drivetrain extends SubsystemBase{
         m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
         m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
         m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        dwlEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        dwrEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
@@ -141,7 +143,7 @@ public class Drivetrain extends SubsystemBase{
         motorRightBack.setVoltage(volts.rearRightVoltage);
     }
 
-    public void setDropWheels(int level){
+    public void setDropWheels(double level){
         double marginL = level - dwlEncoder.getPosition();
         double marginR = level - dwrEncoder.getPosition();
         if(Math.abs(marginL) > 0.1){

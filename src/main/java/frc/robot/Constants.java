@@ -58,7 +58,7 @@ public final class Constants {
 
         //Speed, Power, Movement Limits
         public static final int kDrivetrainCurrentLimit = 30;
-        public static final int kDropWheelDistance = 16;
+        public static final double kDropWheelDistance = 1.5;
         public static final double kSnapRange = 10;
         public static final double kSnapSpeed = 1.8/360;
         public static final double kMaxSpeedMetersPerSecond = 3;
@@ -92,6 +92,7 @@ public final class Constants {
         public static final double kTrackwidthMeters = Units.inchesToMeters(20.176);
         public static final double kTrackLengthMeters = Units.inchesToMeters(21.911);;
         public static final double driveTrainGearRatio = 1.0/12;
+        public static final double dropWheelGearRatio = 1.0/3/8;
         public static final double kEncoderDistancePerPulse = driveTrainGearRatio * Math.PI * Units.inchesToMeters(8);
 
         // Robot Movement Profile and Kinematics
@@ -127,7 +128,7 @@ public final class Constants {
         public static final double kRotatorClosed = 0.0;
         public static final double rotatorHorizontalOffset = 60;
 
-        public static final int kExtenderCurrentLimit = 30;
+        public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 0.125;
         public static final double kExtenderGround = -24.0;
         public static final double kExtenderMid = -2.5;

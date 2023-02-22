@@ -56,8 +56,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        extender.enableSoftLimit(SoftLimitDirection.kForward, true);
-        extender.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        extender.enableSoftLimit(SoftLimitDirection.kForward, false);
+        extender.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
@@ -82,8 +82,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.setSoftLimit(SoftLimitDirection.kReverse, 0);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 28);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, 0);
+        // extender.setSoftLimit(SoftLimitDirection.kForward, 0);
+        // extender.setSoftLimit(SoftLimitDirection.kReverse, 28);
 
         rotatorPID = rotatorLeader.getPIDController();
         clawPID = endEffector.getPIDController();
@@ -136,7 +136,7 @@ public class Crane extends SubsystemBase {
     }
 
     public void setRotator(double setPoint) {
-        double arbFF = 0.46 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
+        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
         rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
         SmartDashboard.putNumber("Rotator Setpoint", setPoint);
     }
