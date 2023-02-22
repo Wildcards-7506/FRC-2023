@@ -17,15 +17,19 @@ public class CraneTOCom extends CommandBase {
         //End Effector
         if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(4);
+                Robot.crane.setRoller(8);
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
-            Robot.crane.setRoller(-4);
+            Robot.crane.setRoller(-8);
         } else {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(0);
+                if(Robot.limelight.getPipeline() == 0){
+                    Robot.crane.setRoller(1);
+                } else if(Robot.limelight.getPipeline() == 1){
+                    Robot.crane.setRoller(0);
+                }
             } else {
                 Robot.crane.setClaw(Constants.kClawClosed);
             }
@@ -34,39 +38,45 @@ public class CraneTOCom extends CommandBase {
         //Craneworks
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
-            Robot.crane.setExtender(Constants.kExtenderGround);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorGround + Constants.cubeOffset * Robot.limelight.getPipeline());
+            // Robot.crane.setExtender(Constants.kExtenderGround, false);
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect);
-            Robot.crane.setExtender(Constants.kExtenderCollect);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
+            // Robot.crane.setExtender(Constants.kExtenderCollect, false);
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect+ Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
-            Robot.crane.setExtender(Constants.kExtenderMid);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorMid + Constants.cubeOffset * Robot.limelight.getPipeline());
+            // Robot.crane.setExtender(Constants.kExtenderMid, false);
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristMid);
             SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
-            Robot.crane.setExtender(Constants.kExtenderHi);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorHi + Constants.cubeOffset * Robot.limelight.getPipeline());
+            // Robot.crane.setExtender(Constants.kExtenderHi, false);
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristHi);
             SmartDashboard.putString("Arm Position", "Hi");
-        } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderCollect) {
-            Robot.crane.setRotator(Constants.kRotatorGround);
-            Robot.crane.setExtender(Constants.kExtenderClosed);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
-            SmartDashboard.putString("Arm Position", "Safety Closing");
-        } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() > Constants.kExtenderHeightLimit) {
-            Robot.crane.setRotator(Constants.kRotatorHi);
-            Robot.crane.setExtender(Constants.kExtenderClosed);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Robot.crane.getRotatorLEncoder());
-            SmartDashboard.putString("Arm Position", "Safety Height");
+        } else if (PlayerConfigs.craneControl){
+            System.out.println("Fine Control");
+            Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (20 * PlayerConfigs.cranePos));
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos, true);
+        // } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() < Constants.kExtenderCollect) {
+        //     Robot.crane.setRotator(Constants.kRotatorGround);
+        //     // Robot.crane.setExtender(Constants.kExtenderClosed, false);
+        //     if (Robot.crane.rollerInUse) Robot.crane.setWrist(-Robot.crane.getRotatorLEncoder());
+        //     SmartDashboard.putString("Arm Position", "Safety Closing");
+        // } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() < Constants.kExtenderHeightLimit) {
+        //     Robot.crane.setRotator(Constants.kRotatorHi);
+        //     // Robot.crane.setExtender(Constants.kExtenderClosed, false);
+        //     if (Robot.crane.rollerInUse) Robot.crane.setWrist(-Robot.crane.getRotatorLEncoder());
+        //     SmartDashboard.putString("Arm Position", "Safety Height");
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
-            Robot.crane.setExtender(Constants.kExtenderClosed);
+            // Robot.crane.setExtender(Constants.kExtenderClosed, false);
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorClosed);
             SmartDashboard.putString("Arm Position", "Close");
         }
+
+        Robot.crane.updateEncoderValues();
     }
 }

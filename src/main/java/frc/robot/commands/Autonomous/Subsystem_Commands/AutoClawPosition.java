@@ -20,6 +20,7 @@ public class AutoClawPosition extends CommandBase{
     public void initialize() {
         timer = new Timer();
         timer.start();
+        System.out.println("Claw Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -35,12 +36,13 @@ public class AutoClawPosition extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Claw Complete");
         Robot.crane.setRoller(0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return timer.get() >= 0.5;
+        return timer.get() >= 1;
     }
 }

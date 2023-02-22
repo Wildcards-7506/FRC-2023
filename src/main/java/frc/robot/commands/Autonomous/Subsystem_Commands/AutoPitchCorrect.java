@@ -12,6 +12,12 @@ public class AutoPitchCorrect extends CommandBase{
     /** Creates a new Auto Pitch Correction Command. */
     public AutoPitchCorrect() {}
 
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        System.out.println("Balance Started");
+    }
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
@@ -23,6 +29,7 @@ public class AutoPitchCorrect extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Balance Complete");
         Robot.drivetrain.drive(0,0,0,true);
     }
 

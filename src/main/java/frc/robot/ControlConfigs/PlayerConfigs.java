@@ -33,6 +33,7 @@ public class PlayerConfigs {
     public static boolean highGoal;
     public static boolean lowGoal;
     public static double cranePos;
+    public static double extendPos;
     public static boolean craneControl;
 
     //limelight

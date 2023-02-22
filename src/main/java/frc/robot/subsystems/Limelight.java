@@ -6,6 +6,7 @@ import frc.robot.commands.LimelightTOCom;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight extends SubsystemBase {
 
@@ -66,12 +67,14 @@ public class Limelight extends SubsystemBase {
     //Force Cone Mode
     public void conePipeline(){
         table.getEntry("pipeline").setNumber(0);
+        SmartDashboard.putBoolean("Target Item", true);
         targetArea = 0.1;
     }
 
     //Force Cube Mode
     public void cubePipeline(){
         table.getEntry("pipeline").setNumber(1);
+        SmartDashboard.putBoolean("Target Item", false);
         targetArea = 0.5;
     }
 

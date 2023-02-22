@@ -56,8 +56,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        extender.enableSoftLimit(SoftLimitDirection.kForward, true);
-        extender.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        extender.enableSoftLimit(SoftLimitDirection.kForward, false);
+        extender.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
@@ -82,8 +82,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.setSoftLimit(SoftLimitDirection.kReverse, 0);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 28);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, 0);
+        // extender.setSoftLimit(SoftLimitDirection.kForward, 0);
+        // extender.setSoftLimit(SoftLimitDirection.kReverse, 28);
 
         rotatorPID = rotatorLeader.getPIDController();
         clawPID = endEffector.getPIDController();
@@ -110,12 +110,9 @@ public class Crane extends SubsystemBase {
     }
 
     public void updateEncoderValues() {
-        SmartDashboard.putNumber("Rotator Leader", getRotatorLEncoder());
-        SmartDashboard.putNumber("Rotator Follower ", getRotatorFEncoder());
-        SmartDashboard.putNumber("Claw Position", getClawEncoder());
+        SmartDashboard.putNumber("Rotator Position", getRotatorLEncoder());
         SmartDashboard.putNumber("Extender Position", getExtenderEncoder());
         SmartDashboard.putNumber("Wrist Position", getWristEncoder());
-        SmartDashboard.putBoolean("Roller In Use", rollerInUse);
     }
 
     public double getRotatorLEncoder() {
@@ -139,23 +136,29 @@ public class Crane extends SubsystemBase {
     }
 
     public void setRotator(double setPoint) {
-        rotatorPID.setReference(setPoint, ControlType.kPosition);
+        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
+        rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
+        SmartDashboard.putNumber("Rotator Setpoint", setPoint);
     }
 
     public void setClaw(double setPoint) {
         clawPID.setReference(setPoint, ControlType.kPosition);
     }
 
-    public void setExtender(double setPoint) {
-        if (Math.abs(setPoint - getExtenderEncoder()) > 0.5) {
-            double voltage = 12 * (setPoint -getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
-            extender.setVoltage(voltage);
+    public void setExtender(double setPoint, boolean manual) {
+        SmartDashboard.putNumber("Extender Setpoint", setPoint);
+        if (Math.abs(setPoint - getExtenderEncoder()) > 0.5 && !manual) {
+            double voltage = 12 * (setPoint - getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
+            extender.setVoltage(-voltage);
+        } else if (manual){
+            extender.setVoltage(setPoint);
         } else {
             extender.setVoltage(0);
         }
     }
 
     public void setWrist(double setPoint) {
+        SmartDashboard.putNumber("Wrist Setpoint", setPoint);
         wristPID.setReference(setPoint, ControlType.kPosition);
     }
 

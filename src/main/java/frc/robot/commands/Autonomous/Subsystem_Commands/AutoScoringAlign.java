@@ -21,6 +21,7 @@ public class AutoScoringAlign extends CommandBase{
         if(pipeline == 0){
             Robot.limelight.conePipeline();
         } else {Robot.limelight.cubePipeline();}
+        System.out.println("Alignment Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -35,6 +36,7 @@ public class AutoScoringAlign extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Align Complete");
         Robot.drivetrain.drive(0,0,0,true);
     }
 

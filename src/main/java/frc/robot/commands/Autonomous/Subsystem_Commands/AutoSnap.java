@@ -13,6 +13,13 @@ public class AutoSnap extends CommandBase{
         this.angle = angle;
     }
 
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        System.out.println("Alignment Started");
+    }
+
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
@@ -22,6 +29,7 @@ public class AutoSnap extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Snap Complete");
         Robot.drivetrain.drive(0,0,0,true);
     }
 
