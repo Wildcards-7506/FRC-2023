@@ -21,7 +21,7 @@ public class AutoPitchCorrect extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        //angle = Robot.drivetrain.getPitch();
+        angle = Robot.drivetrain.getPitch();
         if(angle > 3){tilted = true;}
         Robot.drivetrain.drive(-0.2, 0.0, 0, false);
     }
@@ -36,6 +36,6 @@ public class AutoPitchCorrect extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return true;//tilted && Robot.drivetrain.getPitch() < 3;
+        return tilted && Robot.drivetrain.getPitch() < 3;
     }
 }
