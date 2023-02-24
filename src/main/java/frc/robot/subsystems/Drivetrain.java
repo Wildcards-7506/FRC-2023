@@ -6,6 +6,7 @@ import frc.robot.HDD;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.math.kinematics.MecanumDriveOdometry;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelPositions;
@@ -17,6 +18,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain extends SubsystemBase{
@@ -60,6 +62,11 @@ public class Drivetrain extends SubsystemBase{
         dropWheelLeft.setInverted(true);
         dropWheelRight.setInverted(true);
 
+        dropWheelLeft.enableSoftLimit(SoftLimitDirection.kForward, false);
+        dropWheelLeft.enableSoftLimit(SoftLimitDirection.kReverse, false);
+        dropWheelRight.enableSoftLimit(SoftLimitDirection.kForward, false);
+        dropWheelRight.enableSoftLimit(SoftLimitDirection.kReverse, false);
+
         m_drive = new MecanumDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
 
         resetEncoders();
@@ -69,8 +76,15 @@ public class Drivetrain extends SubsystemBase{
         m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
         m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
         m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        dwlEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        dwrEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+        dwlEncoder.setPositionConversionFactor(Constants.dropWheelGearRatio);
+        dwrEncoder.setPositionConversionFactor(Constants.dropWheelGearRatio);
+
+        motorLeftFront.burnFlash();
+        motorLeftBack.burnFlash();
+        motorRightFront.burnFlash();
+        motorRightBack.burnFlash();
+        dropWheelLeft.burnFlash();
+        dropWheelRight.burnFlash();
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
@@ -146,12 +160,18 @@ public class Drivetrain extends SubsystemBase{
     public void setDropWheels(double level){
         double marginL = level - dwlEncoder.getPosition();
         double marginR = level - dwrEncoder.getPosition();
+        SmartDashboard.putNumber("Drop Wheel Setpoint", level);
+        SmartDashboard.putString("Drop Wheel Errors", "Left: " + Math.abs(marginL) + "Right: " + Math.abs(marginR));
+        SmartDashboard.putString("Drop Wheel Output", "Left: " + 12*marginL/Math.abs(marginL) + "Right: " + 
+        12*marginR/Math.abs(marginR));
+        SmartDashboard.putBoolean("Left In Range", Math.abs(marginL) > 0.1);
+        SmartDashboard.putBoolean("Right In Range", Math.abs(marginR) > 0.1);
         if(Math.abs(marginL) > 0.1){
             dropWheelLeft.setVoltage(12*marginL/Math.abs(marginL));
         } else {dropWheelLeft.setVoltage(0);}
         if(Math.abs(marginR) > 0.1){
-            dropWheelLeft.setVoltage(12*marginR/Math.abs(marginR));
-        } else {dropWheelLeft.setVoltage(0);}
+            dropWheelRight.setVoltage(12*marginR/Math.abs(marginR));
+        } else {dropWheelRight.setVoltage(0);}
     }
 
     public void resetEncoders() {
