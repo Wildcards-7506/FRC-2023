@@ -21,6 +21,7 @@ import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueLoadChar
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueLoadOut;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueWallCharge;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueWallOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineExample;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedCenterCharge;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedCenterOut;
 import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedLoadCharge;
@@ -50,6 +51,7 @@ public class HDD {
     public static AutoRoutineRedLoadOut redLoadOut = new AutoRoutineRedLoadOut();
     public static AutoRoutineRedWallCharge redWallCharge = new AutoRoutineRedWallCharge();
     public static AutoRoutineRedWallOut redWallOut = new AutoRoutineRedWallOut();
+    public static AutoRoutineExample test = new AutoRoutineExample();
 
     //Drivers options
     public static PlayerConfigs ryan = new Ryan();
@@ -67,7 +69,8 @@ public class HDD {
     public static void initBot(){
 
         // Auto choosers
-        auto_chooser.setDefaultOption("Blue Center Charge", blueCenterCharge);
+        auto_chooser.setDefaultOption("Test Mode", test);
+        auto_chooser.addOption("Blue Center Charge", blueCenterCharge);
         auto_chooser.addOption("Blue Center Out", blueCenterOut);
         auto_chooser.addOption("Blue Load Out", blueLoadOut);
         auto_chooser.addOption("Blue Load Charge", blueLoadCharge);

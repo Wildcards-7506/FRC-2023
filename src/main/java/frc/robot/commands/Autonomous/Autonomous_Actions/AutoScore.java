@@ -24,12 +24,12 @@ public class AutoScore extends SequentialCommandGroup {
         new ParallelCommandGroup(
           new AutoRotatorPosition(Constants.kRotatorHi),
           new AutoWristPosition(Constants.kWristHi),
-          new AutoExtenderPosition(Constants.kExtenderHi)),
-        new AutoClawPosition(action),
-        new AutoExtenderPosition(Constants.kExtenderClosed),
+          new AutoExtenderPosition(-12,Constants.kExtenderHi)),
+        new AutoClawPosition(action, false),
+        new AutoExtenderPosition(12, Constants.kExtenderClosed),
         //Return to Close
         new ParallelCommandGroup(
-          new AutoClawPosition(0),
+          new AutoClawPosition(0,false),
           new AutoRotatorPosition(Constants.kRotatorClosed),
           new AutoWristPosition(Constants.kRotatorClosed))
       );

@@ -11,8 +11,9 @@ public class AutoClawPosition extends CommandBase{
     Timer timer = null;
 
     /** Creates a new Claw Positioning Command. */
-    public AutoClawPosition(double setPoint) {
+    public AutoClawPosition(double setPoint, boolean intake) {
         this.action = setPoint;
+        this.actionFlag = intake;
     }
 
     // Called when the command is initially scheduled.
@@ -43,6 +44,11 @@ public class AutoClawPosition extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return timer.get() >= 1;
+                //Roller Pickup, Current tripped
+        return (actionFlag && Robot.crane.getRollerCurrent() > 10 && timer.get() >= 0.3)
+                //Target Missed, timeout
+                 || (actionFlag && timer.get() >= 5)
+                //Outtaking, timeout
+                 || (!actionFlag && timer.get() >= 1);
     }
 }
