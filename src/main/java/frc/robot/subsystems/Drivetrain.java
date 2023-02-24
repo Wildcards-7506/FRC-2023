@@ -6,7 +6,6 @@ import frc.robot.HDD;
 import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.math.kinematics.MecanumDriveOdometry;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelPositions;
@@ -160,12 +159,6 @@ public class Drivetrain extends SubsystemBase{
     public void setDropWheels(double level){
         double marginL = level - dwlEncoder.getPosition();
         double marginR = level - dwrEncoder.getPosition();
-        SmartDashboard.putNumber("Drop Wheel Setpoint", level);
-        SmartDashboard.putString("Drop Wheel Errors", "Left: " + Math.abs(marginL) + "Right: " + Math.abs(marginR));
-        SmartDashboard.putString("Drop Wheel Output", "Left: " + 12*marginL/Math.abs(marginL) + "Right: " + 
-        12*marginR/Math.abs(marginR));
-        SmartDashboard.putBoolean("Left In Range", Math.abs(marginL) > 0.1);
-        SmartDashboard.putBoolean("Right In Range", Math.abs(marginR) > 0.1);
 
         if(Math.abs(marginL) > 0.1){
             dropWheelLeft.setVoltage(12*marginL/Math.abs(marginL));
