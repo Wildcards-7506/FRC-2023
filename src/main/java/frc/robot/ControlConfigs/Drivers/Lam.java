@@ -39,19 +39,19 @@ public class Lam extends PlayerConfigs{
 
     public void getCoDriverConfig() {
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getRightTriggerAxis() > .2;
+        PlayerConfigs.groundGrab = Robot.controller1.getAButton();
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.collectPos = Robot.controller1.getRightBumper();
+        PlayerConfigs.collectPos = Robot.controller1.getXButton();
 
         //Claw
         PlayerConfigs.intake = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.release = Robot.controller1.getLeftBumper();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
-        PlayerConfigs.craneControl = Robot.controller1.getAButton();
+        PlayerConfigs.craneControl = Robot.controller1.getRightTriggerAxis() > 0.2;
 
         //Limelight Switch
-        PlayerConfigs.switchPipeline = Robot.controller1.getXButton();
+        PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();
     }
 }

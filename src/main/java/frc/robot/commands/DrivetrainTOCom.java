@@ -19,6 +19,7 @@ public class DrivetrainTOCom extends CommandBase{
     public void execute(){
         //Mecanum Drive
         if(!PlayerConfigs.modeSwitch){
+            Robot.drivetrain.setDropWheels(0);
             double xInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlX :
                 PlayerConfigs.driveSpeed * PlayerConfigs.xMovement;
@@ -40,6 +41,7 @@ public class DrivetrainTOCom extends CommandBase{
             }            
         //Tank Drive
         } else {
+            Robot.drivetrain.setDropWheels(0.5);
             //Need to add drop motors here
             double yInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlY : 
