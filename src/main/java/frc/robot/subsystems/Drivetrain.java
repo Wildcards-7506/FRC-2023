@@ -166,6 +166,7 @@ public class Drivetrain extends SubsystemBase{
         12*marginR/Math.abs(marginR));
         SmartDashboard.putBoolean("Left In Range", Math.abs(marginL) > 0.1);
         SmartDashboard.putBoolean("Right In Range", Math.abs(marginR) > 0.1);
+
         if(Math.abs(marginL) > 0.1){
             dropWheelLeft.setVoltage(12*marginL/Math.abs(marginL));
         } else {dropWheelLeft.setVoltage(0);}
@@ -193,6 +194,11 @@ public class Drivetrain extends SubsystemBase{
     public double getHeading(){
         // get the property
         return -gyro.getAngle();
+    }
+
+    public double getPitch(){
+        // get the property
+        return gyro.getPitch();
     }
 
     /**
