@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -15,43 +14,35 @@ import frc.robot.ControlConfigs.Drivers.Lam;
 import frc.robot.ControlConfigs.Drivers.Mentor;
 import frc.robot.ControlConfigs.Drivers.Thao;
 import frc.robot.ControlConfigs.Drivers.Vasquez;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueCenterCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueCenterOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueLoadCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueLoadOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueWallCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineBlueWallOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineExample;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedCenterCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedCenterOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedLoadCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedLoadOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedWallCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.AutoRoutineRedWallOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.PlaceMoveCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.PlaceMoveStop;
+import frc.robot.commands.Autonomous.Autonomous_Routines.BlueLoadCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.BlueLoadOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.BlueWallCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.BlueWallOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.TestMode;
+import frc.robot.commands.Autonomous.Autonomous_Routines.RedLoadCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.RedLoadOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.RedWallCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.RedWallOut;
 
 public class HDD {    
     public static SendableChooser<SequentialCommandGroup> auto_chooser = new SendableChooser<>();
     public static SendableChooser<PlayerConfigs> driver_chooser = new SendableChooser<>();
     public static SendableChooser<PlayerConfigs> coDriver_chooser = new SendableChooser<>();
 
-    //Field display to Shuffleboard
-    public static Field2d m_field;
-    public static Field2d logo;
-
     //Auto Commands
-    public static AutoRoutineBlueCenterCharge blueCenterCharge = new AutoRoutineBlueCenterCharge();
-    public static AutoRoutineBlueCenterOut blueCenterOut = new AutoRoutineBlueCenterOut();
-    public static AutoRoutineBlueLoadOut blueLoadOut = new AutoRoutineBlueLoadOut();
-    public static AutoRoutineBlueLoadCharge blueLoadCharge = new AutoRoutineBlueLoadCharge();
-    public static AutoRoutineBlueWallCharge blueWallCharge = new AutoRoutineBlueWallCharge();
-    public static AutoRoutineBlueWallOut blueWallOut = new AutoRoutineBlueWallOut();
-    public static AutoRoutineRedCenterCharge redCenterCharge = new AutoRoutineRedCenterCharge();
-    public static AutoRoutineRedCenterOut redCenterOut = new AutoRoutineRedCenterOut();
-    public static AutoRoutineRedLoadCharge redLoadCharge = new AutoRoutineRedLoadCharge();
-    public static AutoRoutineRedLoadOut redLoadOut = new AutoRoutineRedLoadOut();
-    public static AutoRoutineRedWallCharge redWallCharge = new AutoRoutineRedWallCharge();
-    public static AutoRoutineRedWallOut redWallOut = new AutoRoutineRedWallOut();
-    public static AutoRoutineExample test = new AutoRoutineExample();
+    public static PlaceMoveCharge placeMoveCharge = new PlaceMoveCharge();
+    public static PlaceMoveStop placeMoveStop = new PlaceMoveStop();
+    public static BlueLoadOut blueLoadOut = new BlueLoadOut();
+    public static BlueLoadCharge blueLoadCharge = new BlueLoadCharge();
+    public static BlueWallCharge blueWallCharge = new BlueWallCharge();
+    public static BlueWallOut blueWallOut = new BlueWallOut();
+    public static RedLoadCharge redLoadCharge = new RedLoadCharge();
+    public static RedLoadOut redLoadOut = new RedLoadOut();
+    public static RedWallCharge redWallCharge = new RedWallCharge();
+    public static RedWallOut redWallOut = new RedWallOut();
+    public static TestMode test = new TestMode();
 
     //Drivers options
     public static PlayerConfigs ryan = new Ryan();
@@ -69,15 +60,13 @@ public class HDD {
     public static void initBot(){
 
         // Auto choosers
-        auto_chooser.setDefaultOption("Test Mode", test);
-        auto_chooser.addOption("Blue Center Charge", blueCenterCharge);
-        auto_chooser.addOption("Blue Center Out", blueCenterOut);
+        auto_chooser.setDefaultOption("Place Move Charge", placeMoveCharge);
+        auto_chooser.addOption("Place Move Stop", placeMoveStop);
+        auto_chooser.addOption("Test Mode", test);
         auto_chooser.addOption("Blue Load Out", blueLoadOut);
         auto_chooser.addOption("Blue Load Charge", blueLoadCharge);
         auto_chooser.addOption("Blue Wall Charge", blueWallCharge);
         auto_chooser.addOption("Blue Wall Out", blueWallOut);
-        auto_chooser.addOption("Red Center Charge", redCenterCharge);
-        auto_chooser.addOption("Red Center Out", redCenterOut);
         auto_chooser.addOption("Red Load Charge", redLoadCharge);
         auto_chooser.addOption("Red Loud Out", redLoadOut);
         auto_chooser.addOption("Red Wall Charge", redWallCharge);
@@ -109,11 +98,6 @@ public class HDD {
         SmartDashboard.putData(driver_chooser);
         SmartDashboard.putData(coDriver_chooser);
         SmartDashboard.putData(auto_chooser);
-        
-        // Create and push Field2d to SmartDashboard.
-        m_field = new Field2d();
-
-        SmartDashboard.putData(m_field);
         LiveWindow.disableAllTelemetry();
         LiveWindow.enableTelemetry(Robot.drivetrain.gyro);
     }

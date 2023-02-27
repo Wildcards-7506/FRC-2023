@@ -10,7 +10,7 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 
-public class AutoRoutineBlueWallCharge extends SequentialCommandGroup {
+public class BlueWallCharge extends SequentialCommandGroup {
   // required PathWeaver file paths
   String wall_a = "paths/BlueWallCharge/blue_wall_a.wpilib.json";
   String wall_b = "paths/BlueWallCharge/blue_wall_b.wpilib.json";
@@ -26,7 +26,7 @@ public class AutoRoutineBlueWallCharge extends SequentialCommandGroup {
   private Command movementB = AutoDrive.drivetrainMotion(traj_path_b);
   private Command movementC = AutoDrive.drivetrainMotion(traj_path_c);
 
-  public AutoRoutineBlueWallCharge(){
+  public BlueWallCharge(){
     
     addCommands(
         new AutoScore(0,-10),

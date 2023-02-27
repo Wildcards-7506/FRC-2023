@@ -9,11 +9,11 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoDrive;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 
-public class AutoRoutineBlueLoadOut extends SequentialCommandGroup {
+public class RedLoadOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String load_a = "paths/BlueLoadOut/blue_load_a.wpilib.json";
-  String load_b = "paths/BlueLoadOut/blue_load_b.wpilib.json";
-  String loadout_c = "paths/BlueLoadOut/blue_loadout_c.wpilib.json";
+  String load_a = "paths/RedLoadOut/red_load_a.wpilib.json";
+  String load_b = "paths/RedLoadOut/red_load_b.wpilib.json";
+  String loadout_c = "paths/RedLoadOut/red_loadout_c.wpilib.json";
   
   // trajectories
   private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(load_a);
@@ -25,14 +25,14 @@ public class AutoRoutineBlueLoadOut extends SequentialCommandGroup {
   private Command movementB = AutoDrive.drivetrainMotion(traj_path_b);
   private Command movementC = AutoDrive.drivetrainMotion(traj_path_c);
 
-  public AutoRoutineBlueLoadOut(){
+  public RedLoadOut(){
     
     addCommands(
         new AutoScore(0,-10),
         movementA,
         new AutoCollect(90),
         movementB,
-        new AutoScore(1,90),
+        new AutoScore(1, 90),
         movementC
       );
   }

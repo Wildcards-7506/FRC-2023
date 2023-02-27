@@ -10,30 +10,30 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 
-public class AutoRoutineRedWallCharge extends SequentialCommandGroup {
+public class BlueLoadCharge extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String wall_a = "paths/RedWallCharge/red_wall_a.wpilib.json";
-  String wall_b = "paths/RedWallCharge/red_wall_b.wpilib.json";
-  String wallcharge_c = "paths/RedWallCharge/red_wallcharge_c.wpilib.json";
+  String load_a = "paths/BlueLoadCharge/blue_load_a.wpilib.json";
+  String load_b = "paths/BlueLoadCharge/blue_load_b.wpilib.json";
+  String loadcharge_c = "paths/BlueLoadCharge/blue_loadcharge_c.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(wall_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(wall_b);
-  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(wallcharge_c);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(load_a);
+  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(load_b);
+  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(loadcharge_c);
 
   //Commands
   private Command movementA = AutoDrive.drivetrainMotion(traj_path_a);
   private Command movementB = AutoDrive.drivetrainMotion(traj_path_b);
   private Command movementC = AutoDrive.drivetrainMotion(traj_path_c);
 
-  public AutoRoutineRedWallCharge(){
+  public BlueLoadCharge(){
     
     addCommands(
         new AutoScore(0,-10),
         movementA,
-        new AutoCollect(90),
+        new AutoCollect(90),  
         movementB,
-        new AutoScore(1, 90),
+        new AutoScore(1,90),
         movementC,
         new AutoBalance(0)
       );
