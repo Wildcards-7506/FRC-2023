@@ -40,6 +40,8 @@ public class Crane extends SubsystemBase {
         extender = new CANSparkMax(craneExtender, MotorType.kBrushless);
         wrist = new CANSparkMax(craneWrist, MotorType.kBrushless);
 
+        extender.setInverted(false);
+
         rotatorLEncoder = rotatorLeader.getEncoder();
         rotatorFEncoder = rotatorFollower.getEncoder();
         extenderEncoder = extender.getEncoder();
@@ -56,8 +58,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        extender.enableSoftLimit(SoftLimitDirection.kForward, false);
-        extender.enableSoftLimit(SoftLimitDirection.kReverse, false);
+        extender.enableSoftLimit(SoftLimitDirection.kForward, true);
+        extender.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
@@ -82,8 +84,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.setSoftLimit(SoftLimitDirection.kReverse, 0);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 0);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, 28);
+        extender.setSoftLimit(SoftLimitDirection.kForward, 28);
+        extender.setSoftLimit(SoftLimitDirection.kReverse, 0);
 
         rotatorPID = rotatorLeader.getPIDController();
         clawPID = endEffector.getPIDController();
