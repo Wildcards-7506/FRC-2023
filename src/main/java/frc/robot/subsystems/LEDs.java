@@ -48,11 +48,11 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
-    public void solid(int hue) {
+    public void solid(int hue, int sat, int val) {
         // For every pixel
         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
           // Set the value
-          m_ledBuffer.setHSV(i, hue, 255, 255);
+          m_ledBuffer.setHSV(i, hue, sat, val);
         }
         update();
     }
