@@ -18,16 +18,16 @@ public class CraneTOCom extends CommandBase {
         //End Effector
         if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(8);
+                Robot.crane.setRoller(-8);
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
-            Robot.crane.setRoller(-8);
+            Robot.crane.setRoller(8);
         } else {
             if (Robot.crane.rollerInUse) {
                 if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(1);
+                    Robot.crane.setRoller(-1);
                 } else if(Robot.limelight.getPipeline() == 1){
                     Robot.crane.setRoller(0);
                 }
@@ -73,7 +73,7 @@ public class CraneTOCom extends CommandBase {
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else if (Robot.crane.getExtenderEncoder() < 0){
             SmartDashboard.putString("Extender State", "Retracting");
-            Robot.crane.setExtender(-12);
+            Robot.crane.setExtender(12);
         } else {
             SmartDashboard.putString("Extender State", "Neutral");
             Robot.crane.setExtender(0);
