@@ -18,12 +18,20 @@ public class CraneTOCom extends CommandBase {
         //End Effector
         if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(-8);
+                if(Robot.limelight.getPipeline() == 0){
+                    Robot.crane.setRoller(8);
+                } else if(Robot.limelight.getPipeline() == 1){
+                    Robot.crane.setRoller(-8);
+                }
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
-            Robot.crane.setRoller(8);
+            if(Robot.limelight.getPipeline() == 0){
+                Robot.crane.setRoller(-8);
+            } else if(Robot.limelight.getPipeline() == 1){
+                Robot.crane.setRoller(8);
+            }
         } else {
             if (Robot.crane.rollerInUse) {
                 if(Robot.limelight.getPipeline() == 0){
@@ -39,27 +47,30 @@ public class CraneTOCom extends CommandBase {
         //Craneworks
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
-            extenderSetpoint = -12.0;
+            extenderSetpoint = 12.0;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect);
-            extenderSetpoint = -15.0;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect+ Constants.cubeOffset * Robot.limelight.getPipeline());
+            extenderSetpoint = 15.0;
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
-            extenderSetpoint = -2.0;
+            extenderSetpoint = 2.0;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristMid);
             SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
-            extenderSetpoint = -20.0;
+            extenderSetpoint = 20.0;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristHi);
             SmartDashboard.putString("Arm Position", "Hi");
         } else if (PlayerConfigs.craneControl){
-            System.out.println("Fine Control");
-            Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (20 * PlayerConfigs.cranePos));
+            if (Math.abs(PlayerConfigs.cranePos) > 0.2){
+                Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (30 * PlayerConfigs.cranePos));
+            } else {
+                Robot.crane.setRotator(Robot.crane.getRotatorLEncoder());
+            }
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             extenderSetpoint = 0.0;
@@ -68,12 +79,15 @@ public class CraneTOCom extends CommandBase {
         }
 
         //Extender
-        if(Robot.crane.getExtenderEncoder() > extenderSetpoint && Robot.crane.getExtenderEncoder() <= 0.0 && Math.abs(PlayerConfigs.extendPos) > 0.2){
-            SmartDashboard.putString("Extender State", "Extending");
+        if(Robot.crane.getExtenderEncoder() > extenderSetpoint & Robot.crane.getExtenderEncoder() <= 0.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
+            SmartDashboard.putString("Extender State", "Moving");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < 0){
-            SmartDashboard.putString("Extender State", "Retracting");
-            Robot.crane.setExtender(12);
+        } else if (Robot.crane.getExtenderEncoder() < 0 & PlayerConfigs.extendPos > 0.2){
+            SmartDashboard.putString("Extender State", "Locked Zero");
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
+        } else if (Robot.crane.getExtenderEncoder() > extenderSetpoint & PlayerConfigs.extendPos < -0.2){
+            SmartDashboard.putString("Extender State", "Locked Extended");
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else {
             SmartDashboard.putString("Extender State", "Neutral");
             Robot.crane.setExtender(0);

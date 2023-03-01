@@ -6,12 +6,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class AutoExtenderPosition extends CommandBase{
     
     double extenderSetPoint;
-    double motorSetPoint;
 
     /** Creates a new Extention Positioning Command. */
-    public AutoExtenderPosition(double l_setPoint, double m_setPoint) {
-        this.extenderSetPoint = l_setPoint;
-        this.motorSetPoint = m_setPoint;
+    public AutoExtenderPosition(double m_setPoint) {
+        this.extenderSetPoint = m_setPoint;
     }
 
     // Called when the command is initially scheduled.
@@ -23,7 +21,8 @@ public class AutoExtenderPosition extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.crane.setExtender(motorSetPoint);
+        double setter = 1 * Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint)/(Robot.crane.getExtenderEncoder() - extenderSetPoint);
+        Robot.crane.setExtender(-setter);
     }
 
     // Called once the command ends or is interrupted.

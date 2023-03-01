@@ -7,35 +7,33 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Autonomous.AutoTrajectoryReader;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoDrive;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
-import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 
-public class AutoRoutineBlueLoadCharge extends SequentialCommandGroup {
+public class RedWallOut extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String load_a = "paths/BlueLoadCharge/blue_load_a.wpilib.json";
-  String load_b = "paths/BlueLoadCharge/blue_load_b.wpilib.json";
-  String loadcharge_c = "paths/BlueLoadCharge/blue_loadcharge_c.wpilib.json";
+  String wall_a = "paths/RedWallOut/red_wall_a.wpilib.json";
+  String wall_b = "paths/RedWallOut/red_wall_b.wpilib.json";
+  String wallout_c = "paths/RedWallOut/red_wallout_c.wpilib.json";
   
   // trajectories
-  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(load_a);
-  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(load_b);
-  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(loadcharge_c);
+  private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(wall_a);
+  private Trajectory traj_path_b = AutoTrajectoryReader.generateTrajectoryFromFile(wall_b);
+  private Trajectory traj_path_c = AutoTrajectoryReader.generateTrajectoryFromFile(wallout_c);
 
   //Commands
   private Command movementA = AutoDrive.drivetrainMotion(traj_path_a);
   private Command movementB = AutoDrive.drivetrainMotion(traj_path_b);
   private Command movementC = AutoDrive.drivetrainMotion(traj_path_c);
 
-  public AutoRoutineBlueLoadCharge(){
+  public RedWallOut(){
     
     addCommands(
         new AutoScore(0,-10),
         movementA,
-        new AutoCollect(90),  
+        new AutoCollect(90),
         movementB,
         new AutoScore(1,90),
-        movementC,
-        new AutoBalance(0)
+        movementC
       );
   }
 } 

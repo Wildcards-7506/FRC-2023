@@ -23,11 +23,11 @@ public class AutoCollect extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),
-        new AutoExtenderPosition(-12, Constants.kExtenderGround),
+        new AutoExtenderPosition(Constants.kExtenderGround),
         new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline()),
         new AutoClawPosition(action,true)),
       new AutoClawPosition(0,false),
-      new AutoExtenderPosition(12, Constants.kExtenderClosed)
+      new AutoExtenderPosition(Constants.kExtenderClosed)
     );
   }
 } 
