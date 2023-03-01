@@ -49,7 +49,7 @@ public class Mentor extends PlayerConfigs {
         PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
         PlayerConfigs.release = Robot.controller1.getRightBumper();
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
-        PlayerConfigs.extendPos = Robot.controller1.getRightY();
+        PlayerConfigs.extendPos = -Robot.controller1.getRightY();
         PlayerConfigs.craneControl = Robot.controller1.getAButton();
 
         //Limelight Switch
