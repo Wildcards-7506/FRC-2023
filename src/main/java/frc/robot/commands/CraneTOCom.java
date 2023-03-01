@@ -35,7 +35,7 @@ public class CraneTOCom extends CommandBase {
         } else {
             if (Robot.crane.rollerInUse) {
                 if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(1);
+                    Robot.crane.setRoller(-1);
                 } else if(Robot.limelight.getPipeline() == 1){
                     Robot.crane.setRoller(0);
                 }
