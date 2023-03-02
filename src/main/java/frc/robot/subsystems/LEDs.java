@@ -48,23 +48,14 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
-    public void solid(int hue) {
+    public void solid(int hue, int sat, int val) {
         // For every pixel
         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
           // Set the value
-          m_ledBuffer.setHSV(i, hue, 255, 255);
+          m_ledBuffer.setHSV(i, hue, sat, val);
         }
         update();
     }
-
-    public void solidSection(int hue) {
-      // For every pixel
-      for (var i = m_ledBuffer.getLength()/2 - 5; i < m_ledBuffer.getLength()/2 + 5; i++) {
-        // Set the value
-        m_ledBuffer.setHSV(i, hue, 255, 255);
-      }
-      update();
-  }
 
     public void teamColor(Alliance isRed) {
         // For every pixel

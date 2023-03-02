@@ -85,7 +85,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    // HDD.m_field.setRobotPose(drivetrain.odometry.getPoseMeters());
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }

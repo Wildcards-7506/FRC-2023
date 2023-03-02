@@ -40,6 +40,8 @@ public class Crane extends SubsystemBase {
         extender = new CANSparkMax(craneExtender, MotorType.kBrushless);
         wrist = new CANSparkMax(craneWrist, MotorType.kBrushless);
 
+        extender.setInverted(false);
+
         rotatorLEncoder = rotatorLeader.getEncoder();
         rotatorFEncoder = rotatorFollower.getEncoder();
         extenderEncoder = extender.getEncoder();
@@ -56,8 +58,8 @@ public class Crane extends SubsystemBase {
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        extender.enableSoftLimit(SoftLimitDirection.kForward, false);
-        extender.enableSoftLimit(SoftLimitDirection.kReverse, false);
+        extender.enableSoftLimit(SoftLimitDirection.kForward, true);
+        extender.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
@@ -135,6 +137,10 @@ public class Crane extends SubsystemBase {
         return wristEncoder.getPosition();
     }
 
+    public double getRollerCurrent(){
+        return endEffector.getOutputCurrent();
+    }
+
     public void setRotator(double setPoint) {
         double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
         rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
@@ -145,16 +151,9 @@ public class Crane extends SubsystemBase {
         clawPID.setReference(setPoint, ControlType.kPosition);
     }
 
-    public void setExtender(double setPoint, boolean manual) {
+    public void setExtender(double setPoint) {
         SmartDashboard.putNumber("Extender Setpoint", setPoint);
-        if (Math.abs(setPoint - getExtenderEncoder()) > 0.5 && !manual) {
-            double voltage = 12 * (setPoint - getExtenderEncoder() ) / Math.abs(setPoint - getExtenderEncoder());
-            extender.setVoltage(-voltage);
-        } else if (manual){
-            extender.setVoltage(setPoint);
-        } else {
-            extender.setVoltage(0);
-        }
+        extender.setVoltage(setPoint);
     }
 
     public void setWrist(double setPoint) {

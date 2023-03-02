@@ -7,7 +7,8 @@ import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
 public class CraneTOCom extends CommandBase {
-    
+    double extenderSetpoint;
+
     public CraneTOCom() {
         addRequirements(Robot.crane);
     }
@@ -17,16 +18,24 @@ public class CraneTOCom extends CommandBase {
         //End Effector
         if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
-                Robot.crane.setRoller(8);
+                if(Robot.limelight.getPipeline() == 0){
+                    Robot.crane.setRoller(8);
+                } else if(Robot.limelight.getPipeline() == 1){
+                    Robot.crane.setRoller(-8);
+                }
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
-            Robot.crane.setRoller(-8);
+            if(Robot.limelight.getPipeline() == 0){
+                Robot.crane.setRoller(-8);
+            } else if(Robot.limelight.getPipeline() == 1){
+                Robot.crane.setRoller(8);
+            }
         } else {
             if (Robot.crane.rollerInUse) {
                 if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(1);
+                    Robot.crane.setRoller(-1);
                 } else if(Robot.limelight.getPipeline() == 1){
                     Robot.crane.setRoller(0);
                 }
@@ -38,43 +47,50 @@ public class CraneTOCom extends CommandBase {
         //Craneworks
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
-            // Robot.crane.setExtender(Constants.kExtenderGround, false);
+            extenderSetpoint = Constants.kExtenderGround;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect);
-            // Robot.crane.setExtender(Constants.kExtenderCollect, false);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect+ Constants.cubeOffset * Robot.limelight.getPipeline());
+            extenderSetpoint = Constants.kExtenderCollect;
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
-            // Robot.crane.setExtender(Constants.kExtenderMid, false);
+            extenderSetpoint = Constants.kExtenderLo;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristMid);
             SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
-            // Robot.crane.setExtender(Constants.kExtenderHi, false);
+            extenderSetpoint = Constants.kExtenderHi;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristHi);
             SmartDashboard.putString("Arm Position", "Hi");
         } else if (PlayerConfigs.craneControl){
-            System.out.println("Fine Control");
-            Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (20 * PlayerConfigs.cranePos));
-            Robot.crane.setExtender(12*PlayerConfigs.extendPos, true);
-        // } else if (Robot.crane.getRotatorLEncoder() < Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() < Constants.kExtenderCollect) {
-        //     Robot.crane.setRotator(Constants.kRotatorGround);
-        //     // Robot.crane.setExtender(Constants.kExtenderClosed, false);
-        //     if (Robot.crane.rollerInUse) Robot.crane.setWrist(-Robot.crane.getRotatorLEncoder());
-        //     SmartDashboard.putString("Arm Position", "Safety Closing");
-        // } else if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorCollect && Robot.crane.getExtenderEncoder() < Constants.kExtenderHeightLimit) {
-        //     Robot.crane.setRotator(Constants.kRotatorHi);
-        //     // Robot.crane.setExtender(Constants.kExtenderClosed, false);
-        //     if (Robot.crane.rollerInUse) Robot.crane.setWrist(-Robot.crane.getRotatorLEncoder());
-        //     SmartDashboard.putString("Arm Position", "Safety Height");
+            if (Math.abs(PlayerConfigs.cranePos) > 0.2){
+                Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (30 * PlayerConfigs.cranePos));
+            } else {
+                Robot.crane.setRotator(Robot.crane.getRotatorLEncoder());
+            }
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
-            // Robot.crane.setExtender(Constants.kExtenderClosed, false);
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kRotatorClosed);
+            extenderSetpoint = Constants.kExtenderClosed;
+            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristClosed);
             SmartDashboard.putString("Arm Position", "Close");
+        }
+
+        //Extender
+        if(Robot.crane.getExtenderEncoder() < extenderSetpoint & Robot.crane.getExtenderEncoder() <= 0.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
+            SmartDashboard.putString("Extender State", "Moving");
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
+        } else if (Robot.crane.getExtenderEncoder() < 0 & PlayerConfigs.extendPos > 0.2){
+            SmartDashboard.putString("Extender State", "Locked Zero");
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
+        } else if (Robot.crane.getExtenderEncoder() > extenderSetpoint & PlayerConfigs.extendPos < -0.2){
+            SmartDashboard.putString("Extender State", "Locked Extended");
+            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
+        } else {
+            SmartDashboard.putString("Extender State", "Neutral");
+            Robot.crane.setExtender(0);
         }
 
         Robot.crane.updateEncoderValues();
