@@ -35,6 +35,6 @@ public class AutoExtenderPosition extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint) <= 0.1;
+        return Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint) <= 0.5;
     }
 }

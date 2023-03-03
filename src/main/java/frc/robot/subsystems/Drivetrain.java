@@ -86,15 +86,15 @@ public class Drivetrain extends SubsystemBase{
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
-    @Override
-    public void periodic(){
-        //Update the odometry in the periodic block
-        odometry.update(
-            gyro.getRotation2d(),
-            wheelPositions);
+    // @Override
+    // public void periodic(){
+    //     //Update the odometry in the periodic block
+    //     odometry.update(
+    //         gyro.getRotation2d(),
+    //         wheelPositions);
 
-        setDefaultCommand(new DrivetrainTOCom());
-    }
+    //     setDefaultCommand(new DrivetrainTOCom());
+    // }
 
     public Pose2d getPose(){
         return odometry.getPoseMeters();

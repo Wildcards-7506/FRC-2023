@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.commands.CraneTOCom;
+import frc.robot.commands.DrivetrainTOCom;
+import frc.robot.commands.LEDTOCom;
+import frc.robot.commands.LimelightTOCom;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
@@ -84,7 +88,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
+    //CommandScheduler.getInstance().run();
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }
@@ -99,7 +103,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    SmartDashboard.putData(CommandScheduler.getInstance());
+    CommandScheduler.getInstance().run();
+  }
 
   /** This function is called once when teleop is enabled. */
   @Override
@@ -112,6 +119,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    Robot.crane.setDefaultCommand(new CraneTOCom());
+    Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
+    Robot.ledStrip.setDefaultCommand(new LEDTOCom());
+    Robot.limelight.setDefaultCommand(new LimelightTOCom());
     CommandScheduler.getInstance().run();
     driver.getDriverConfig();
     coDriver.getCoDriverConfig();

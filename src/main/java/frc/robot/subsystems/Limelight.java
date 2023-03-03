@@ -79,9 +79,9 @@ public class Limelight extends SubsystemBase {
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the limelight.
-    @Override
-    public void periodic() {
-        setDefaultCommand(new LimelightTOCom());
-        // This method will be called once per scheduler run
-    }
+    // @Override
+    // public void periodic() {
+    //     setDefaultCommand(new LimelightTOCom());
+    //     // This method will be called once per scheduler run
+    // }
 }
