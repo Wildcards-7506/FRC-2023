@@ -65,7 +65,7 @@ public class CraneTOCom extends CommandBase {
             extenderSetpoint = Constants.kExtenderHi;
             if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristHi);
             SmartDashboard.putString("Arm Position", "Hi");
-        } else if (PlayerConfigs.craneControl){
+        } else if (PlayerConfigs.craneControl || PlayerConfigs.redundantCraneControl){
             if (Math.abs(PlayerConfigs.cranePos) > 0.2){
                 Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (30 * PlayerConfigs.cranePos));
             } else {

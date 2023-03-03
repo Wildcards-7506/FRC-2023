@@ -31,6 +31,7 @@ public class Mentor extends PlayerConfigs {
         PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
         PlayerConfigs.fineControlToggle = Robot.controller0.getR2Button();
+        PlayerConfigs.redundantCraneControl = Robot.controller0.getTouchpad();
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();

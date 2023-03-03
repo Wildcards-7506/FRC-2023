@@ -29,6 +29,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
         PlayerConfigs.fineControlToggle = Robot.controller0.getL2Button();
+        PlayerConfigs.redundantCraneControl = Robot.controller0.getTouchpad();
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();

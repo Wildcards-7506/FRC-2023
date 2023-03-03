@@ -35,6 +35,7 @@ public class PlayerConfigs {
     public static double cranePos;
     public static double extendPos;
     public static boolean craneControl;
+    public static boolean redundantCraneControl;
 
     //limelight
     public static boolean switchPipeline;
