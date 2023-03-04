@@ -124,7 +124,7 @@ public final class Constants {
         public static final double kRotatorGround = 30.0;
         public static final double kRotatorHi = 165.0;
         public static final double kRotatorMid = 165.0;
-        public static final double kRotatorCollect = 80.0;
+        public static final double kRotatorCollect = 90.0;
         public static final double kRotatorClosed = 0.0;
         public static final double rotatorHorizontalOffset = 60;
 

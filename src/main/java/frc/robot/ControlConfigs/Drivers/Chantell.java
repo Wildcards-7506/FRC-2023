@@ -3,44 +3,56 @@ package frc.robot.ControlConfigs.Drivers;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class Chantell extends PlayerConfigs{
-    
+public class Chantell extends PlayerConfigs {
     public void getDriverConfig() {
-
+        //Constants
         PlayerConfigs.turnSpeed = 0.3;
         PlayerConfigs.driveSpeed = 0.5;
         PlayerConfigs.rampRate = 0.01;
 
+        //Driving and rotation
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
+        PlayerConfigs.modeSwitch = Robot.controller0.getXButton();
+        PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
+        PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
+        PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
+        PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
-        PlayerConfigs.modeSwitch = Robot.controller0.getR2ButtonReleased();
-        PlayerConfigs.snapZero = Robot.controller0.getL2ButtonReleased();
-        PlayerConfigs.snap90 = Robot.controller0.getR2Button();
-        PlayerConfigs.snap180 = Robot.controller0.getL1Button();
-        PlayerConfigs.snap270 = Robot.controller0.getL2Button();
+        //Constants turn speed drive speed
+        PlayerConfigs.fineTurnSpeed = 0.175;
+        PlayerConfigs.fineDriveSpeed = 0.2;
 
-        PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
-        PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
-        PlayerConfigs.toggleLeds = Robot.controller0.getCircleButton();
-    }
+        //Fine movement
+        PlayerConfigs.fineControlX = Robot.controller0.getLeftX();
+        PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
+        PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
+        PlayerConfigs.fineControlToggle = Robot.controller0.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.redundantCraneControl = Robot.controller0.getBackButton();
+
+        //Signal object
+        PlayerConfigs.signalCone = Robot.controller0.getYButton();
+        PlayerConfigs.signalCube = Robot.controller0.getXButton();
+        PlayerConfigs.toggleLeds = Robot.controller0.getBButton();
+    } 
 
     public void getCoDriverConfig() {
-        PlayerConfigs.fineTurnSpeed = 0.15;
-        PlayerConfigs.fineDriveSpeed = 0.25;
-
-        PlayerConfigs.fineControlX = Robot.controller1.getLeftX();
-        PlayerConfigs.fineControlY = Robot.controller1.getLeftY();
-        PlayerConfigs.fineTurnMovement = Robot.controller1.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller1.getRightTriggerAxis() > .2;
-
-        PlayerConfigs.collectPos = Robot.controller1.getAButton();
-        PlayerConfigs.groundGrab = Robot.controller1.getBButton();
+        //Scoring and grabbing objects
+        PlayerConfigs.groundGrab = Robot.controller1.getPOV() >= 160 && Robot.controller1.getPOV() <= 200;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
-        PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.intake = Robot.controller1.getLeftBumper();
+        PlayerConfigs.lowGoal = Robot.controller1.getPOV() >= 70 && Robot.controller1.getPOV() <= 110;
+        PlayerConfigs.collectPos = Robot.controller1.getPOV() >= 250 && Robot.controller1.getPOV() <= 290;
 
-        PlayerConfigs.switchPipeline = Robot.controller1.getRightStickButton();
+        //Claw or Roller
+        PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
+        PlayerConfigs.release = Robot.controller1.getRightBumper();
+        PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.extendPos = Robot.controller1.getRightY();
+
+
+        //Limelight Switch
+        PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();
     }
 }

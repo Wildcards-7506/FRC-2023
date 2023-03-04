@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
@@ -62,7 +61,7 @@ public class Robot extends TimedRobot {
   public static final LEDs ledStrip = new LEDs(0,30);
 
   //Controllers - Need to make a call on PS4 vs. XBox Controllers
-  public static final PS4Controller controller0 = new PS4Controller(Constants.DRIVER_CONTROLLER_0);
+  public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
   public static final XboxController controller1 = new XboxController(Constants.DRIVER_CONTROLLER_1);
 
   //Test Timer & Flag
