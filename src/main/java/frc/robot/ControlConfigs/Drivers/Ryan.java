@@ -8,20 +8,20 @@ public class Ryan extends PlayerConfigs {
     public void getDriverConfig() {
         //Constants
         PlayerConfigs.turnSpeed = 0.7;
-        PlayerConfigs.driveSpeed = 0.75;
-        PlayerConfigs.rampRate = 0.02;
+        PlayerConfigs.driveSpeed = 1;
+        PlayerConfigs.rampRate = 0.15;
 
         //Driving and rotation
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getAButton();
+        PlayerConfigs.modeSwitch = Robot.controller0.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.brake = Robot.controller0.getBButton();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
-        PlayerConfigs.align = Robot.controller0.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.align = Robot.controller0.getLeftBumper();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;
