@@ -21,7 +21,7 @@ public class AutoExtenderPosition extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double setter = 1 * Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint)/(Robot.crane.getExtenderEncoder() - extenderSetPoint);
+        double setter = 12 * Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint)/(Robot.crane.getExtenderEncoder() - extenderSetPoint);
         Robot.crane.setExtender(-setter);
     }
 

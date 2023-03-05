@@ -40,10 +40,10 @@ public class Lam extends PlayerConfigs{
 
     public void getCoDriverConfig() {
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getAButton();
+        PlayerConfigs.groundGrab = Robot.controller1.getPOV() == 270;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 180;
-        PlayerConfigs.collectPos = Robot.controller1.getXButton();
+        PlayerConfigs.collectPos = Robot.controller1.getPOV() == 90;
 
         //Claw
         PlayerConfigs.intake = Robot.controller1.getLeftTriggerAxis() > 0.2;
