@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.DrivetrainTOCom;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
@@ -86,15 +85,13 @@ public class Drivetrain extends SubsystemBase{
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
-    // @Override
-    // public void periodic(){
-    //     //Update the odometry in the periodic block
-    //     odometry.update(
-    //         gyro.getRotation2d(),
-    //         wheelPositions);
-
-    //     setDefaultCommand(new DrivetrainTOCom());
-    // }
+    @Override
+    public void periodic(){
+        //Update the odometry in the periodic block
+        odometry.update(
+            gyro.getRotation2d(),
+            wheelPositions);
+    }
 
     public Pose2d getPose(){
         return odometry.getPoseMeters();
@@ -209,10 +206,15 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void align(double distance){
-        if(Math.abs(distance) > 10){
-            drive(0, -distance * Constants.kAlignKP, 0, true);
+        double rotation = 0.0;
+        double strafe = 0.0;
+        if(Math.abs(getHeading() % 360) > Constants.kSnapRange){
+            rotation = (getHeading() % 360) * Constants.kSnapSpeed;
+        }
+        if(Math.abs(distance) > 2){
+            strafe = -distance * Constants.kAlignKP;
         } else {
-            drive(0, 0, 0, false);
+            drive(0, strafe, rotation, true);
         }
     }
 

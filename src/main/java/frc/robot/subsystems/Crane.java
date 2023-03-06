@@ -10,31 +10,26 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.CraneTOCom;
 
 public class Crane extends SubsystemBase {
-    private CANSparkMax endEffector;
+    private CANSparkMax stinger;
     private CANSparkMax rotatorLeader;
     private CANSparkMax rotatorFollower;
     private CANSparkMax extender;
     private CANSparkMax wrist;
     
-    private RelativeEncoder clawEncoder;
     private RelativeEncoder rotatorLEncoder;
     private RelativeEncoder rotatorFEncoder;
     private RelativeEncoder extenderEncoder;
     private RelativeEncoder wristEncoder;
 
     public SparkMaxPIDController rotatorPID;
-    public SparkMaxPIDController clawPID;
     public SparkMaxPIDController wristPID;
 
-    public boolean rollerInUse;
 
-    public Crane(int rotator_lead, int rotator_follow, int craneExtender, int craneEndEffector, int craneWrist, boolean usingRoller) {
-        rollerInUse = usingRoller;
+    public Crane(int rotator_lead, int rotator_follow, int craneExtender, int craneStinger, int craneWrist) {
 
-        endEffector = new CANSparkMax(craneEndEffector, MotorType.kBrushless);
+        stinger = new CANSparkMax(craneStinger, MotorType.kBrushless);
         rotatorLeader = new CANSparkMax(rotator_lead, MotorType.kBrushless);
         rotatorFollower = new CANSparkMax(rotator_follow, MotorType.kBrushless);
         extender = new CANSparkMax(craneExtender, MotorType.kBrushless);
@@ -45,13 +40,11 @@ public class Crane extends SubsystemBase {
         rotatorLEncoder = rotatorLeader.getEncoder();
         rotatorFEncoder = rotatorFollower.getEncoder();
         extenderEncoder = extender.getEncoder();
-        clawEncoder = endEffector.getEncoder();
         wristEncoder = wrist.getEncoder();
 
         rotatorLEncoder.setPositionConversionFactor(Constants.kRotateEncoderDistancePerPulse);
         rotatorFEncoder.setPositionConversionFactor(Constants.kRotateEncoderDistancePerPulse);
         extenderEncoder.setPositionConversionFactor(Constants.kExtendEncoderDistancePerPulse);
-        clawEncoder.setPositionConversionFactor(Constants.kClawEncoderDistancePerPulse);
         wristEncoder.setPositionConversionFactor(Constants.kWristEncoderDistancePerPulse);
 
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kForward, true);
@@ -60,23 +53,14 @@ public class Crane extends SubsystemBase {
         rotatorFollower.enableSoftLimit(SoftLimitDirection.kReverse, true);
         extender.enableSoftLimit(SoftLimitDirection.kForward, true);
         extender.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        stinger.enableSoftLimit(SoftLimitDirection.kForward, false);
+        stinger.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         extender.setSmartCurrentLimit(Constants.kExtenderCurrentLimit);
-        endEffector.setSmartCurrentLimit(Constants.kClawCurrentLimit);
+        stinger.setSmartCurrentLimit(Constants.kClawCurrentLimit);
         wrist.setSmartCurrentLimit(Constants.kWristCurrentLimit);
-
-        if (!usingRoller) {
-            endEffector.enableSoftLimit(SoftLimitDirection.kForward, true);
-            endEffector.enableSoftLimit(SoftLimitDirection.kReverse, true);
-
-            endEffector.setSoftLimit(SoftLimitDirection.kForward, 0);
-            endEffector.setSoftLimit(SoftLimitDirection.kReverse, 85);
-        } else {
-            endEffector.enableSoftLimit(SoftLimitDirection.kForward, false);
-            endEffector.enableSoftLimit(SoftLimitDirection.kReverse, false);
-        }
 
         rotatorFollower.follow(rotatorLeader, true);
 
@@ -88,28 +72,20 @@ public class Crane extends SubsystemBase {
         extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
 
         rotatorPID = rotatorLeader.getPIDController();
-        clawPID = endEffector.getPIDController();
         wristPID = wrist.getPIDController();
 
         rotatorPID.setP(Constants.kRotatorKP);
-        clawPID.setP(Constants.kClawKP);
         wristPID.setP(Constants.kWristKP);
 
         rotatorPID.setOutputRange(-1, 1);
         wristPID.setOutputRange(-1, 1);
-        if (!usingRoller) clawPID.setOutputRange(-1, 1);
 
         rotatorLeader.burnFlash();
         rotatorFollower.burnFlash();
         extender.burnFlash();
-        endEffector.burnFlash();
+        stinger.burnFlash();
         wrist.burnFlash();
     }
-
-    // @Override
-    // public void periodic() {
-    //     setDefaultCommand(new CraneTOCom());
-    // }
 
     public void updateEncoderValues() {
         SmartDashboard.putNumber("Rotator Position", getRotatorLEncoder());
@@ -125,10 +101,6 @@ public class Crane extends SubsystemBase {
         return rotatorFEncoder.getPosition();
     }
 
-    public double getClawEncoder() {
-        return clawEncoder.getPosition();
-    }
-
     public double getExtenderEncoder() {
         return extenderEncoder.getPosition();
     }
@@ -137,18 +109,14 @@ public class Crane extends SubsystemBase {
         return wristEncoder.getPosition();
     }
 
-    public double getRollerCurrent(){
-        return endEffector.getOutputCurrent();
+    public double getStingerCurrent(){
+        return stinger.getOutputCurrent();
     }
 
     public void setRotator(double setPoint) {
         double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
         rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
         SmartDashboard.putNumber("Rotator Setpoint", setPoint);
-    }
-
-    public void setClaw(double setPoint) {
-        clawPID.setReference(setPoint, ControlType.kPosition);
     }
 
     public void setExtender(double setPoint) {
@@ -161,7 +129,7 @@ public class Crane extends SubsystemBase {
         wristPID.setReference(setPoint, ControlType.kPosition);
     }
 
-    public void setRoller (double setPoint) {
-        endEffector.setVoltage(setPoint);
+    public void setStinger (double setPoint) {
+        stinger.setVoltage(setPoint);
     }
 }

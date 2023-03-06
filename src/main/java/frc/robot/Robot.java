@@ -48,9 +48,8 @@ public class Robot extends TimedRobot {
     Constants.CRANE_ROTATION_LEAD,
     Constants.CRANE_ROTATION_FOLLOW,
     Constants.CRANE_EXTENDER,
-    Constants.CRANE_END_EFFECTOR,
-    Constants.CRANE_WRIST,
-    true
+    Constants.CRANE_STINGER,
+    Constants.CRANE_WRIST
   );
 
   //Need Subsystems for the Arm and Claw, TBD if more systems will get added

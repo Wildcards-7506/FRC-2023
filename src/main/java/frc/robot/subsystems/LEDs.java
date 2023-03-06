@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.LEDTOCom;
 
 public class LEDs extends SubsystemBase{
     private AddressableLED m_led;
@@ -66,7 +65,4 @@ public class LEDs extends SubsystemBase{
         }
         update();
     }
-
-    // @Override
-    // public void periodic(){setDefaultCommand(new LEDTOCom());}
 }

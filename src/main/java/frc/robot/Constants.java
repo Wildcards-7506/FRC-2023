@@ -21,7 +21,7 @@ public final class Constants {
         public static final int CRANE_EXTENDER = 19;
         public static final int CRANE_ROTATION_LEAD = 2;
         public static final int CRANE_ROTATION_FOLLOW = 3;
-        public static final int CRANE_END_EFFECTOR = 18;
+        public static final int CRANE_STINGER = 18;
         public static final int CRANE_WRIST = 17;
 
     //Controller Assignments

@@ -17,30 +17,22 @@ public class CraneTOCom extends CommandBase {
     public void execute() {
         //End Effector
         if (PlayerConfigs.intake) {
-            if (Robot.crane.rollerInUse) {
-                if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(-8);
-                } else if(Robot.limelight.getPipeline() == 1){
-                    Robot.crane.setRoller(8);
-                }
-            } else {
-                Robot.crane.setClaw(Constants.kClawOpen);
-            }
-        } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
             if(Robot.limelight.getPipeline() == 0){
-                Robot.crane.setRoller(8);
+                Robot.crane.setStinger(-8);
             } else if(Robot.limelight.getPipeline() == 1){
-                Robot.crane.setRoller(-8);
+                Robot.crane.setStinger(8);
+            }
+        } else if (PlayerConfigs.release) {
+            if(Robot.limelight.getPipeline() == 0){
+                Robot.crane.setStinger(8);
+            } else if(Robot.limelight.getPipeline() == 1){
+                Robot.crane.setStinger(-8);
             }
         } else {
-            if (Robot.crane.rollerInUse) {
-                if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(-1);
-                } else if(Robot.limelight.getPipeline() == 1){
-                    Robot.crane.setRoller(0);
-                }
-            } else {
-                Robot.crane.setClaw(Constants.kClawClosed);
+            if(Robot.limelight.getPipeline() == 0){
+                Robot.crane.setStinger(-1);
+            } else if(Robot.limelight.getPipeline() == 1){
+                Robot.crane.setStinger(1);
             }
         }
 
@@ -48,22 +40,22 @@ public class CraneTOCom extends CommandBase {
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             extenderSetpoint = Constants.kExtenderGround;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
+            Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect);
             extenderSetpoint = Constants.kExtenderCollect;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
+            Robot.crane.setWrist(Constants.kWristCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
             SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
             extenderSetpoint = Constants.kExtenderLo;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristMid);
+            Robot.crane.setWrist(Constants.kWristMid);
             SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
             extenderSetpoint = Constants.kExtenderHi;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristHi);
+            Robot.crane.setWrist(Constants.kWristHi);
             SmartDashboard.putString("Arm Position", "Hi");
         } else if (PlayerConfigs.craneControl || PlayerConfigs.redundantCraneControl){
             if (Math.abs(PlayerConfigs.cranePos) > 0.2){
@@ -74,7 +66,7 @@ public class CraneTOCom extends CommandBase {
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             extenderSetpoint = Constants.kExtenderClosed;
-            if (Robot.crane.rollerInUse) Robot.crane.setWrist(Constants.kWristClosed);
+           Robot.crane.setWrist(Constants.kWristClosed);
             SmartDashboard.putString("Arm Position", "Close");
         }
 
