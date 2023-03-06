@@ -20,17 +20,17 @@ public class Shannon extends PlayerConfigs {
         PlayerConfigs.fineControlX = Robot.controller0.getLeftX();
         PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller0.getCrossButton();
+        PlayerConfigs.fineControlToggle = Robot.controller0.getAButton();
 
-        PlayerConfigs.modeSwitch = Robot.controller0.getL2Button();
+        PlayerConfigs.modeSwitch = Robot.controller0.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
-        PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
-        PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
-        PlayerConfigs.toggleLeds = Robot.controller0.getCircleButton();
+        PlayerConfigs.signalCone = Robot.controller0.getYButton();
+        PlayerConfigs.signalCube = Robot.controller0.getXButton();
+        PlayerConfigs.toggleLeds = Robot.controller0.getBButton();
     }
 
     public void getCoDriverConfig() {

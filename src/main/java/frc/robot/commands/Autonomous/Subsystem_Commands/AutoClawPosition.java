@@ -38,14 +38,26 @@ public class AutoClawPosition extends CommandBase{
     @Override
     public void end(boolean interrupted) {
         System.out.println("Claw Complete");
-        Robot.crane.setRoller(0);
+        if (actionFlag){
+            Robot.crane.setRoller(-1);
+        } else if (!actionFlag){
+            Robot.crane.setRoller(0);
+        }
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-                //Roller Pickup, Current tripped
-        return (actionFlag && Robot.crane.getRollerCurrent() > 10 && timer.get() >= 0.3)
+        //Roller Pickup, Current tripped
+        if (actionFlag && Robot.crane.getRollerCurrent() > 10 && timer.get() >= 0.3) {System.out.println("Piece Acquired");}
+                //Target Missed, timeout
+        else if (actionFlag && timer.get() >= 5){System.out.println("Piece Missed");}
+                //Outtaking, timeout
+        else if (!actionFlag && timer.get() >= 1){System.out.println("Outtake");};
+                 
+                 
+        //Roller Pickup, Current tripped
+        return (actionFlag && Robot.crane.getRollerCurrent() > 30 && timer.get() >= 1)
                 //Target Missed, timeout
                  || (actionFlag && timer.get() >= 5)
                 //Outtaking, timeout

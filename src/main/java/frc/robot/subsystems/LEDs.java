@@ -67,6 +67,6 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
-    @Override
-    public void periodic(){setDefaultCommand(new LEDTOCom());}
+    // @Override
+    // public void periodic(){setDefaultCommand(new LEDTOCom());}
 }

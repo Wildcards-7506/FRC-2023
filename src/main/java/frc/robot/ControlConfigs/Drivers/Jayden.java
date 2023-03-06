@@ -16,7 +16,7 @@ public class Jayden extends PlayerConfigs{
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getR2Button();
+        PlayerConfigs.modeSwitch = Robot.controller0.getRightTriggerAxis() > 0.2;
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
@@ -30,13 +30,13 @@ public class Jayden extends PlayerConfigs{
         PlayerConfigs.fineControlX = Robot.controller0.getLeftX();
         PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.fineControlToggle = Robot.controller0.getL2Button();
-        PlayerConfigs.redundantCraneControl = Robot.controller0.getTouchpad();
+        PlayerConfigs.fineControlToggle = Robot.controller0.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.redundantCraneControl = Robot.controller0.getStartButton();
 
         //Signal object
-        PlayerConfigs.signalCone = Robot.controller0.getTriangleButton();
-        PlayerConfigs.signalCube = Robot.controller0.getSquareButton();
-        PlayerConfigs.toggleLeds = Robot.controller0.getTouchpad();
+        PlayerConfigs.signalCone = Robot.controller0.getYButton();
+        PlayerConfigs.signalCube = Robot.controller0.getXButton();
+        PlayerConfigs.toggleLeds = Robot.controller0.getBackButton();
     }
 
     public void getCoDriverConfig() {

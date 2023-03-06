@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
@@ -14,6 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.commands.CraneTOCom;
+import frc.robot.commands.DrivetrainTOCom;
+import frc.robot.commands.LEDTOCom;
+import frc.robot.commands.LimelightTOCom;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
@@ -58,7 +61,7 @@ public class Robot extends TimedRobot {
   public static final LEDs ledStrip = new LEDs(0,30);
 
   //Controllers - Need to make a call on PS4 vs. XBox Controllers
-  public static final PS4Controller controller0 = new PS4Controller(Constants.DRIVER_CONTROLLER_0);
+  public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
   public static final XboxController controller1 = new XboxController(Constants.DRIVER_CONTROLLER_1);
 
   //Test Timer & Flag
@@ -84,7 +87,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
+    //CommandScheduler.getInstance().run();
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }
@@ -99,7 +102,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+  }
 
   /** This function is called once when teleop is enabled. */
   @Override
@@ -107,6 +112,10 @@ public class Robot extends TimedRobot {
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
     coDriver = HDD.coDriver_chooser.getSelected();
+    Robot.crane.setDefaultCommand(new CraneTOCom());
+    Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
+    Robot.ledStrip.setDefaultCommand(new LEDTOCom());
+    Robot.limelight.setDefaultCommand(new LimelightTOCom());
   }
 
   /** This function is called periodically during operator control. */

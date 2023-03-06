@@ -15,16 +15,16 @@ public class Vasquez extends PlayerConfigs{
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getSquareButton();
+        PlayerConfigs.modeSwitch = Robot.controller0.getXButton();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
 
         //Signal object
-        PlayerConfigs.signalCone = Robot.controller0.getCircleButton();
-        PlayerConfigs.signalCube = Robot.controller0.getTriangleButton();
-        PlayerConfigs.toggleLeds = Robot.controller0.getCrossButton();
+        PlayerConfigs.signalCone = Robot.controller0.getBButton();
+        PlayerConfigs.signalCube = Robot.controller0.getYButton();
+        PlayerConfigs.toggleLeds = Robot.controller0.getAButton();
     }
 
     public void getCoDriverConfig() {

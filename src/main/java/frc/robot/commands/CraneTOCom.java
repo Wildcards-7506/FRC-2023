@@ -19,18 +19,18 @@ public class CraneTOCom extends CommandBase {
         if (PlayerConfigs.intake) {
             if (Robot.crane.rollerInUse) {
                 if(Robot.limelight.getPipeline() == 0){
-                    Robot.crane.setRoller(8);
-                } else if(Robot.limelight.getPipeline() == 1){
                     Robot.crane.setRoller(-8);
+                } else if(Robot.limelight.getPipeline() == 1){
+                    Robot.crane.setRoller(8);
                 }
             } else {
                 Robot.crane.setClaw(Constants.kClawOpen);
             }
         } else if (PlayerConfigs.release && Robot.crane.rollerInUse) {
             if(Robot.limelight.getPipeline() == 0){
-                Robot.crane.setRoller(-8);
-            } else if(Robot.limelight.getPipeline() == 1){
                 Robot.crane.setRoller(8);
+            } else if(Robot.limelight.getPipeline() == 1){
+                Robot.crane.setRoller(-8);
             }
         } else {
             if (Robot.crane.rollerInUse) {
@@ -79,13 +79,13 @@ public class CraneTOCom extends CommandBase {
         }
 
         //Extender
-        if(Robot.crane.getExtenderEncoder() < extenderSetpoint & Robot.crane.getExtenderEncoder() <= 0.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
+        if(Robot.crane.getExtenderEncoder() > extenderSetpoint & Robot.crane.getExtenderEncoder() <= -1.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
             SmartDashboard.putString("Extender State", "Moving");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < 0 & PlayerConfigs.extendPos > 0.2){
+        } else if (Robot.crane.getExtenderEncoder() > -1 & PlayerConfigs.extendPos < -0.2){
             SmartDashboard.putString("Extender State", "Locked Zero");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() > extenderSetpoint & PlayerConfigs.extendPos < -0.2){
+        } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
             SmartDashboard.putString("Extender State", "Locked Extended");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else {

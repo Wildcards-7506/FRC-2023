@@ -121,20 +121,20 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
-        public static final double kRotatorGround = 40.0;
-        public static final double kRotatorHi = 220.0;
-        public static final double kRotatorMid = 230.0;
-        public static final double kRotatorCollect = 80.0;
+        public static final double kRotatorGround = 30.0;
+        public static final double kRotatorHi = 155.0;
+        public static final double kRotatorMid = 165.0;
+        public static final double kRotatorCollect = 85.0;
         public static final double kRotatorClosed = 0.0;
         public static final double rotatorHorizontalOffset = 60;
 
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 0.125;
-        public static final double kExtenderGround = 15.0;
-        public static final double kExtenderLo = 2.5;
-        public static final double kExtenderHi = 20.0;
-        public static final double kExtenderCollect = 12.0;
-        public static final double kExtenderClosed = 0.0;
+        public static final double kExtenderGround = -15.0;
+        public static final double kExtenderLo = -4.0;
+        public static final double kExtenderHi = -20.0;
+        public static final double kExtenderCollect = -12.0;
+        public static final double kExtenderClosed = -1.0;
         
         public static final int kClawCurrentLimit = 40;
         public static final double kClawEncoderDistancePerPulse = 1.0/125 * 360;
@@ -146,7 +146,7 @@ public final class Constants {
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
         public static final double kWristKP = 0.01;
         public static final double cubeOffset = 80.0;
-        public static final double kWristHi = -180.0;
+        public static final double kWristHi = -210.0;
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
         public static final double kWristGround = 5.0;
