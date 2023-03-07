@@ -15,16 +15,16 @@ public class TestMode extends SequentialCommandGroup {
   public TestMode(){
     
     addCommands(     
-      // new AutoClawPosition(-1, true),
-      // new ParallelCommandGroup(
-      //     new AutoRotatorPosition(Constants.kRotatorHi),
-      //     new AutoWristPosition(Constants.kWristHi)),
-      // new AutoExtenderPosition(Constants.kExtenderHi + 2),
-      // new AutoClawPosition(8, false),
-      // new AutoExtenderPosition(-1),
-      // new ParallelCommandGroup(
-      //     new AutoRotatorPosition(Constants.kRotatorClosed),
-      //     new AutoWristPosition(Constants.kWristClosed)),
+      new AutoClawPosition(-1, true),
+      new ParallelCommandGroup(
+          new AutoRotatorPosition(Constants.kRotatorHi),
+          new AutoWristPosition(Constants.kWristHi)),
+      new AutoExtenderPosition(Constants.kExtenderHi + 2),
+      new AutoClawPosition(8, false),
+      new AutoExtenderPosition(-1),
+      new ParallelCommandGroup(
+          new AutoRotatorPosition(Constants.kRotatorClosed),
+          new AutoWristPosition(Constants.kWristClosed)),
       new AutoCSManuever()
     );
   }

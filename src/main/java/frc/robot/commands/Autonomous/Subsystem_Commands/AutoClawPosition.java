@@ -49,7 +49,7 @@ public class AutoClawPosition extends CommandBase{
     @Override
     public boolean isFinished() {
         //Roller Pickup, Current tripped
-        if (actionFlag && Robot.crane.getRollerCurrent() > 10 && timer.get() >= 0.3) {System.out.println("Piece Acquired");}
+        if (actionFlag && Robot.crane.getRollerCurrent() > 8 && timer.get() >= 0.3) {System.out.println("Piece Acquired");}
                 //Target Missed, timeout
         else if (actionFlag && timer.get() >= 5){System.out.println("Piece Missed");}
                 //Outtaking, timeout
