@@ -7,7 +7,8 @@ import frc.robot.Robot;
 public class LEDTOCom extends CommandBase{
     
     public LEDTOCom(){
-        addRequirements(Robot.ledStrip);
+        //addRequirements(Robot.ledStrip);
+        addRequirements(Robot.ledEyes);
     }
     
     @Override
@@ -22,5 +23,6 @@ public class LEDTOCom extends CommandBase{
         } else {
             Robot.ledStrip.solid(30 + 80 * (int)Robot.limelight.getPipeline(), 255, 255); 
         }
+        Robot.ledEyes.solidEyes(30 + 80 * (int)Robot.limelight.getPipeline(), Robot.teamColor); 
     } 
 }
