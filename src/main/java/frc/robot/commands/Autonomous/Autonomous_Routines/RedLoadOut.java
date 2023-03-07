@@ -30,7 +30,7 @@ public class RedLoadOut extends SequentialCommandGroup {
     addCommands(
         new AutoScore(0,-10),
         movementA,
-        new AutoCollect(90),
+        new AutoCollect(12),
         movementB,
         new AutoScore(1, 90),
         movementC

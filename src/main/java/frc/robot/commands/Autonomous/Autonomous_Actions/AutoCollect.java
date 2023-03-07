@@ -12,13 +12,13 @@ import frc.robot.commands.Autonomous.Subsystem_Commands.AutoWristPosition;
 public class AutoCollect extends SequentialCommandGroup {
   int pipeline;
   
-  public AutoCollect(int offset){
+  public AutoCollect(int setPoint){
     addCommands(
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),
         new AutoExtenderPosition(Constants.kExtenderGround),
         new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline()),
-        new AutoStingerAction(12,true)),
+        new AutoStingerAction(setPoint,true)),
       new AutoExtenderPosition(Constants.kExtenderClosed)
     );
   }

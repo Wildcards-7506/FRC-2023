@@ -14,18 +14,17 @@ public class AutoScore extends SequentialCommandGroup {
   public AutoScore(int pipeline, double offset){
 
     addCommands(
-        new AutoScoringAlign(pipeline),
-        new ParallelCommandGroup(
-          new AutoRotatorPosition(Constants.kRotatorHi),
-          new AutoWristPosition(Constants.kWristHi)
-        ),
-        new AutoExtenderPosition(Constants.kExtenderHi),
-        new AutoStingerAction(-12, false),
-        new AutoExtenderPosition(Constants.kExtenderClosed),
-        //Return to Close
-        new ParallelCommandGroup(
-          new AutoRotatorPosition(Constants.kRotatorClosed),
-          new AutoWristPosition(Constants.kRotatorClosed))
-      );
+      new AutoScoringAlign(pipeline),
+      new AutoStingerAction(-8, true),
+      new ParallelCommandGroup(
+        new AutoRotatorPosition(Constants.kRotatorHi),
+        new AutoWristPosition(Constants.kWristHi)),
+      new AutoExtenderPosition(Constants.kExtenderHi + offset),
+      new AutoStingerAction(8, false),
+      new AutoExtenderPosition(-1),
+      new ParallelCommandGroup(
+        new AutoRotatorPosition(Constants.kRotatorClosed),
+        new AutoWristPosition(Constants.kWristClosed))
+    );
   }
 } 

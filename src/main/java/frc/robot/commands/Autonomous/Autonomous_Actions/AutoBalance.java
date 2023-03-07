@@ -13,7 +13,8 @@ public class AutoBalance extends SequentialCommandGroup {
     addCommands(
       new AutoSnap(angle),
       new AutoDropWheelPosition(Constants.kDropWheelDistance),
-      new AutoPitchCorrect()
+      new AutoPitchCorrect(),
+      new AutoSnap(90)
     );
   }
 } 
