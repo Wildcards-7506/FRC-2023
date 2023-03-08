@@ -122,7 +122,7 @@ public final class Constants {
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
         public static final double kRotatorGround = 30.0;
-        public static final double kRotatorHi = 155.0;
+        public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
         public static final double kRotatorCollect = 85.0;
         public static final double kRotatorVertical = 115.0;
@@ -147,7 +147,7 @@ public final class Constants {
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
         public static final double kWristKP = 0.01;
         public static final double cubeOffset = 80.0;
-        public static final double kWristHi = -210.0;
+        public static final double kWristHi = -195.0;
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
         public static final double kWristGround = 5.0;
