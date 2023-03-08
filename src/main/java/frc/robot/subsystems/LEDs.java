@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.LEDTOCom;
 
 public class LEDs extends SubsystemBase{
     private AddressableLED m_led;
@@ -67,6 +66,32 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
-    // @Override
-    // public void periodic(){setDefaultCommand(new LEDTOCom());}
+    public void solidEyes(int hue, Alliance isRed) {
+      // For every pixel
+      int irisHue = (isRed == Alliance.Red) ? 0 : 120;
+      for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        // Set the value
+        m_ledBuffer.setHSV(i, hue, 255,255);
+      }
+      m_ledBuffer.setHSV(7, irisHue, 255, 255);
+      m_ledBuffer.setHSV(10, irisHue, 255, 255);
+      update();
+    }
+
+    public void blinkingEyes(Alliance isRed, int irisLoc, boolean blink){
+      int hue = (isRed == Alliance.Red) ? 0 : 120;
+      for (var i = 0; i < 18; i++) {
+        // Set the value
+        m_ledBuffer.setHSV(i, 255, 0, 255);
+      }
+      m_ledBuffer.setHSV(irisLoc, hue, 255, 255);
+      m_ledBuffer.setHSV(irisLoc + 3, hue, 255, 255);
+      if(blink){
+        for (var i = 6; i < 12; i++) {
+          // Set the value
+          m_ledBuffer.setHSV(i, 255, 0, 0);
+        }
+      }
+      update();
+    }
 }

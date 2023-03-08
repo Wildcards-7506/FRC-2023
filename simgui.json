@@ -2,7 +2,7 @@
   "HALProvider": {
     "Addressable LEDs": {
       "0": {
-        "columns": 30
+        "columns": 6
       },
       "window": {
         "visible": true
@@ -42,11 +42,6 @@
       "/SmartDashboard/SendableChooser[2]": "String Chooser"
     },
     "windows": {
-      "/SmartDashboard/Scheduler": {
-        "window": {
-          "visible": true
-        }
-      },
       "/SmartDashboard/SendableChooser[2]": {
         "window": {
           "visible": true
@@ -75,5 +70,8 @@
         "open": true
       }
     }
+  },
+  "NetworkTables View": {
+    "visible": false
   }
 }

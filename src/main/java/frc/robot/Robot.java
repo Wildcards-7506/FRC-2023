@@ -41,26 +41,22 @@ public class Robot extends TimedRobot {
     Constants.RIGHT_DRIVE_TRAIN_BACK,
     Constants.DROP_WHEEL_LEFT,
     Constants.DROP_WHEEL_RIGHT
-    //Need Additional Motors for drop wheels - 2 for raise/lower and 2 to drive the drop wheels
   );
 
   public static final Crane crane = new Crane(
     Constants.CRANE_ROTATION_LEAD,
     Constants.CRANE_ROTATION_FOLLOW,
     Constants.CRANE_EXTENDER,
-    Constants.CRANE_END_EFFECTOR,
-    Constants.CRANE_WRIST,
-    true
+    Constants.CRANE_STINGER,
+    Constants.CRANE_WRIST
   );
-
-  //Need Subsystems for the Arm and Claw, TBD if more systems will get added
   
   public static final Limelight limelight = new Limelight();
 
-  //Buffer Size is TBD - need a new programmer to develop the color scheme/feedback methods
   public static final LEDs ledStrip = new LEDs(0,30);
+  public static final LEDs ledEyes = new LEDs(1,18);
 
-  //Controllers - Need to make a call on PS4 vs. XBox Controllers
+  //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
   public static final XboxController controller1 = new XboxController(Constants.DRIVER_CONTROLLER_1);
 
@@ -87,7 +83,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    //CommandScheduler.getInstance().run();
     drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }
@@ -112,6 +107,10 @@ public class Robot extends TimedRobot {
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
     coDriver = HDD.coDriver_chooser.getSelected();
+    Robot.crane.setDefaultCommand(new CraneTOCom());
+    Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
+    Robot.ledStrip.setDefaultCommand(new LEDTOCom());
+    Robot.limelight.setDefaultCommand(new LimelightTOCom());
   }
 
   /** This function is called periodically during operator control. */
@@ -134,6 +133,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledStrip.rainbow();
+    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+      ledEyes.blinkingEyes(DriverStation.getAlliance(),6,false);
+    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+      ledEyes.blinkingEyes(DriverStation.getAlliance(),8,false);
+    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+      ledEyes.blinkingEyes(DriverStation.getAlliance(),7,true);
+    } else{
+      ledEyes.blinkingEyes(DriverStation.getAlliance(),7,false);
+  }
     HDD.updateStartupConfig();
   }
 

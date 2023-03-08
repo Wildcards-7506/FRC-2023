@@ -10,6 +10,9 @@ public class DrivetrainTOCom extends CommandBase{
     double prevRot = 0;
     double prevYspeed = 0;
     double prevXspeed = 0;
+    boolean mecanumDrive = true;
+    private boolean prev_MecanumDrive = false;
+
 
     public DrivetrainTOCom() {
         addRequirements(Robot.drivetrain);
@@ -17,8 +20,15 @@ public class DrivetrainTOCom extends CommandBase{
 
     @Override
     public void execute(){
+        if(PlayerConfigs.modeSwitch != prev_MecanumDrive){
+            prev_MecanumDrive = PlayerConfigs.modeSwitch;
+            if(PlayerConfigs.modeSwitch){
+                mecanumDrive = !mecanumDrive;
+            }
+        }
+        
         //Mecanum Drive
-        if(!PlayerConfigs.modeSwitch){
+        if(mecanumDrive){
             Robot.drivetrain.setDropWheels(0);
             double xInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlX :
