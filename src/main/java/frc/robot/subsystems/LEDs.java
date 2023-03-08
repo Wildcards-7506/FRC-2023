@@ -3,42 +3,46 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LEDs extends SubsystemBase{
-    private AddressableLED m_led;
-    private AddressableLEDBuffer m_ledBuffer;
+    private AddressableLED strip_led;
+    private AddressableLEDBuffer strip_ledBuffer;
+    private AddressableLED eye_led;
+    private AddressableLEDBuffer eye_ledBuffer;
 
-    private AddressableLEDSim m_led_sim;
     // Store what the last hue of the first pixel is
     private int m_rainbowFirstPixelHue;
 
-    //Shooter constructor - creates a shooter in robot memory
-    public LEDs(int pwmPort, int bufferSize){
-        m_led = new AddressableLED(pwmPort);
-        m_ledBuffer = new AddressableLEDBuffer(bufferSize);
+    public LEDs(int stripPWMPort, int stripBufferSize, int eyePWMPort, int eyeBufferSize){
+        strip_led = new AddressableLED(stripPWMPort);
+        strip_ledBuffer = new AddressableLEDBuffer(stripBufferSize);
 
-        m_led_sim = new AddressableLEDSim(m_led);
-        m_led_sim.setLength(bufferSize);
+        strip_led.setLength(stripBufferSize);
+        strip_led.setData(strip_ledBuffer);
+        strip_led.start();
 
-        m_led.setLength(bufferSize);
-        m_led.setData(m_ledBuffer);
-        m_led.start();
+        eye_led = new AddressableLED(eyePWMPort);
+        eye_ledBuffer = new AddressableLEDBuffer(eyeBufferSize);
+
+        eye_led.setLength(eyeBufferSize);
+        eye_led.setData(eye_ledBuffer);
+        eye_led.start();
     }
 
     public void update() {
-        m_led.setData(m_ledBuffer);
+      strip_led.setData(strip_ledBuffer);
+      eye_led.setData(eye_ledBuffer);
     }
 
     public void rainbow() {
         // For every pixel
-        for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        for (var i = 0; i < strip_ledBuffer.getLength(); i++) {
           // Calculate the hue - hue is easier for rainbows because the color
           // shape is a circle so only one value needs to precess
-          final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
+          final var hue = (m_rainbowFirstPixelHue + (i * 180 / strip_ledBuffer.getLength())) % 180;
           // Set the value
-          m_ledBuffer.setHSV(i, hue, 255, 255);
+          strip_ledBuffer.setHSV(i, hue, 255, 255);
         }
         // Increase by to make the rainbow "move"
         m_rainbowFirstPixelHue += 3;
@@ -49,19 +53,19 @@ public class LEDs extends SubsystemBase{
 
     public void solid(int hue, int sat, int val) {
         // For every pixel
-        for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        for (var i = 0; i < strip_ledBuffer.getLength(); i++) {
           // Set the value
-          m_ledBuffer.setHSV(i, hue, sat, val);
+          strip_ledBuffer.setHSV(i, hue, sat, val);
         }
         update();
     }
 
     public void teamColor(Alliance isRed) {
         // For every pixel
-        for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        for (var i = 0; i < strip_ledBuffer.getLength(); i++) {
           // Set the value
           int hue = (isRed == Alliance.Red) ? 0 : 120;
-          m_ledBuffer.setHSV(i, hue, 255, 255);
+          strip_ledBuffer.setHSV(i, hue, 255, 255);
         }
         update();
     }
@@ -69,12 +73,12 @@ public class LEDs extends SubsystemBase{
     public void solidEyes(int hue, Alliance isRed) {
       // For every pixel
       int irisHue = (isRed == Alliance.Red) ? 0 : 120;
-      for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+      for (var i = 0; i < eye_ledBuffer.getLength(); i++) {
         // Set the value
-        m_ledBuffer.setHSV(i, hue, 255,255);
+        eye_ledBuffer.setHSV(i, hue, 255,255);
       }
-      m_ledBuffer.setHSV(7, irisHue, 255, 255);
-      m_ledBuffer.setHSV(10, irisHue, 255, 255);
+      eye_ledBuffer.setHSV(7, irisHue, 255, 255);
+      eye_ledBuffer.setHSV(10, irisHue, 255, 255);
       update();
     }
 
@@ -82,14 +86,14 @@ public class LEDs extends SubsystemBase{
       int hue = (isRed == Alliance.Red) ? 0 : 120;
       for (var i = 0; i < 18; i++) {
         // Set the value
-        m_ledBuffer.setHSV(i, 255, 0, 255);
+        eye_ledBuffer.setHSV(i, 255, 0, 255);
       }
-      m_ledBuffer.setHSV(irisLoc, hue, 255, 255);
-      m_ledBuffer.setHSV(irisLoc + 3, hue, 255, 255);
+      eye_ledBuffer.setHSV(irisLoc, hue, 255, 255);
+      eye_ledBuffer.setHSV(irisLoc + 3, hue, 255, 255);
       if(blink){
-        for (var i = 6; i < 12; i++) {
+        for (var i = 0; i < 18; i++) {
           // Set the value
-          m_ledBuffer.setHSV(i, 255, 0, 0);
+          eye_ledBuffer.setHSV(i, 255, 0, 0);
         }
       }
       update();

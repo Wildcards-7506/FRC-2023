@@ -53,8 +53,7 @@ public class Robot extends TimedRobot {
   
   public static final Limelight limelight = new Limelight();
 
-  public static final LEDs ledStrip = new LEDs(0,30);
-  public static final LEDs ledEyes = new LEDs(1,18);
+  public static final LEDs ledSystem = new LEDs(0,30,1,18);
 
   //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
@@ -89,6 +88,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    teamColor = DriverStation.getAlliance();
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
     autoMode = HDD.auto_chooser.getSelected();
@@ -99,6 +99,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
+    ledSystem.rainbow();
+    ledSystem.solidEyes(15, teamColor);
   }
 
   /** This function is called once when teleop is enabled. */
@@ -109,7 +111,7 @@ public class Robot extends TimedRobot {
     coDriver = HDD.coDriver_chooser.getSelected();
     Robot.crane.setDefaultCommand(new CraneTOCom());
     Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
-    Robot.ledStrip.setDefaultCommand(new LEDTOCom());
+    Robot.ledSystem.setDefaultCommand(new LEDTOCom());
     Robot.limelight.setDefaultCommand(new LimelightTOCom());
   }
 
@@ -128,16 +130,16 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {
-    ledStrip.rainbow();
+    ledSystem.rainbow();
     if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledEyes.blinkingEyes(DriverStation.getAlliance(),6,false);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
     }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledEyes.blinkingEyes(DriverStation.getAlliance(),8,false);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
     } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledEyes.blinkingEyes(DriverStation.getAlliance(),7,true);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
     } else{
-      ledEyes.blinkingEyes(DriverStation.getAlliance(),7,false);
-  }
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    }
     HDD.updateStartupConfig();
   }
 
