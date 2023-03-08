@@ -7,7 +7,7 @@ import frc.robot.Robot;
 public class LEDTOCom extends CommandBase{
     
     public LEDTOCom(){
-        //addRequirements(Robot.ledStrip);
+        addRequirements(Robot.ledStrip);
         addRequirements(Robot.ledEyes);
     }
     
