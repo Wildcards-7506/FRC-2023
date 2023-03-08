@@ -116,10 +116,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    Robot.crane.setDefaultCommand(new CraneTOCom());
-    Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
-    Robot.ledStrip.setDefaultCommand(new LEDTOCom());
-    Robot.limelight.setDefaultCommand(new LimelightTOCom());
     CommandScheduler.getInstance().run();
     driver.getDriverConfig();
     coDriver.getCoDriverConfig();
