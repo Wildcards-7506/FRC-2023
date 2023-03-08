@@ -70,6 +70,8 @@ public class Crane extends SubsystemBase {
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
         extender.setSoftLimit(SoftLimitDirection.kForward, 0);
         extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
+        extender.setSoftLimit(SoftLimitDirection.kForward, 0);
+        extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
 
         rotatorPID = rotatorLeader.getPIDController();
         wristPID = wrist.getPIDController();

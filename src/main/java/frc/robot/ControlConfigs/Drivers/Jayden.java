@@ -8,8 +8,8 @@ public class Jayden extends PlayerConfigs{
     public void getDriverConfig() {
         //Constants
         PlayerConfigs.turnSpeed = 0.7;
-        PlayerConfigs.driveSpeed = 0.5;
-        PlayerConfigs.rampRate = 0.01;
+        PlayerConfigs.driveSpeed = 1;
+        PlayerConfigs.rampRate = 0.15;
 
         //Driving and rotation
 
