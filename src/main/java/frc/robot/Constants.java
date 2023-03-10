@@ -24,6 +24,10 @@ public final class Constants {
         public static final int CRANE_STINGER = 18;
         public static final int CRANE_WRIST = 17;
 
+        //Pinchers
+        public static final int PINCHER_LEFT = 13;
+        public static final int PINCHER_RIGHT = 6;
+
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
         public static final int DRIVER_CONTROLLER_1 = 1;
