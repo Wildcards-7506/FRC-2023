@@ -13,13 +13,13 @@ public class AutoCollect extends SequentialCommandGroup {
   int pipeline;
   
   public AutoCollect(int setPoint){
+    Robot.limelight.cubePipeline();
     addCommands(
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),
         new AutoExtenderPosition(Constants.kExtenderGround),
         new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline()),
-        new AutoStingerAction(setPoint,true)),
-      new AutoExtenderPosition(Constants.kExtenderClosed)
+        new AutoStingerAction(setPoint,true))
     );
   }
 } 

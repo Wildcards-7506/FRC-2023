@@ -36,6 +36,6 @@ public class AutoRotatorPosition extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.crane.getRotatorLEncoder() - rotatorSetPoint) <= 2;
+        return Math.abs(Robot.crane.getRotatorLEncoder() - rotatorSetPoint) <= 15;
     }
 }
