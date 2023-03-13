@@ -22,17 +22,17 @@ public class LEDs extends SubsystemBase{
         strip_led.setData(strip_ledBuffer);
         strip_led.start();
 
-        // eye_led = new AddressableLED(eyePWMPort);
-        // eye_ledBuffer = new AddressableLEDBuffer(eyeBufferSize);
+        eye_led = new AddressableLED(eyePWMPort);
+        eye_ledBuffer = new AddressableLEDBuffer(eyeBufferSize);
 
-        // eye_led.setLength(eyeBufferSize);
-        // eye_led.setData(eye_ledBuffer);
-        // eye_led.start();
+        eye_led.setLength(eyeBufferSize);
+        eye_led.setData(eye_ledBuffer);
+        eye_led.start();
     }
 
     public void update() {
       strip_led.setData(strip_ledBuffer);
-      //eye_led.setData(eye_ledBuffer);
+      eye_led.setData(eye_ledBuffer);
     }
 
     public void rainbow() {
