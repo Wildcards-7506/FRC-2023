@@ -29,8 +29,7 @@ public class AutoScoringAlign extends CommandBase{
     public void execute() {
         Robot.limelight.updateData();
         xOffset = 0.2 * Robot.limelight.getTX()/Math.abs(Robot.limelight.getTX());
-        yOffset = -0.2 * (Robot.limelight.targetArea - Robot.limelight.getTA());
-        Robot.drivetrain.drive(yOffset, xOffset, 0, true);
+        Robot.drivetrain.drive(0, xOffset, 0, true);
     }
 
     // Called once the command ends or is interrupted.
@@ -44,7 +43,6 @@ public class AutoScoringAlign extends CommandBase{
     @Override
     public boolean isFinished() {
         return  Robot.limelight.getTV() == 0.0 ||
-                ((Robot.limelight.getTX() < 1) && 
-                (Math.abs(Robot.limelight.targetArea - Robot.limelight.getTA()) < 0.1));
+                (Robot.limelight.getTX() < 1);
     }
 }
