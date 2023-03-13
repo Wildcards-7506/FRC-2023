@@ -19,6 +19,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
+        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;
