@@ -10,7 +10,7 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 
 public class RightChargeStation extends SequentialCommandGroup {
   // required PathWeaver file paths
-  String rightCS = "pathsRightCS.json";
+  String rightCS = "paths/RightCS.wpilib.json";
   
   // trajectories
   private Trajectory traj_path_a = AutoTrajectoryReader.generateTrajectoryFromFile(rightCS);

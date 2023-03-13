@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
     ledSystem.rainbow();
-    ledSystem.solidEyes(15, teamColor);
+    //ledSystem.solidEyes(15, teamColor);
   }
 
   /** This function is called once when teleop is enabled. */
@@ -131,15 +131,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledSystem.rainbow();
-    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
-    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
-    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
-    } else{
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
-    }
+    // if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+    // }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+    // } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+    // } else{
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    // }
     HDD.updateStartupConfig();
   }
 
