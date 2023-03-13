@@ -20,6 +20,7 @@ public class Vasquez extends PlayerConfigs{
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
+        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getBButton();
