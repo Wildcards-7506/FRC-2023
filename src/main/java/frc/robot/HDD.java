@@ -14,17 +14,14 @@ import frc.robot.ControlConfigs.Drivers.Lam;
 import frc.robot.ControlConfigs.Drivers.Mentor;
 import frc.robot.ControlConfigs.Drivers.Thao;
 import frc.robot.ControlConfigs.Drivers.Vasquez;
-import frc.robot.commands.Autonomous.Autonomous_Routines.PlaceMoveCharge;
+import frc.robot.commands.Autonomous.Autonomous_Routines.OverTheTopCharge;
 import frc.robot.commands.Autonomous.Autonomous_Routines.PlaceMoveStop;
-import frc.robot.commands.Autonomous.Autonomous_Routines.BlueLoadCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.BlueLoadOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.BlueWallCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.BlueWallOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.LeftChargeStation;
+import frc.robot.commands.Autonomous.Autonomous_Routines.RightChargeStation;
+import frc.robot.commands.Autonomous.Autonomous_Routines.Left2PA;
+import frc.robot.commands.Autonomous.Autonomous_Routines.Right2PA;
 import frc.robot.commands.Autonomous.Autonomous_Routines.TestMode;
-import frc.robot.commands.Autonomous.Autonomous_Routines.RedLoadCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.RedLoadOut;
-import frc.robot.commands.Autonomous.Autonomous_Routines.RedWallCharge;
-import frc.robot.commands.Autonomous.Autonomous_Routines.RedWallOut;
+import frc.robot.commands.Autonomous.Autonomous_Routines.ScoreOnly;
 
 public class HDD {    
     public static SendableChooser<SequentialCommandGroup> auto_chooser = new SendableChooser<>();
@@ -32,16 +29,13 @@ public class HDD {
     public static SendableChooser<PlayerConfigs> coDriver_chooser = new SendableChooser<>();
 
     //Auto Commands
-    public static PlaceMoveCharge placeMoveCharge = new PlaceMoveCharge();
+    public static OverTheTopCharge overTop = new OverTheTopCharge();
     public static PlaceMoveStop placeMoveStop = new PlaceMoveStop();
-    public static BlueLoadOut blueLoadOut = new BlueLoadOut();
-    public static BlueLoadCharge blueLoadCharge = new BlueLoadCharge();
-    public static BlueWallCharge blueWallCharge = new BlueWallCharge();
-    public static BlueWallOut blueWallOut = new BlueWallOut();
-    public static RedLoadCharge redLoadCharge = new RedLoadCharge();
-    public static RedLoadOut redLoadOut = new RedLoadOut();
-    public static RedWallCharge redWallCharge = new RedWallCharge();
-    public static RedWallOut redWallOut = new RedWallOut();
+    public static RightChargeStation rightCS = new RightChargeStation();
+    public static LeftChargeStation leftCS = new LeftChargeStation();
+    public static Left2PA left2PA = new Left2PA();
+    public static Right2PA right2PA = new Right2PA();
+    public static ScoreOnly scoreOnly = new ScoreOnly();
     public static TestMode test = new TestMode();
 
     //Drivers options
@@ -60,17 +54,14 @@ public class HDD {
     public static void initBot(){
 
         // Auto choosers
-        auto_chooser.setDefaultOption("Place Move Charge", placeMoveCharge);
+        auto_chooser.setDefaultOption("Score, Don't Move", scoreOnly);
         auto_chooser.addOption("Place Move Stop", placeMoveStop);
         auto_chooser.addOption("Test Mode", test);
-        auto_chooser.addOption("Blue Load Out", blueLoadOut);
-        auto_chooser.addOption("Blue Load Charge", blueLoadCharge);
-        auto_chooser.addOption("Blue Wall Charge", blueWallCharge);
-        auto_chooser.addOption("Blue Wall Out", blueWallOut);
-        auto_chooser.addOption("Red Load Charge", redLoadCharge);
-        auto_chooser.addOption("Red Loud Out", redLoadOut);
-        auto_chooser.addOption("Red Wall Charge", redWallCharge);
-        auto_chooser.addOption("Red Wall Out", redWallOut);
+        auto_chooser.addOption("Left Charge Station", leftCS);
+        auto_chooser.addOption("Right Charge Station", rightCS);
+        auto_chooser.addOption("Left 2 Piece", left2PA);
+        auto_chooser.addOption("Right 2 Piece", right2PA);
+        auto_chooser.addOption("Over The Top", overTop);
 
         // Driver choosers
         driver_chooser.setDefaultOption("Ryan", ryan);
