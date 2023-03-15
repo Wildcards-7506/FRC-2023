@@ -25,8 +25,8 @@ public final class Constants {
         public static final int CRANE_WRIST = 17;
 
         //Pinchers
-        public static final int PINCHER_LEFT = 13;
-        public static final int PINCHER_RIGHT = 6;
+        public static final int PINCH_LEFT = 21;
+        public static final int PINCH_RIGHT = 22;
 
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
@@ -156,4 +156,9 @@ public final class Constants {
         public static final double kWristCollect = -35.0;
         public static final double kWristGround = 5.0;
         public static final double kWristClosed = -10.0;
+
+    //Pincher constants
+        public static final double kGrabLeft = 90.0;
+        public static final double kGrabRight = -90.0;
+        public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
 }

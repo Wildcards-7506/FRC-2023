@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class LEDs extends SubsystemBase{
     private AddressableLED strip_led;
     private AddressableLEDBuffer strip_ledBuffer;
-    private AddressableLED eye_led;
+    // private AddressableLED eye_led;
     private AddressableLEDBuffer eye_ledBuffer;
 
     // Store what the last hue of the first pixel is
@@ -22,17 +22,17 @@ public class LEDs extends SubsystemBase{
         strip_led.setData(strip_ledBuffer);
         strip_led.start();
 
-        eye_led = new AddressableLED(eyePWMPort);
-        eye_ledBuffer = new AddressableLEDBuffer(eyeBufferSize);
+        // eye_led = new AddressableLED(eyePWMPort);
+        // eye_ledBuffer = new AddressableLEDBuffer(eyeBufferSize);
 
-        eye_led.setLength(eyeBufferSize);
-        eye_led.setData(eye_ledBuffer);
-        eye_led.start();
+        // eye_led.setLength(eyeBufferSize);
+        // eye_led.setData(eye_ledBuffer);
+        // eye_led.start();
     }
 
     public void update() {
       strip_led.setData(strip_ledBuffer);
-      eye_led.setData(eye_ledBuffer);
+      // eye_led.setData(eye_ledBuffer);
     }
 
     public void rainbow() {

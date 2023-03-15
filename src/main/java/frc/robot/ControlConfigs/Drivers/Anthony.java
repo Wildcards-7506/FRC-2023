@@ -51,6 +51,9 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
 
+        //Pinchers
+        PlayerConfigs.leftPinch = Robot.controller1.getXButton();
+        PlayerConfigs.rightPinch = Robot.controller1.getBButton();
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();

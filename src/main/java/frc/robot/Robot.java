@@ -20,6 +20,7 @@ import frc.robot.commands.LimelightTOCom;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Pinchers;
 import frc.robot.subsystems.LEDs;
 
 /**
@@ -51,6 +52,10 @@ public class Robot extends TimedRobot {
     Constants.CRANE_WRIST
   );
   
+  public static final Pinchers pinchers = new Pinchers(
+    Constants.PINCH_LEFT,
+    Constants.PINCH_RIGHT
+  );
   public static final Limelight limelight = new Limelight();
 
   public static final LEDs ledSystem = new LEDs(0,30,1,18);
@@ -131,15 +136,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledSystem.rainbow();
-    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
-    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
-    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
-    } else{
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
-    }
+    // if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+    // }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+    // } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+    // } else{
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    // }
     HDD.updateStartupConfig();
   }
 
