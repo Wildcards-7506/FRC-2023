@@ -5,6 +5,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -24,29 +25,53 @@ public class Pinchers extends SubsystemBase{
         pincherREncoder = rightPincher.getEncoder();
 
         pincherLEncoder.setPositionConversionFactor(Constants.kPincherEncoderDistancePerPulse);
-        pincherREncoder.setPosition(Constants.kPincherEncoderDistancePerPulse);
+        pincherREncoder.setPositionConversionFactor(Constants.kPincherEncoderDistancePerPulse);
 
-        leftPincher.setSoftLimit(SoftLimitDirection.kForward, 90);
-        leftPincher.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        rightPincher.setSoftLimit(SoftLimitDirection.kForward, 90);
+        leftPincher.setSoftLimit(SoftLimitDirection.kForward, 0);
+        leftPincher.setSoftLimit(SoftLimitDirection.kReverse, -270);
+        rightPincher.setSoftLimit(SoftLimitDirection.kForward, -270);
         rightPincher.setSoftLimit(SoftLimitDirection.kReverse, 0);
+
+        leftPincher.burnFlash();
+        rightPincher.burnFlash();
         resetEncoders();
     }
 
+    public void updateSmartDashboard () {
+        SmartDashboard.putNumber("Left Pincher: ", pincherLEncoder.getPosition());
+        SmartDashboard.putNumber("Right Pincher", pincherREncoder.getPosition());
+    }
+
     public void grabLeft (double setPoint) {
-        leftPincher.setVoltage(setPoint);
+        if (pincherLEncoder.getPosition() < 200) {
+            leftPincher.setVoltage(setPoint);
+        } else {
+            leftPincher.setVoltage(0);
+        }
     }
 
     public void grabRight (double setPoint) {
-        rightPincher.setVoltage(Constants.kGrabRight);
-    }
+        if (pincherREncoder.getPosition() < 200) {
+            rightPincher.setVoltage(setPoint);
+        } else {
+            rightPincher.setVoltage(0);
+        }
+    } 
 
     public void setLeftZero () {
-        leftPincher.setVoltage(-4);
+        if (pincherLEncoder.getPosition() > 0) {
+            leftPincher.setVoltage(-4);
+        } else {
+            leftPincher.setVoltage(0);
+        }
     }
 
     public void setRightZero () {
-        rightPincher.setVoltage(-4);
+        if (pincherREncoder.getPosition() > 0) {
+            rightPincher.setVoltage(-4);
+        } else {
+            rightPincher.setVoltage(0);
+        }
     }
 
     public void resetEncoders() {

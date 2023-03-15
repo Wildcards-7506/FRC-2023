@@ -22,5 +22,7 @@ public class PinchersTOCom extends CommandBase {
         } else {
             Robot.pinchers.setRightZero();
         }
+
+        Robot.pinchers.updateSmartDashboard();
     }
 }

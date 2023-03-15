@@ -158,7 +158,9 @@ public final class Constants {
         public static final double kWristClosed = -10.0;
 
     //Pincher constants
-        public static final double kGrabLeft = 90.0;
-        public static final double kGrabRight = -90.0;
+        public static final double kHookLeft = 90.0;
+        public static final double kHookRight = -90.0;
+        public static final double kPullLeft = 270;
+        public static final double kPullRight = -270;
         public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
 }
