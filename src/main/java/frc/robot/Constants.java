@@ -96,7 +96,7 @@ public final class Constants {
         public static final double kTrackwidthMeters = Units.inchesToMeters(20.176);
         public static final double kTrackLengthMeters = Units.inchesToMeters(21.911);;
         public static final double driveTrainGearRatio = 1.0/12;
-        public static final double dropWheelGearRatio = 1.0/3/8;
+        public static final double dropWheelGearRatio = 1.0/9/8;
         public static final double kEncoderDistancePerPulse = driveTrainGearRatio * Math.PI * Units.inchesToMeters(8);
 
         // Robot Movement Profile and Kinematics
@@ -129,6 +129,7 @@ public final class Constants {
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
         public static final double kRotatorCollect = 85.0;
+        public static final double kRotatorCubeOffset = -30;
         public static final double kRotatorVertical = 115.0;
         public static final double kRotatorClosed = 0.0;
         public static final double rotatorHorizontalOffset = 60;
@@ -150,7 +151,7 @@ public final class Constants {
         public static final int kWristCurrentLimit = 10;
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
         public static final double kWristKP = 0.01;
-        public static final double cubeOffset = 80.0;
+        public static final double cubeOffset = 130.0;
         public static final double kWristHi = -195.0;
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
