@@ -38,6 +38,10 @@ public class PlayerConfigs {
     public static boolean craneControl;
     public static boolean redundantCraneControl;
 
+    //pinchers
+    public static boolean leftPinch;
+    public static boolean rightPinch;
+
     //limelight
     public static boolean switchPipeline;
 
