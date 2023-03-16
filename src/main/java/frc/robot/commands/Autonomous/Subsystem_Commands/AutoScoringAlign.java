@@ -43,6 +43,7 @@ public class AutoScoringAlign extends CommandBase{
     @Override
     public boolean isFinished() {
         return  Robot.limelight.getTV() == 0.0 ||
-                (Robot.limelight.getTX() < 1);
+                (Math.abs(Robot.limelight.getTX()) < 1) ||
+                pipeline == 1.0;
     }
 }

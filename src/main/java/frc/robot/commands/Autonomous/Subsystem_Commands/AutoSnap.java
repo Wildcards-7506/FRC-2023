@@ -23,7 +23,8 @@ public class AutoSnap extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.drivetrain.drive(0.0, 0.0, 0.3, false);
+        double rotation = 0.3 * Math.abs(angle-Robot.drivetrain.getHeading())/(angle-Robot.drivetrain.getHeading());
+        Robot.drivetrain.drive(0.0, 0.0, rotation, false);
     }
 
     // Called once the command ends or is interrupted.
@@ -36,6 +37,6 @@ public class AutoSnap extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return  (Math.abs(angle-Robot.drivetrain.getHeading()) < 5);
+        return  (Math.abs(angle-Robot.drivetrain.getHeading()) < 3);
     }
 }

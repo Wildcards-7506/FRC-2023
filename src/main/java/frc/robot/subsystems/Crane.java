@@ -122,12 +122,10 @@ public class Crane extends SubsystemBase {
     }
 
     public void setExtender(double setPoint) {
-        SmartDashboard.putNumber("Extender Setpoint", setPoint);
         extender.setVoltage(setPoint);
     }
 
     public void setWrist(double setPoint) {
-        SmartDashboard.putNumber("Wrist Setpoint", setPoint);
         wristPID.setReference(setPoint, ControlType.kPosition);
     }
 

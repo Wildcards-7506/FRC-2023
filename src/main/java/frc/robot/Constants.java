@@ -64,7 +64,7 @@ public final class Constants {
         public static final int kDrivetrainCurrentLimit = 30;
         public static final double kDropWheelDistance = 1.5;
         public static final double kSnapRange = 10;
-        public static final double kSnapSpeed = 1.8/360;
+        public static final double kSnapSpeed = 3.0/360;
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
@@ -136,7 +136,7 @@ public final class Constants {
 
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 0.125;
-        public static final double kExtenderGround = -15.0;
+        public static final double kExtenderGround = -7.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -20.0;
         public static final double kExtenderCollect = -12.0;

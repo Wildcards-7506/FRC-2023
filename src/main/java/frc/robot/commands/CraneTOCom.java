@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -41,22 +40,18 @@ public class CraneTOCom extends CommandBase {
             Robot.crane.setRotator(Constants.kRotatorGround);
             extenderSetpoint = Constants.kExtenderGround;
             Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
-            SmartDashboard.putString("Arm Position", "Ground");
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect + (Constants.kRotatorCubeOffset * Robot.limelight.getPipeline()));
             extenderSetpoint = Constants.kExtenderCollect;
             Robot.crane.setWrist(Constants.kWristCollect + Constants.cubeOffset * Robot.limelight.getPipeline());
-            SmartDashboard.putString("Arm Position", "Collect");
         } else if (PlayerConfigs.lowGoal) {
             Robot.crane.setRotator(Constants.kRotatorMid);
             extenderSetpoint = Constants.kExtenderLo;
             Robot.crane.setWrist(Constants.kWristMid);
-            SmartDashboard.putString("Arm Position", "Low");
         } else if (PlayerConfigs.highGoal) {
             Robot.crane.setRotator(Constants.kRotatorHi);
             extenderSetpoint = Constants.kExtenderHi;
             Robot.crane.setWrist(Constants.kWristHi);
-            SmartDashboard.putString("Arm Position", "Hi");
         } else if (PlayerConfigs.craneControl || PlayerConfigs.redundantCraneControl){
             if (Math.abs(PlayerConfigs.cranePos) > 0.2){
                 Robot.crane.setRotator(Robot.crane.getRotatorLEncoder() + (30 * PlayerConfigs.cranePos));
@@ -66,25 +61,19 @@ public class CraneTOCom extends CommandBase {
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             extenderSetpoint = Constants.kExtenderClosed;
-           Robot.crane.setWrist(Constants.kWristClosed);
-            SmartDashboard.putString("Arm Position", "Close");
+            Robot.crane.setWrist(Constants.kWristClosed);
         }
 
         //Extender
         if(Robot.crane.getExtenderEncoder() > extenderSetpoint & Robot.crane.getExtenderEncoder() <= -1.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
-            SmartDashboard.putString("Extender State", "Moving");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else if (Robot.crane.getExtenderEncoder() > -1 & PlayerConfigs.extendPos < -0.2){
-            SmartDashboard.putString("Extender State", "Locked Zero");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
-            SmartDashboard.putString("Extender State", "Locked Extended");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < -1 & PlayerConfigs.extendPos < 0.2){
-            SmartDashboard.putString("Extender State", "Retracting");
+        } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
             Robot.crane.setExtender(12);
         } else {
-            SmartDashboard.putString("Extender State", "Neutral");
             Robot.crane.setExtender(0);
         }
 

@@ -52,7 +52,7 @@ public class DrivetrainTOCom extends CommandBase{
         //Tank Drive
         } else {
             if(PlayerConfigs.rampMode){
-                Robot.drivetrain.setDropWheels(1.5);
+                Robot.drivetrain.setDropWheels(1.0);
             } else{
                 Robot.drivetrain.setDropWheels(0.5);
             }
@@ -95,7 +95,5 @@ public class DrivetrainTOCom extends CommandBase{
         } else {
             Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
         }   
-        
-        //Robot.drivetrain.updateDisplay(!PlayerConfigs.modeSwitch);
     }
 }
