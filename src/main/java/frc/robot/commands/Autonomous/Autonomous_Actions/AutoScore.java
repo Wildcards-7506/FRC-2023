@@ -15,12 +15,12 @@ public class AutoScore extends SequentialCommandGroup {
 
     addCommands(
       new AutoScoringAlign(pipeline),
-      new AutoStingerAction(-8+16*pipeline, true),
+      new AutoStingerAction(8-16*pipeline, true),
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorHi),
         new AutoWristPosition(Constants.kWristHi)),
       new AutoExtenderPosition(Constants.kExtenderHi + offset),
-      new AutoStingerAction(8, false),
+      new AutoStingerAction(12, false),
       new AutoExtenderPosition(-1+pipeline),
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),

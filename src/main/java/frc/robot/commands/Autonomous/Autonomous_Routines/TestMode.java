@@ -9,7 +9,7 @@ public class TestMode extends SequentialCommandGroup {
   public TestMode(){
     addCommands(
       new AutoSnap(0),
-      new AutoLineDrive(4)
+      new AutoLineDrive(1)
     );
   }
 }

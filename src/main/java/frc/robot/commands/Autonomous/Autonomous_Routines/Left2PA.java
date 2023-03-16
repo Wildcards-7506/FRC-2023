@@ -17,13 +17,13 @@ public class Left2PA extends SequentialCommandGroup {
       new AutoSnap(0),
       new ParallelCommandGroup(
         new AutoCollect(-12),  
-        new AutoLineDrive(4)
+        new AutoLineDrive(6)
       ),
       new ParallelCommandGroup(
         new AutoLineDrive(0),
         new AutoExtenderPosition(Constants.kExtenderClosed)
       ),
-      new AutoScore(1,3)
+      new AutoScore(0,3)
     );
   }
 } 
