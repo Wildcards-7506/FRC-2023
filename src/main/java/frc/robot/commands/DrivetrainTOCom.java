@@ -51,7 +51,11 @@ public class DrivetrainTOCom extends CommandBase{
             }            
         //Tank Drive
         } else {
-            Robot.drivetrain.setDropWheels(0.5);
+            if(PlayerConfigs.rampMode){
+                Robot.drivetrain.setDropWheels(1.5);
+            } else{
+                Robot.drivetrain.setDropWheels(0.5);
+            }
             //Need to add drop motors here
             double yInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlY : 

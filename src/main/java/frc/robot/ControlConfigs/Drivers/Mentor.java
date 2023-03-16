@@ -21,6 +21,7 @@ public class Mentor extends PlayerConfigs {
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.align = Robot.controller0.getRightBumper();
+        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;

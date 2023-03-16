@@ -43,15 +43,7 @@ public class AutoStingerAction extends CommandBase{
 
     // Returns true when the command should end.
     @Override
-    public boolean isFinished() {
-        //Roller Pickup, Current tripped
-        if (actionFlag && Robot.crane.getStingerCurrent() > 10 && timer.get() >= 0.5) {System.out.println("Piece Acquired");}
-                //Target Missed, timeout
-        else if (actionFlag && timer.get() >= 5){System.out.println("Piece Missed");}
-                //Outtaking, timeout
-        else if (!actionFlag && timer.get() >= 1){System.out.println("Outtake");};
-                 
-                 
+    public boolean isFinished() {                 
         //Roller Pickup, Current tripped
         return (actionFlag && Robot.crane.getStingerCurrent() > 10 && timer.get() >= 0.5)
                 //Target Missed, timeout

@@ -22,6 +22,7 @@ public class Thao extends PlayerConfigs {
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.align = Robot.controller0.getLeftTriggerAxis() > 0.2;
+        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;

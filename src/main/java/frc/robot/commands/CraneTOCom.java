@@ -80,6 +80,9 @@ public class CraneTOCom extends CommandBase {
         } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
             SmartDashboard.putString("Extender State", "Locked Extended");
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
+        } else if (Robot.crane.getExtenderEncoder() < -1 & PlayerConfigs.extendPos < 0.2){
+            SmartDashboard.putString("Extender State", "Retracting");
+            Robot.crane.setExtender(12);
         } else {
             SmartDashboard.putString("Extender State", "Neutral");
             Robot.crane.setExtender(0);

@@ -18,6 +18,7 @@ public class PlayerConfigs {
     public static boolean snap180;
     public static boolean snap270;
     public static boolean align;
+    public static boolean rampMode;
 
     //secondary drive train controls
     public static double fineControlX;
