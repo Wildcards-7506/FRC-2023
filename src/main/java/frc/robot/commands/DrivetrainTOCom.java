@@ -58,7 +58,7 @@ public class DrivetrainTOCom extends CommandBase{
             }
             //Need to add drop motors here
             double yInputSpeed = PlayerConfigs.fineControlToggle ? 
-                PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlY : 
+                PlayerConfigs.fineDriveSpeed * 1.5 * PlayerConfigs.fineControlY : 
                 PlayerConfigs.driveSpeed * PlayerConfigs.yMovement;
             double inputRot = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 

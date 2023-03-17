@@ -33,6 +33,7 @@ public class PlayerConfigs {
     public static boolean groundGrab;
     public static boolean highGoal;
     public static boolean lowGoal;
+    public static boolean cubeHold;
     public static double cranePos;
     public static double extendPos;
     public static boolean craneControl;

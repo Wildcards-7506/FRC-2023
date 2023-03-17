@@ -58,6 +58,9 @@ public class CraneTOCom extends CommandBase {
             } else {
                 Robot.crane.setRotator(Robot.crane.getRotatorLEncoder());
             }
+        } else if (PlayerConfigs.cubeHold) {
+            Robot.crane.setRotator(Constants.kRotatorCubeHold);
+            Robot.crane.setWrist(Constants.kWristCubeHold);
         } else {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             extenderSetpoint = Constants.kExtenderClosed;
@@ -71,8 +74,8 @@ public class CraneTOCom extends CommandBase {
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
-            Robot.crane.setExtender(12);
+        // } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
+        //     Robot.crane.setExtender(12);
         } else {
             Robot.crane.setExtender(0);
         }

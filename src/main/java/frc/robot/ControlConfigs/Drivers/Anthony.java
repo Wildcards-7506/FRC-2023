@@ -51,6 +51,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
+        PlayerConfigs.cubeHold = Robot.controller1.getLeftBumper();
 
         //Pinchers
         PlayerConfigs.leftPinch = Robot.controller1.getXButton();

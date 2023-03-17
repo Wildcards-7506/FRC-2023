@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoSnap extends CommandBase{
@@ -23,7 +24,9 @@ public class AutoSnap extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double rotation = 0.3 * Math.abs(angle-Robot.drivetrain.getHeading())/(angle-Robot.drivetrain.getHeading());
+        double rotation = -0.1 * Math.abs(angle-Robot.drivetrain.getHeading())/(angle-Robot.drivetrain.getHeading());
+        System.out.println(angle-Robot.drivetrain.getHeading());
+        // System.out.println("\n" + Robot.drivetrain.getHeading() + "\n");
         Robot.drivetrain.drive(0.0, 0.0, rotation, false);
     }
 
@@ -32,6 +35,7 @@ public class AutoSnap extends CommandBase{
     public void end(boolean interrupted) {
         System.out.println("Snap Complete");
         Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.resetEncoders();
     }
 
     // Returns true when the command should end.

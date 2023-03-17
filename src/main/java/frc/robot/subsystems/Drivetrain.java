@@ -93,6 +93,10 @@ public class Drivetrain extends SubsystemBase{
             wheelPositions);
     }
 
+    public void updatePos() {
+        odometry.update(gyro.getRotation2d(), wheelPositions);
+    }
+
     public Pose2d getPose(){
         return odometry.getPoseMeters();
     }

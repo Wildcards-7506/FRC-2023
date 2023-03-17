@@ -21,7 +21,7 @@ public class Right2PA extends SequentialCommandGroup {
         new AutoLineDrive(6)
       ),
       new ParallelCommandGroup(
-        new AutoLineDrive(0),
+        new AutoLineDrive(-6),
         new AutoExtenderPosition(Constants.kExtenderClosed)
       ),
       new AutoScore(0,3)

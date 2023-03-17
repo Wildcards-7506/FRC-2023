@@ -8,8 +8,9 @@ public class TestMode extends SequentialCommandGroup {
 
   public TestMode(){
     addCommands(
-      new AutoSnap(0),
-      new AutoLineDrive(1)
+      new AutoSnap(-5),
+      new AutoLineDrive(1),
+      new AutoLineDrive(-1)
     );
   }
 }

@@ -125,6 +125,7 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
+        public static final double kRotatorCubeHold = 20.0;
         public static final double kRotatorGround = 30.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
@@ -156,6 +157,7 @@ public final class Constants {
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
         public static final double kWristGround = 5.0;
+        public static final double kWristCubeHold = -25.0;
         public static final double kWristClosed = -10.0;
 
     //Pincher constants
