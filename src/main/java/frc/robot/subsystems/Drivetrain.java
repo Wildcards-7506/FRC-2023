@@ -84,6 +84,14 @@ public class Drivetrain extends SubsystemBase{
         dropWheelRight.burnFlash();
     }
 
+    public void setLDropWheelVoltage (double voltAmt) {
+        dropWheelLeft.setVoltage(voltAmt);
+    }
+
+    public void setRDropWheelVoltage (double voltAmt) {
+        dropWheelRight.setVoltage(voltAmt);
+    }
+
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){

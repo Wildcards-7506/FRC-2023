@@ -41,6 +41,6 @@ public class AutoSnap extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return  (Math.abs(angle-Robot.drivetrain.getHeading()) < 3);
+        return  (Math.abs(angle-Robot.drivetrain.getHeading()) < 1);
     }
 }

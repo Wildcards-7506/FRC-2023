@@ -21,7 +21,7 @@ public class LEDTOCom extends CommandBase{
                 Robot.ledSystem.solid(90,255,255);
             }
         } else if ( PlayerConfigs.collectPos | PlayerConfigs.groundGrab) {
-            if(Robot.crane.getStingerCurrent() > 10){
+            if(Robot.crane.getStingerCurrent() > 20){
                 Robot.ledSystem.solid(60,255,255);
             } else {
                 Robot.ledSystem.rainbow();
