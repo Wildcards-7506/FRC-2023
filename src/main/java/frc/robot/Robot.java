@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   );
   public static final Limelight limelight = new Limelight();
 
-  public static final LEDs ledSystem = new LEDs(0,48);
+  public static final LEDs ledSystem = new LEDs(9,30);
 
   //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
@@ -107,12 +107,14 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
     ledSystem.rainbow();
-    ledSystem.solidEyes(15, teamColor);
+    // ledSystem.solidEyes(15, teamColor);
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    drivetrain.m_drive.feed();
+    CommandScheduler.getInstance().cancelAll();
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
     coDriver = HDD.coDriver_chooser.getSelected();
@@ -139,15 +141,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledSystem.rainbow();
-    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
-    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
-    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
-    } else{
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
-    }
+    // if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+    // }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+    // } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+    // } else{
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    // }
     HDD.updateStartupConfig();
   }
 
@@ -158,7 +160,19 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    if (Math.abs(controller1.getLeftY()) > 0.1) {
+      Robot.drivetrain.setLDropWheelVoltage(2 * controller1.getLeftY());
+    } else {
+      Robot.drivetrain.setLDropWheelVoltage(0);
+    }
+
+    if (Math.abs(controller1.getRightY()) > 0.1) {
+      Robot.drivetrain.setRDropWheelVoltage(2 * controller1.getRightY());
+    } else {
+      Robot.drivetrain.setRDropWheelVoltage(0);
+    }
+  }
 
   /** This function is called once when the robot is first started up. */
   @Override

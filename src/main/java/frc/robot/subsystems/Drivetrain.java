@@ -84,6 +84,14 @@ public class Drivetrain extends SubsystemBase{
         dropWheelRight.burnFlash();
     }
 
+    public void setLDropWheelVoltage (double voltAmt) {
+        dropWheelLeft.setVoltage(voltAmt);
+    }
+
+    public void setRDropWheelVoltage (double voltAmt) {
+        dropWheelRight.setVoltage(voltAmt);
+    }
+
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){
@@ -91,6 +99,10 @@ public class Drivetrain extends SubsystemBase{
         odometry.update(
             gyro.getRotation2d(),
             wheelPositions);
+    }
+
+    public void updatePos() {
+        odometry.update(gyro.getRotation2d(), wheelPositions);
     }
 
     public Pose2d getPose(){

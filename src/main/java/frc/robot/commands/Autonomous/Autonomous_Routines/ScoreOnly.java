@@ -8,7 +8,7 @@ public class ScoreOnly extends SequentialCommandGroup {
   public ScoreOnly(){
     
     addCommands(
-      new AutoScore(0,2)
+      new AutoScore(0,0)
     );
   }
 } 
