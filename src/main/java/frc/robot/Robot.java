@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   );
   public static final Limelight limelight = new Limelight();
 
-  public static final LEDs ledSystem = new LEDs(9,48);
+  public static final LEDs ledSystem = new LEDs(9,30);
 
   //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
     ledSystem.rainbow();
-    ledSystem.solidEyes(15, teamColor);
+    // ledSystem.solidEyes(15, teamColor);
   }
 
   /** This function is called once when teleop is enabled. */
@@ -141,15 +141,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledSystem.rainbow();
-    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
-    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
-    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
-    } else{
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
-    }
+    // if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+    // }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+    // } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+    // } else{
+    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    // }
     HDD.updateStartupConfig();
   }
 

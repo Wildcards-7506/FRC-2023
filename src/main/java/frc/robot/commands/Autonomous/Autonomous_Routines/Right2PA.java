@@ -15,7 +15,7 @@ public class Right2PA extends SequentialCommandGroup {
   public Right2PA(){
     
     addCommands(
-      new AutoScore(0,1),
+      new AutoScore(0,0),
       new AutoStrafe(-0.4, 0.7),
       new AutoSnap(0),
       new ParallelCommandGroup(
