@@ -62,7 +62,7 @@ public final class Constants {
 
         //Speed, Power, Movement Limits
         public static final int kDrivetrainCurrentLimit = 30;
-        public static final double kDropWheelDistance = 1.5;
+        public static final double kDropWheelDistance = 0.5;
         public static final double kSnapRange = 10;
         public static final double kSnapSpeed = 3.0/360;
         public static final double kMaxSpeedMetersPerSecond = 3;
@@ -124,7 +124,6 @@ public final class Constants {
         public static final int kRotateCurrentLimit = 30;
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.005;
-            //May need to check and adjust with real game elements
         public static final double kRotatorCubeHold = 20.0;
         public static final double kRotatorGround = 30.0;
         public static final double kRotatorHi = 160.0;
@@ -137,17 +136,14 @@ public final class Constants {
 
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 0.125;
+        public static final double kExtenderKP = 1;
         public static final double kExtenderGround = -7.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -20.0;
         public static final double kExtenderCollect = -12.0;
         public static final double kExtenderClosed = -1.0;
         
-        public static final int kClawCurrentLimit = 40;
-        public static final double kClawEncoderDistancePerPulse = 1.0/125 * 360;
-        public static final double kClawKP = 1.0;
-        public static final double kClawOpen = 85.0;
-        public static final double kClawClosed = 0.0;
+        public static final int kStingerCurrentLimit = 40;
 
         public static final int kWristCurrentLimit = 10;
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
@@ -157,7 +153,7 @@ public final class Constants {
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
         public static final double kWristGround = 5.0;
-        public static final double kWristCubeHold = -25.0;
+        public static final double kWristCubeHold = -110.0;
         public static final double kWristClosed = -10.0;
 
     //Pincher constants

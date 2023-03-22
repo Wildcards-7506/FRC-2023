@@ -59,7 +59,7 @@ public class Crane extends SubsystemBase {
         rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
         extender.setSmartCurrentLimit(Constants.kExtenderCurrentLimit);
-        stinger.setSmartCurrentLimit(Constants.kClawCurrentLimit);
+        stinger.setSmartCurrentLimit(Constants.kStingerCurrentLimit);
         wrist.setSmartCurrentLimit(Constants.kWristCurrentLimit);
 
         rotatorFollower.follow(rotatorLeader, true);
@@ -68,8 +68,6 @@ public class Crane extends SubsystemBase {
         rotatorLeader.setSoftLimit(SoftLimitDirection.kReverse, 0);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 0);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
         extender.setSoftLimit(SoftLimitDirection.kForward, 0);
         extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
 

@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class PinchersTOCom extends CommandBase {
+public class PinchersTeleopCommand extends CommandBase {
 
     private boolean pinchRightUp = true;
     private boolean pinchLeftUp = true;
     private boolean prev_pinchRightUp = false;
     private boolean prev_pinchLeftUp = false;
 
-    public PinchersTOCom() {
+    public PinchersTeleopCommand() {
         addRequirements(Robot.pinchers);
     }
 

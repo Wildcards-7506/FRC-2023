@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.ControlConfigs.PlayerConfigs;
-import frc.robot.commands.CraneTOCom;
-import frc.robot.commands.DrivetrainTOCom;
-import frc.robot.commands.LEDTOCom;
-import frc.robot.commands.LimelightTOCom;
-import frc.robot.commands.PinchersTOCom;
+import frc.robot.commands.CraneTeleopCommand;
+import frc.robot.commands.DrivetrainTeleopCommand;
+import frc.robot.commands.LEDTeleopCommand;
+import frc.robot.commands.LimelightTeleopCommand;
+import frc.robot.commands.PinchersTeleopCommand;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   );
   public static final Limelight limelight = new Limelight();
 
-  public static final LEDs ledSystem = new LEDs(9,30);
+  public static final LEDs ledSystem = new LEDs(9,48);
 
   //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
     ledSystem.rainbow();
-    // ledSystem.solidEyes(15, teamColor);
+    ledSystem.solidEyes(15, teamColor);
   }
 
   /** This function is called once when teleop is enabled. */
@@ -118,11 +118,11 @@ public class Robot extends TimedRobot {
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
     coDriver = HDD.coDriver_chooser.getSelected();
-    Robot.crane.setDefaultCommand(new CraneTOCom());
-    Robot.drivetrain.setDefaultCommand(new DrivetrainTOCom());
-    Robot.ledSystem.setDefaultCommand(new LEDTOCom());
-    Robot.limelight.setDefaultCommand(new LimelightTOCom());
-    Robot.pinchers.setDefaultCommand(new PinchersTOCom());
+    Robot.crane.setDefaultCommand(new CraneTeleopCommand());
+    Robot.drivetrain.setDefaultCommand(new DrivetrainTeleopCommand());
+    Robot.ledSystem.setDefaultCommand(new LEDTeleopCommand());
+    Robot.limelight.setDefaultCommand(new LimelightTeleopCommand());
+    Robot.pinchers.setDefaultCommand(new PinchersTeleopCommand());
   }
 
   /** This function is called periodically during operator control. */
@@ -141,15 +141,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     ledSystem.rainbow();
-    // if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
-    // }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
-    // } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
-    // } else{
-    //   ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
-    // }
+    if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+    }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+    } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+    } else{
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+    }
     HDD.updateStartupConfig();
   }
 

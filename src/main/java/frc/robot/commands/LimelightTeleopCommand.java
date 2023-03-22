@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class LimelightTOCom extends CommandBase{
+public class LimelightTeleopCommand extends CommandBase{
 
     private boolean prev_StartButton = false;
 
-    public LimelightTOCom(){
+    public LimelightTeleopCommand(){
         addRequirements(Robot.limelight);
     }
 

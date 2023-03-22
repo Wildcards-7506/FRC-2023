@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
+import frc.robot.commands.Autonomous.Autonomous_Actions.AutoStrafe;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoLineDrive;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoSnap;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoStrafe;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
+import frc.robot.commands.Autonomous.Autonomous_Actions.AutoLineDrive;
 
 public class Left2PA extends SequentialCommandGroup {
   public Left2PA(){
@@ -18,7 +18,7 @@ public class Left2PA extends SequentialCommandGroup {
       new AutoStrafe(0.4, 0.7),
       new AutoSnap(0),
       new ParallelCommandGroup(
-        new AutoCollect(-12),  
+        new AutoCollect(12),  
         new AutoLineDrive(5.5)
       ),
       new ParallelCommandGroup(

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
 
-public class DrivetrainTOCom extends CommandBase{
+public class DrivetrainTeleopCommand extends CommandBase{
 
     double rot, yspeed, xspeed;
     double prevRot = 0;
@@ -14,7 +14,7 @@ public class DrivetrainTOCom extends CommandBase{
     private boolean prev_MecanumDrive = false;
 
 
-    public DrivetrainTOCom() {
+    public DrivetrainTeleopCommand() {
         addRequirements(Robot.drivetrain);
     }
 
@@ -51,11 +51,6 @@ public class DrivetrainTOCom extends CommandBase{
             }            
         //Tank Drive
         } else {
-            if(PlayerConfigs.rampMode){
-                Robot.drivetrain.setDropWheels(1.0);
-            } else{
-                Robot.drivetrain.setDropWheels(0.5);
-            }
             //Need to add drop motors here
             double yInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * 1.5 * PlayerConfigs.fineControlY : 
@@ -68,7 +63,9 @@ public class DrivetrainTOCom extends CommandBase{
                 xspeed = 0;
                 yspeed = yInputSpeed;
                 rot = inputRot;
+                Robot.drivetrain.setDropWheels(0.5);
             } else {
+                Robot.drivetrain.setDropWheels(0.3);
                 xspeed = 0;
                 yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
                 rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;

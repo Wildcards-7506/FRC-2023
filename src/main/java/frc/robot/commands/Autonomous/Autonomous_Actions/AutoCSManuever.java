@@ -1,4 +1,4 @@
-package frc.robot.commands.Autonomous.Subsystem_Commands;
+package frc.robot.commands.Autonomous.Autonomous_Actions;
 
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
@@ -29,7 +29,7 @@ public class AutoCSManuever extends CommandBase{
         angle = Robot.drivetrain.getPitch();
         if(angle > 3){ascending = true;}
         if(angle < -3){descending = true;}
-        Robot.drivetrain.drive(-0.4, 0.0, 0, false);
+        Robot.drivetrain.drive(0.4, 0.0, 0, false);
     }
 
     // Called once the command ends or is interrupted.

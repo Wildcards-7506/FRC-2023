@@ -5,10 +5,10 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class CraneTOCom extends CommandBase {
+public class CraneTeleopCommand extends CommandBase {
     double extenderSetpoint;
 
-    public CraneTOCom() {
+    public CraneTeleopCommand() {
         addRequirements(Robot.crane);
     }
 
@@ -74,8 +74,8 @@ public class CraneTOCom extends CommandBase {
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
         } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
             Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        // } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
-        //     Robot.crane.setExtender(12);
+        } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
+            Robot.crane.setExtender(12);
         } else {
             Robot.crane.setExtender(0);
         }

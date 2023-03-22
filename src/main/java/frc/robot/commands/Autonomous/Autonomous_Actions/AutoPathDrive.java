@@ -8,7 +8,7 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 
-public class AutoDrive {
+public class AutoPathDrive {
     //Returns a series of waypoints to the controller to run complex motion paths
     public static Command drivetrainMotion(Trajectory trajectory) {
     
