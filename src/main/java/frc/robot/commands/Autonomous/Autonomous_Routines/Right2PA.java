@@ -19,7 +19,7 @@ public class Right2PA extends SequentialCommandGroup {
       new AutoStrafe(-0.4, 0.7),
       new AutoSnap(0),
       new ParallelCommandGroup(
-        new AutoCollect(-12),  
+        new AutoCollect(12),  
         new AutoLineDrive(5.5)
       ),
       new ParallelCommandGroup(

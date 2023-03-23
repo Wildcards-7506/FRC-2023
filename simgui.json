@@ -42,6 +42,11 @@
       "/SmartDashboard/SendableChooser[2]": "String Chooser"
     },
     "windows": {
+      "/SmartDashboard/SendableChooser[0]": {
+        "window": {
+          "visible": true
+        }
+      },
       "/SmartDashboard/SendableChooser[2]": {
         "window": {
           "visible": true

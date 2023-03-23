@@ -84,14 +84,6 @@ public class Drivetrain extends SubsystemBase{
         dropWheelRight.burnFlash();
     }
 
-    public void setLDropWheelVoltage (double voltAmt) {
-        dropWheelLeft.setVoltage(voltAmt);
-    }
-
-    public void setRDropWheelVoltage (double voltAmt) {
-        dropWheelRight.setVoltage(voltAmt);
-    }
-
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){
@@ -99,6 +91,7 @@ public class Drivetrain extends SubsystemBase{
         odometry.update(
             gyro.getRotation2d(),
             wheelPositions);
+        System.out.println(odometry.getPoseMeters());
     }
 
     public void updatePos() {
@@ -163,6 +156,32 @@ public class Drivetrain extends SubsystemBase{
         motorRightBack.setVoltage(volts.rearRightVoltage);
     }
 
+    public void snap(double angle){
+        if(Math.abs(getHeading() % 360 - angle) > Constants.kSnapRange){
+            double rotation = Math.abs((getHeading() % 360 - angle))/(getHeading() % 360 - angle) * Constants.kSnapSpeed;
+            drive(0, 0, rotation, true);
+        } else {
+            drive(0, 0, 0, true);
+        }
+    }
+
+    public void align(double distance){
+        double rotation = 0.0;
+        double strafe = 0.0;
+        double linear = 0.0;
+        if(Math.abs(getHeading() % 360) > Constants.kSnapRange){
+            rotation = (getHeading() % 360) * Constants.kSnapSpeed;
+        }
+        if(Math.abs(distance) > 2){
+            strafe = -distance * Constants.kAlignKP;
+        }
+        if(Math.abs(distance) < 2 & Math.abs(getHeading() % 360) < Constants.kSnapRange){
+            linear = 0.1;
+        }
+        
+        drive(linear, strafe, rotation, true);
+    }
+
     public void setDropWheels(double level){
         double marginL = level - dwlEncoder.getPosition();
         double marginR = level - dwrEncoder.getPosition();
@@ -173,6 +192,14 @@ public class Drivetrain extends SubsystemBase{
         if(Math.abs(marginR) > 0.1){
             dropWheelRight.setVoltage(12*marginR/Math.abs(marginR));
         } else {dropWheelRight.setVoltage(0);}
+    }
+
+    public void setLDropWheelVoltage (double voltAmt) {
+        dropWheelLeft.setVoltage(voltAmt);
+    }
+
+    public void setRDropWheelVoltage (double voltAmt) {
+        dropWheelRight.setVoltage(voltAmt);
     }
 
     public void resetEncoders() {
@@ -208,26 +235,6 @@ public class Drivetrain extends SubsystemBase{
      */
     public double getTurnRate() {
         return -gyro.getRate();
-    }
-
-    public void snap(double angle){
-        if(Math.abs(getHeading() % 360 - angle) > Constants.kSnapRange){
-            double rotation = (getHeading() % 360 - angle) * Constants.kSnapSpeed;
-            drive(0, 0, rotation, true);
-        }
-    }
-
-    public void align(double distance){
-        double rotation = 0.0;
-        double strafe = 0.0;
-        if(Math.abs(getHeading() % 360) > Constants.kSnapRange){
-            rotation = (getHeading() % 360) * Constants.kSnapSpeed;
-        }
-        if(Math.abs(distance) > 2){
-            strafe = -distance * Constants.kAlignKP;
-        } else {
-            drive(0, strafe, rotation, true);
-        }
     }
 
     public double getDWL(){
