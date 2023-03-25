@@ -28,6 +28,9 @@ public final class Constants {
         public static final int PINCH_LEFT = 21;
         public static final int PINCH_RIGHT = 22;
 
+        //Limelight Rotator
+        public static final int LIMELIGHT_ROTATOR = 23;
+
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
         public static final int DRIVER_CONTROLLER_1 = 1;
@@ -166,4 +169,9 @@ public final class Constants {
         public static final double kPullLeft = 270;
         public static final double kPullRight = -270;
         public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
+    
+    //Limelight Rotator Constants
+        public static final int kLookForward = 0;
+        public static final int kLookBackward = 180;
+        public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 27 * 360;
 }
