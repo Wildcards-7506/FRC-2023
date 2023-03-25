@@ -21,6 +21,7 @@ import frc.robot.commands.PinchersTOCom;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.LimelightRotator;
 import frc.robot.subsystems.Pinchers;
 import frc.robot.subsystems.LEDs;
 
@@ -58,6 +59,8 @@ public class Robot extends TimedRobot {
     Constants.PINCH_RIGHT
   );
   public static final Limelight limelight = new Limelight();
+
+  public static final LimelightRotator ll_rotator = new LimelightRotator(Constants.LIMELIGHT_ROTATOR);
 
   public static final LEDs ledSystem = new LEDs(9,30);
 
@@ -123,6 +126,7 @@ public class Robot extends TimedRobot {
     Robot.ledSystem.setDefaultCommand(new LEDTOCom());
     Robot.limelight.setDefaultCommand(new LimelightTOCom());
     Robot.pinchers.setDefaultCommand(new PinchersTOCom());
+    Robot.ll_rotator.setDefaultCommand(new LimelightTOCom());
   }
 
   /** This function is called periodically during operator control. */
