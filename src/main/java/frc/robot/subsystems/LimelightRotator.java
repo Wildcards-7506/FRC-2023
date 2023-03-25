@@ -40,4 +40,8 @@ public class LimelightRotator extends SubsystemBase{
             llRotator.setVoltage(0);
         }
     }
+
+    public double getPosition () {
+        return llRotatorEncoder.getPosition();
+    }
 }
