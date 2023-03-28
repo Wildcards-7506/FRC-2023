@@ -25,6 +25,7 @@ public class Crane extends SubsystemBase {
 
     public SparkMaxPIDController rotatorPID;
     public SparkMaxPIDController wristPID;
+    public SparkMaxPIDController extenderPID;
 
 
     public Crane(int rotator_lead, int rotator_follow, int craneExtender, int craneStinger, int craneWrist) {
@@ -69,18 +70,19 @@ public class Crane extends SubsystemBase {
         rotatorFollower.setSoftLimit(SoftLimitDirection.kForward, 330);
         rotatorFollower.setSoftLimit(SoftLimitDirection.kReverse, 0);
         extender.setSoftLimit(SoftLimitDirection.kForward, 0);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
-        extender.setSoftLimit(SoftLimitDirection.kForward, 0);
-        extender.setSoftLimit(SoftLimitDirection.kReverse, -28);
+        extender.setSoftLimit(SoftLimitDirection.kReverse, -22);
 
         rotatorPID = rotatorLeader.getPIDController();
         wristPID = wrist.getPIDController();
+        extenderPID = extender.getPIDController();
 
         rotatorPID.setP(Constants.kRotatorKP);
         wristPID.setP(Constants.kWristKP);
+        extenderPID.setP(Constants.kExtenderKP);
 
         rotatorPID.setOutputRange(-1, 1);
         wristPID.setOutputRange(-1, 1);
+        extenderPID.setOutputRange(-1, 1);
 
         rotatorLeader.burnFlash();
         rotatorFollower.burnFlash();
@@ -122,7 +124,7 @@ public class Crane extends SubsystemBase {
     }
 
     public void setExtender(double setPoint) {
-        extender.setVoltage(setPoint);
+        extenderPID.setReference(setPoint, ControlType.kPosition);
     }
 
     public void setWrist(double setPoint) {

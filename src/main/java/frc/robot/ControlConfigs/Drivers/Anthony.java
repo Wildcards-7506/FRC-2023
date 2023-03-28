@@ -50,6 +50,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.release = Robot.controller1.getRightBumper();
         PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.fineExtender = Robot.controller1.getRightStickButton();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
         PlayerConfigs.cubeHold = Robot.controller1.getLeftBumper();
 

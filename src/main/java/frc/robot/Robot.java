@@ -16,6 +16,7 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.commands.CraneTOCom;
 import frc.robot.commands.DrivetrainTOCom;
 import frc.robot.commands.LEDTOCom;
+import frc.robot.commands.LLRotatorTOCom;
 import frc.robot.commands.LimelightTOCom;
 import frc.robot.commands.PinchersTOCom;
 import frc.robot.subsystems.Crane;
@@ -126,7 +127,7 @@ public class Robot extends TimedRobot {
     Robot.ledSystem.setDefaultCommand(new LEDTOCom());
     Robot.limelight.setDefaultCommand(new LimelightTOCom());
     Robot.pinchers.setDefaultCommand(new PinchersTOCom());
-    Robot.ll_rotator.setDefaultCommand(new LimelightTOCom());
+    Robot.ll_rotator.setDefaultCommand(new LLRotatorTOCom());
   }
 
   /** This function is called periodically during operator control. */

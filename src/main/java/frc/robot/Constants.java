@@ -139,7 +139,8 @@ public final class Constants {
         public static final double rotatorHorizontalOffset = 60;
 
         public static final int kExtenderCurrentLimit = 40;
-        public static final double kExtendEncoderDistancePerPulse = 0.125;
+        public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
+        public static final double kExtenderKP = 0.07;
         public static final double kExtenderGround = -7.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -20.0;
