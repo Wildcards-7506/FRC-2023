@@ -38,7 +38,7 @@ public class Pinchers extends SubsystemBase{
     }
 
     public void updateSmartDashboard () {
-        SmartDashboard.putNumber("Left Pincher: ", pincherLEncoder.getPosition());
+        SmartDashboard.putNumber("Left Pincher", pincherLEncoder.getPosition());
         SmartDashboard.putNumber("Right Pincher", pincherREncoder.getPosition());
     }
 

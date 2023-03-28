@@ -18,11 +18,11 @@ public class LEDTeleopCommand extends CommandBase{
             if (Math.abs(Robot.limelight.getTX()) < 2){
                 Robot.ledSystem.solid(60,255,255);
             } else {
-                Robot.ledSystem.solid(90,255,255);
+                Robot.ledSystem.solid(15,255,50);
             }
         } else if ( PlayerConfigs.collectPos | PlayerConfigs.groundGrab) {
             if(Robot.crane.getStingerCurrent() > 20){
-                Robot.ledSystem.solid(60,255,255);
+                Robot.ledSystem.solid(90,255,255);
             } else {
                 Robot.ledSystem.rainbow();
             }
