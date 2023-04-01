@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -68,16 +69,36 @@ public class CraneTeleopCommand extends CommandBase {
         }
 
         //Extender
-        if(Robot.crane.getExtenderEncoder() > extenderSetpoint & Robot.crane.getExtenderEncoder() <= -1.0 & Math.abs(PlayerConfigs.extendPos) > 0.2){
-            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() > -1 & PlayerConfigs.extendPos < -0.2){
-            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < extenderSetpoint & PlayerConfigs.extendPos > 0.2){
-            Robot.crane.setExtender(12*PlayerConfigs.extendPos);
-        } else if (Robot.crane.getExtenderEncoder() < -1 & Math.abs(PlayerConfigs.extendPos) < 0.2){
-            Robot.crane.setExtender(12);
+        if(PlayerConfigs.fineExtender){
+            SmartDashboard.putString("Extender State", "Fine Control");
+            if (Math.abs(PlayerConfigs.extendPos) > 0.2) {
+                Robot.crane.setExtender(Robot.crane.getExtenderEncoder() + (3 * PlayerConfigs.extendPos));
+                SmartDashboard.putNumber("extenderSetpoint", Robot.crane.getExtenderEncoder() + (12 * PlayerConfigs.extendPos));
+            } else {
+                Robot.crane.setExtender(Robot.crane.getExtenderEncoder());
+            }
+        } else if (PlayerConfigs.highGoal || PlayerConfigs.lowGoal){
+            SmartDashboard.putString("Extender State", "Scoring");
+            if (Robot.crane.getRotatorLEncoder() > 120) {
+                Robot.crane.setExtender(extenderSetpoint);
+                SmartDashboard.putNumber("extenderSetpoint", extenderSetpoint);
+            } else {
+                Robot.crane.setExtender(-3);
+                SmartDashboard.putNumber("extenderSetpoint", -3);
+            }
+        } else if (PlayerConfigs.collectPos || PlayerConfigs.groundGrab){
+            SmartDashboard.putString("Extender State", "Collecting");
+            if (Robot.crane.getExtenderEncoder() > extenderSetpoint) {
+                Robot.crane.setExtender(Robot.crane.getExtenderEncoder() + (12 * PlayerConfigs.extendPos));
+                SmartDashboard.putNumber("extenderSetpoint", Robot.crane.getExtenderEncoder() + (12 * PlayerConfigs.extendPos));
+            } else {
+                Robot.crane.setExtender(Robot.crane.getExtenderEncoder());
+                SmartDashboard.putNumber("extenderSetpoint", Robot.crane.getExtenderEncoder());
+            }
         } else {
-            Robot.crane.setExtender(0);
+            SmartDashboard.putString("Extender State", "Neutral");
+            Robot.crane.setExtender(Constants.kExtenderClosed);
+            SmartDashboard.putNumber("extenderSetpoint", Constants.kExtenderClosed);
         }
 
         Robot.crane.updateEncoderValues();

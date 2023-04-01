@@ -28,6 +28,9 @@ public final class Constants {
         public static final int PINCH_LEFT = 21;
         public static final int PINCH_RIGHT = 22;
 
+        //Limelight Rotator
+        public static final int LIMELIGHT_ROTATOR = 23;
+
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
         public static final int DRIVER_CONTROLLER_1 = 1;
@@ -124,6 +127,7 @@ public final class Constants {
         public static final int kRotateCurrentLimit = 30;
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.005;
+            //May need to check and adjust with real game elements
         public static final double kRotatorCubeHold = 20.0;
         public static final double kRotatorGround = 30.0;
         public static final double kRotatorHi = 160.0;
@@ -135,8 +139,8 @@ public final class Constants {
         public static final double rotatorHorizontalOffset = 60;
 
         public static final int kExtenderCurrentLimit = 40;
-        public static final double kExtendEncoderDistancePerPulse = 0.125;
-        public static final double kExtenderKP = 1;
+        public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
+        public static final double kExtenderKP = 0.07;
         public static final double kExtenderGround = -7.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -20.0;
@@ -162,4 +166,9 @@ public final class Constants {
         public static final double kPullLeft = 270;
         public static final double kPullRight = -270;
         public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
+    
+    //Limelight Rotator Constants
+        public static final int kLookForward = 0;
+        public static final int kLookBackward = 180;
+        public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 27 * 360;
 }

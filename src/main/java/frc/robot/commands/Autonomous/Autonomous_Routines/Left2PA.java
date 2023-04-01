@@ -7,6 +7,7 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoStrafe;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoSnap;
+import frc.robot.commands.Autonomous.Autonomous_Actions.AutoStrafe;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoLineDrive;
 

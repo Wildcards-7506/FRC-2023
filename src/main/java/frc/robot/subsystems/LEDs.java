@@ -57,8 +57,8 @@ public class LEDs extends SubsystemBase{
         // Set the value
         ledBuffer.setHSV(i, hue, 255,255);
       }
-      ledBuffer.setHSV(7, irisHue, 255, 255);
-      ledBuffer.setHSV(10, irisHue, 255, 255);
+      ledBuffer.setHSV(4, irisHue, 255, 255);
+      ledBuffer.setHSV(13, irisHue, 255, 255);
       update();
     }
 
@@ -69,7 +69,7 @@ public class LEDs extends SubsystemBase{
         ledBuffer.setHSV(i, 255, 0, 130);
       }
       ledBuffer.setHSV(irisLoc, hue, 255, 255);
-      ledBuffer.setHSV(irisLoc + 3, hue, 255, 255);
+      ledBuffer.setHSV(irisLoc + 9, hue, 255, 255);
       if(blink){
         for (var i = 0; i < 18; i++) {
           // Set the value

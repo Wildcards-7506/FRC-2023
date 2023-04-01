@@ -1,6 +1,9 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+
+import com.revrobotics.CANSparkMax.ControlType;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoExtenderPosition extends CommandBase{
@@ -22,7 +25,7 @@ public class AutoExtenderPosition extends CommandBase{
     @Override
     public void execute() {
         double setter = 12 * Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint)/(Robot.crane.getExtenderEncoder() - extenderSetPoint);
-        Robot.crane.setExtender(-setter);
+        Robot.crane.extenderPID.setReference(-setter, ControlType.kPosition);
     }
 
     // Called once the command ends or is interrupted.

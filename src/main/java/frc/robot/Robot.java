@@ -16,11 +16,13 @@ import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.commands.CraneTeleopCommand;
 import frc.robot.commands.DrivetrainTeleopCommand;
 import frc.robot.commands.LEDTeleopCommand;
+import frc.robot.commands.LimelightRotatorTeleopCom;
 import frc.robot.commands.LimelightTeleopCommand;
 import frc.robot.commands.PinchersTeleopCommand;
 import frc.robot.subsystems.Crane;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.LimelightRotator;
 import frc.robot.subsystems.Pinchers;
 import frc.robot.subsystems.LEDs;
 
@@ -58,6 +60,8 @@ public class Robot extends TimedRobot {
     Constants.PINCH_RIGHT
   );
   public static final Limelight limelight = new Limelight();
+
+  public static final LimelightRotator ll_rotator = new LimelightRotator(Constants.LIMELIGHT_ROTATOR);
 
   public static final LEDs ledSystem = new LEDs(9,48);
 
@@ -123,6 +127,7 @@ public class Robot extends TimedRobot {
     Robot.ledSystem.setDefaultCommand(new LEDTeleopCommand());
     Robot.limelight.setDefaultCommand(new LimelightTeleopCommand());
     Robot.pinchers.setDefaultCommand(new PinchersTeleopCommand());
+    Robot.ll_rotator.setDefaultCommand(new LimelightRotatorTeleopCom());
   }
 
   /** This function is called periodically during operator control. */
@@ -142,13 +147,13 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     ledSystem.rainbow();
     if((Timer.getFPGATimestamp() + 0.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),6,false);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),3,false);
     }else if((Timer.getFPGATimestamp() + 1.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),8,false);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),5,false);
     } else if((Timer.getFPGATimestamp() + 2.5) % 5 < 0.5){
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,true);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),4,true);
     } else{
-      ledSystem.blinkingEyes(DriverStation.getAlliance(),7,false);
+      ledSystem.blinkingEyes(DriverStation.getAlliance(),4,false);
     }
     HDD.updateStartupConfig();
   }

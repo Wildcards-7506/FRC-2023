@@ -88,9 +88,7 @@ public class Drivetrain extends SubsystemBase{
     @Override
     public void periodic(){
         //Update the odometry in the periodic block
-        odometry.update(
-            gyro.getRotation2d(),
-            wheelPositions);
+        updatePos();
         System.out.println(odometry.getPoseMeters());
     }
 

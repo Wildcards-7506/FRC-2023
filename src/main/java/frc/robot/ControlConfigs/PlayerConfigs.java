@@ -38,6 +38,7 @@ public class PlayerConfigs {
     public static double extendPos;
     public static boolean craneControl;
     public static boolean redundantCraneControl;
+    public static boolean fineExtender;
 
     //pinchers
     public static boolean leftPinch;
