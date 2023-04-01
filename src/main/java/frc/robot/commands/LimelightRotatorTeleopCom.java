@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
@@ -12,10 +13,12 @@ public class LimelightRotatorTeleopCom extends CommandBase {
 
     @Override
     public void execute () {
-        if (PlayerConfigs.yMovement > 0) {
-            Robot.ll_rotator.lookForward();
-        } else if (PlayerConfigs.yMovement < 0) {
-            Robot.ll_rotator.lookBackward();
+        if (PlayerConfigs.groundGrab) {
+            Robot.ll_rotator.setEyes(Constants.kLookForward);
+        } else if (PlayerConfigs.collectPos) {
+            Robot.ll_rotator.setEyes(Constants.kLookCollect);
+        } else {
+            Robot.ll_rotator.setEyes(Constants.kLookGoal);
         }
     }
 }

@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -12,6 +14,7 @@ public class LimelightRotator extends SubsystemBase{
 
     private CANSparkMax llRotator;
     private RelativeEncoder llRotatorEncoder;
+    private SparkMaxPIDController llRotatorPID;
 
     public LimelightRotator (int m) {
         llRotator = new CANSparkMax(m, MotorType.kBrushless);
@@ -19,26 +22,19 @@ public class LimelightRotator extends SubsystemBase{
         llRotatorEncoder = llRotator.getEncoder();
         llRotatorEncoder.setPositionConversionFactor(Constants.kLimelightRotatorEncoderDistancePerPulse);
 
-        llRotator.setSoftLimit(SoftLimitDirection.kForward, Constants.kLookForward);
-        llRotator.setSoftLimit(SoftLimitDirection.kReverse, Constants.kLookBackward);
+        llRotator.enableSoftLimit(SoftLimitDirection.kForward, false);
+        llRotator.enableSoftLimit(SoftLimitDirection.kReverse, false);
+        llRotator.setSmartCurrentLimit(Constants.kLimeLightCurrentLimit);
+
+        llRotatorPID = llRotator.getPIDController();
+        llRotatorPID.setP(Constants.kLimeLightRotatorKP);
+        llRotatorPID.setOutputRange(-1, 1);
 
         llRotator.burnFlash();
     }
 
-    public void lookForward () {
-        if (llRotatorEncoder.getPosition() > 10) {
-            llRotator.setVoltage(2);
-        } else {
-            llRotator.setVoltage(0);
-        }
-    }
-
-    public void lookBackward () {
-        if (llRotatorEncoder.getPosition() > 180) {
-            llRotator.setVoltage(-2);
-        } else {
-            llRotator.setVoltage(0);
-        }
+    public void setEyes (double setPoint) {
+        llRotatorPID.setReference(setPoint, ControlType.kPosition);
     }
 
     public double getPosition () {

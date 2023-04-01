@@ -129,7 +129,7 @@ public final class Constants {
         public static final double kRotatorKP = 0.005;
             //May need to check and adjust with real game elements
         public static final double kRotatorCubeHold = 20.0;
-        public static final double kRotatorGround = 30.0;
+        public static final double kRotatorGround = 25.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
         public static final double kRotatorCollect = 85.0;
@@ -141,9 +141,9 @@ public final class Constants {
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
         public static final double kExtenderKP = 0.07;
-        public static final double kExtenderGround = -7.0;
+        public static final double kExtenderGround = -12;
         public static final double kExtenderLo = -4.0;
-        public static final double kExtenderHi = -20.0;
+        public static final double kExtenderHi = -22.0;
         public static final double kExtenderCollect = -12.0;
         public static final double kExtenderClosed = -1.0;
         
@@ -151,12 +151,12 @@ public final class Constants {
 
         public static final int kWristCurrentLimit = 10;
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
-        public static final double kWristKP = 0.01;
+        public static final double kWristKP = 0.1;
         public static final double cubeOffset = 130.0;
-        public static final double kWristHi = -195.0;
+        public static final double kWristHi = -200.0;
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
-        public static final double kWristGround = 5.0;
+        public static final double kWristGround = 48.0;
         public static final double kWristCubeHold = -110.0;
         public static final double kWristClosed = -10.0;
 
@@ -168,7 +168,10 @@ public final class Constants {
         public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
     
     //Limelight Rotator Constants
-        public static final int kLookForward = 0;
-        public static final int kLookBackward = 180;
-        public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 27 * 360;
+        public static final int kLookForward = -180;
+        public static final int kLookCollect = -170;
+        public static final int kLookGoal = 0;
+        public static final int kLimeLightCurrentLimit = 10;
+        public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 3 * 360;
+        public static final double kLimeLightRotatorKP = 0.1;
 }

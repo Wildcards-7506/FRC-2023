@@ -34,6 +34,6 @@ public class AutoWristPosition extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.crane.getWristEncoder() - wristSetPoint) <= 10;
+        return Math.abs(Robot.crane.getWristEncoder() - wristSetPoint) <= 20;
     }
 }

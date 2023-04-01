@@ -18,13 +18,15 @@ public class AutoScore extends SequentialCommandGroup {
       new AutoStingerAction(-8+16*pipeline, true),
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorHi),
-        new AutoWristPosition(Constants.kWristHi)),
+        new AutoWristPosition(Constants.kWristHi-10)
+      ),
       new AutoExtenderPosition(Constants.kExtenderHi + offset),
       new AutoStingerAction(12 - 24 * pipeline, false),
-      new AutoExtenderPosition(-1+pipeline),
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),
-        new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * pipeline))
+        new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * pipeline),
+        new AutoExtenderPosition(-1+pipeline)
+      )
     );
   }
 } 

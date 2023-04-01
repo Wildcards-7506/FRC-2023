@@ -7,6 +7,8 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoStrafe;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoSnap;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoStingerAction;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoWristPosition;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoStrafe;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCollect;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoLineDrive;
@@ -17,16 +19,16 @@ public class Right2PA extends SequentialCommandGroup {
     
     addCommands(
       new AutoScore(0,0),
-      new AutoStrafe(-0.4, 0.7),
-      new AutoSnap(0),
-      new ParallelCommandGroup(
-        new AutoCollect(12),  
-        new AutoLineDrive(5.5)
+      new AutoCollect(12), 
+      new ParallelCommandGroup( 
+        new AutoStingerAction(8, true),
+        new AutoLineDrive(4.5)
       ),
       new ParallelCommandGroup(
-        new AutoLineDrive(-5.5),
+        new AutoLineDrive(-4.5),
         new AutoExtenderPosition(Constants.kExtenderClosed)
       ),
+      new AutoWristPosition(0),
       new AutoScore(0,3)
     );
   }

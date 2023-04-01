@@ -102,5 +102,6 @@ public class CraneTeleopCommand extends CommandBase {
         }
 
         Robot.crane.updateEncoderValues();
+        System.out.println(Robot.controller1.getPOV());
     }
 }

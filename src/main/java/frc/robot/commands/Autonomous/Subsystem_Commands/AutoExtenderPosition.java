@@ -24,20 +24,19 @@ public class AutoExtenderPosition extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double setter = 12 * Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint)/(Robot.crane.getExtenderEncoder() - extenderSetPoint);
-        Robot.crane.extenderPID.setReference(-setter, ControlType.kPosition);
+        Robot.crane.extenderPID.setReference(extenderSetPoint, ControlType.kPosition);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         System.out.println("Extend Complete");
-        Robot.crane.setExtender(0);
+        Robot.crane.setExtender(this.extenderSetPoint);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint) <= 0.5;
+        return Math.abs(Robot.crane.getExtenderEncoder() - extenderSetPoint) <= 1;
     }
 }

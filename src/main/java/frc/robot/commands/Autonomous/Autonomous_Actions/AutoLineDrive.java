@@ -9,6 +9,7 @@ public class AutoLineDrive extends CommandBase{
     
     double setpoint;
     double xspeed;
+    double ySpeed;
     double rampSpeed = 0.06;
     double prevSpeed = 0;
     
@@ -28,10 +29,11 @@ public class AutoLineDrive extends CommandBase{
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute() {        
+    public void execute() {      
+        ySpeed = -Robot.limelight.getTX();  
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
-        System.out.println(Robot.drivetrain.getWheelPositions().frontLeftMeters);
-        Robot.drivetrain.drive(driveSpeed, 0.0, 0, false);
+        System.out.println(Robot.limelight.getTX());
+        Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, false);
         Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
     }

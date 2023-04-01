@@ -35,7 +35,7 @@ public class AutoStingerAction extends CommandBase{
     public void end(boolean interrupted) {
         System.out.println("Claw Complete");
         if (actionFlag){
-            Robot.crane.setStinger(-1);
+            Robot.crane.setStinger(action/Math.abs(action));
         } else if (!actionFlag){
             Robot.crane.setStinger(0);
         }
@@ -45,7 +45,7 @@ public class AutoStingerAction extends CommandBase{
     @Override
     public boolean isFinished() {                 
         //Roller Pickup, Current tripped
-        return (actionFlag && Robot.crane.getStingerCurrent() > 10 && timer.get() >= 0.5)
+        return (actionFlag && Robot.crane.getStingerCurrent() > 20 && timer.get() >= 0.5)
                 //Target Missed, timeout
                  || (actionFlag && timer.get() >= 5)
                 //Outtaking, timeout

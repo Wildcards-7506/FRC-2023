@@ -40,7 +40,7 @@ public class Anthony extends PlayerConfigs {
 
     public void getCoDriverConfig() {
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getPOV() >= 160 && Robot.controller1.getPOV() <= 200;
+        PlayerConfigs.groundGrab = Robot.controller1.getPOV() >= 160 && Robot.controller1.getPOV() <= 225;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() >= 70 && Robot.controller1.getPOV() <= 110;
         PlayerConfigs.collectPos = Robot.controller1.getPOV() >= 250 && Robot.controller1.getPOV() <= 290;
