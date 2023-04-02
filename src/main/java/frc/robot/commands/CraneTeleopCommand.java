@@ -40,7 +40,7 @@ public class CraneTeleopCommand extends CommandBase {
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             extenderSetpoint = Constants.kExtenderGround;
-            Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
+            Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * (Robot.limelight.getPipeline() - 1));
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect + (Constants.kRotatorCubeOffset * Robot.limelight.getPipeline()));
             extenderSetpoint = Constants.kExtenderCollect;

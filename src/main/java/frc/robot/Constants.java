@@ -128,7 +128,7 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.007;
         public static final double kRotatorCubeHold = 20.0;
-        public static final double kRotatorGround = 25.0;
+        public static final double kRotatorGround = 15.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
         public static final double kRotatorCollect = 85.0;
@@ -140,7 +140,7 @@ public final class Constants {
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
         public static final double kExtenderKP = 0.09;
-        public static final double kExtenderGround = -13;
+        public static final double kExtenderGround = -23.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -22.0;
         public static final double kExtenderCollect = -12.0;
@@ -155,8 +155,8 @@ public final class Constants {
         public static final double kWristHi = -200.0;
         public static final double kWristMid = -190.0;
         public static final double kWristCollect = -35.0;
-        public static final double kWristGround = 48.0;
-        public static final double kWristCubeHold = -110.0;
+        public static final double kWristGround = 115.0;
+        public static final double kWristCubeHold = -115.0;
         public static final double kWristClosed = -10.0;
 
     //Pincher constants

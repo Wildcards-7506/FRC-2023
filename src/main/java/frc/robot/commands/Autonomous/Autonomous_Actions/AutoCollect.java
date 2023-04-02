@@ -16,9 +16,9 @@ public class AutoCollect extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new AutoLook(Constants.kLookCollect, 3),
-        new AutoRotatorPosition(Constants.kRotatorGround-15),
-        new AutoExtenderPosition(Constants.kExtenderGround-10),
-        new AutoWristPosition(Constants.kWristGround+68),
+        new AutoRotatorPosition(Constants.kRotatorGround-5),
+        new AutoExtenderPosition(Constants.kExtenderGround),
+        new AutoWristPosition(Constants.kWristGround),
         new AutoGroundTarget(distance, intake)
       ));
   }

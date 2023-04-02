@@ -1,25 +1,24 @@
 # Team 7506 2023 Robot Code
-## 53 Chickens Sacrificed as of March 13, 2023
+## 78 Chickens Sacrificed as of April 2nd, 2023
 
 ##Auto Scheme
 1. Place, Move, Stop
     a. Identical to Dallas - Score, move across the line, stop
-2. Left Charge Station
-    a. Score, loop around and climb (Not to be used frequently)
-3. Right Charge Station
-    a. Score, loop around and climb (Not to be used frequently)
-4. Left Pickup
-    a. Score, snap to zero, run straight line to possibly collect another piece, score again if time.
-5. Right Pickup
-    a. Score, snap to zero, run straight line to possibly collect another piece, score again if time.
-6. Over The Top Charge Station (Not likely to be used)
-    a. Score, run over CS, come back and balance
-7. Score, No Move (Unideal, but we may need it)
-    a. Score and sit still
-8. Test Mode (Developing new modes)
-    a. Use this to verify AutoLineDrive functionality and snapping.
+2. Two Piece Auto
+    a. Score, Autotarget second piece, Pick up, Score again
+3. Score Only
+    a. Score, Don't Move
+4. Charge Station Auto
+    a. Score flipped around from collect position, run over Charge Station, come back and balance
+5. Test Mode (Developing new modes)
+    a. Use this to verify new commands
 
-Teleop Snap Speed has been upped from 0.5% to 0.8% - Adjust as necessary
-Extender will now auto-retract to 1 inch buffer when no joystick input present
-Alignment only operates in rotation and Strafing, no forward motion.
-Pinchers are on toggle per side
+TO DO BEFORE STATES:
+1. Recalibrate Limelight Color Threshold Pipelines
+2. Test Charge Station Auto
+3. Fine-tune drop wheel distances for increased control
+    a. In fine control, drop wheels come higher to make Charge Station easier. 
+    b. At full speed, drop wheels come down far enough to give traction on all 6 wheels.
+4. Fine Tune Single Substation Cube Intake
+    a. Stinger should go parallel to Extender so Human Player can drop cube into intake wheels
+5. Cube ground intake
