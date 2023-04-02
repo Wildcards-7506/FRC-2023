@@ -126,8 +126,7 @@ public final class Constants {
     //Crane Constants
         public static final int kRotateCurrentLimit = 30;
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
-        public static final double kRotatorKP = 0.005;
-            //May need to check and adjust with real game elements
+        public static final double kRotatorKP = 0.007;
         public static final double kRotatorCubeHold = 20.0;
         public static final double kRotatorGround = 25.0;
         public static final double kRotatorHi = 160.0;
@@ -140,8 +139,8 @@ public final class Constants {
 
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
-        public static final double kExtenderKP = 0.07;
-        public static final double kExtenderGround = -12;
+        public static final double kExtenderKP = 0.09;
+        public static final double kExtenderGround = -13;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -22.0;
         public static final double kExtenderCollect = -12.0;
@@ -169,9 +168,9 @@ public final class Constants {
     
     //Limelight Rotator Constants
         public static final int kLookForward = -180;
-        public static final int kLookCollect = -170;
+        public static final int kLookCollect = -160;
         public static final int kLookGoal = 0;
         public static final int kLimeLightCurrentLimit = 10;
         public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 3 * 360;
-        public static final double kLimeLightRotatorKP = 0.1;
+        public static final double kLimeLightRotatorKP = 0.05;
 }

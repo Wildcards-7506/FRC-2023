@@ -3,7 +3,7 @@ package frc.robot.ControlConfigs.Drivers;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 
-public class Chantell extends PlayerConfigs {
+public class Ricardo extends PlayerConfigs {
     public void getDriverConfig() {
         //Constants
         PlayerConfigs.turnSpeed = 0.3;
@@ -40,18 +40,23 @@ public class Chantell extends PlayerConfigs {
 
     public void getCoDriverConfig() {
         //Scoring and grabbing objects
-        PlayerConfigs.groundGrab = Robot.controller1.getPOV() >= 160 && Robot.controller1.getPOV() <= 200;
+        PlayerConfigs.groundGrab = Robot.controller1.getPOV() == 180;
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
-        PlayerConfigs.lowGoal = Robot.controller1.getPOV() >= 70 && Robot.controller1.getPOV() <= 110;
-        PlayerConfigs.collectPos = Robot.controller1.getPOV() >= 250 && Robot.controller1.getPOV() <= 290;
+        PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 90;
+        PlayerConfigs.collectPos = Robot.controller1.getPOV() == 270;
 
         //Claw or Roller
         PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
         PlayerConfigs.release = Robot.controller1.getRightBumper();
         PlayerConfigs.craneControl = Robot.controller1.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.fineExtender = Robot.controller1.getRightStickButton();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
+        PlayerConfigs.cubeHold = Robot.controller1.getLeftBumper();
 
+        //Pinchers
+        PlayerConfigs.leftPinch = Robot.controller1.getXButton();
+        PlayerConfigs.rightPinch = Robot.controller1.getBButton();
 
         //Limelight Switch
         PlayerConfigs.switchPipeline = Robot.controller1.getStartButton();

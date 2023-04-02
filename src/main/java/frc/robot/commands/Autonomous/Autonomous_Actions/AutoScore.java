@@ -24,8 +24,8 @@ public class AutoScore extends SequentialCommandGroup {
       new AutoStingerAction(12 - 24 * pipeline, false),
       new ParallelCommandGroup(
         new AutoRotatorPosition(Constants.kRotatorGround),
-        new AutoWristPosition(Constants.kWristGround + Constants.cubeOffset * pipeline),
-        new AutoExtenderPosition(-1+pipeline)
+        new AutoExtenderPosition(-1),
+        new AutoWristPosition(Constants.kWristGround)
       )
     );
   }

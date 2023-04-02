@@ -51,8 +51,8 @@ public class Ryan extends PlayerConfigs {
         //Claw or Roller
         PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
         PlayerConfigs.release = Robot.controller1.getLeftTriggerAxis() > 0.2;
-        // PlayerConfigs.cranePos = Robot.controller1.getLeftY();
-        // PlayerConfigs.extendPos = Robot.controller1.getRightY();
+        PlayerConfigs.cranePos = Robot.controller1.getLeftY();
+        PlayerConfigs.extendPos = Robot.controller1.getRightY();
         PlayerConfigs.craneControl = Robot.controller1.getAButton();
 
         //Limelight Switch
