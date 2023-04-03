@@ -3,26 +3,20 @@
 
 ##Auto Scheme
 1. Place, Move, Stop
-    a. Score Cone High
-    b. Move across Comm Line
-    c. Full Stop
+
+    Score Cone High -> Move Across Comm Line -> Full Stop
 2. Two Piece Auto
-    a. Score Cone High
-    b. Autotarget Cube
-    c. Pick Up Cube
-    d. Score Cube High (Time Permitting)
-    e. Full Stop
+
+    Score Cone High -> Autotarget Cube -> Pick Up Cube -> Score Cube High (Time Permitting) -> Full Stop
 3. Score Only
-    a. Score Cone High
-    b. Full Stop
+
+    Score Cone High -> Full Stop
 4. Charge Station Auto
-    a. Score Cube High (Reverse Starting Orientation)
-    b. Engage Drop Wheels, Return To Neutral
-    c. Climb Over Charge Station
-    d. Rotate 180 degrees
-    e. Auto Engage on Charge Station
+
+    Score Cube High (Reversed) -> Engage Drop Wheels -> Climb Over Charge Station -> Rotate 180 Degrees -> Auto Engage
 5. Test Mode (Developing new modes)
-    a. Use to verify new commands
+
+    Use to verify new commands
 
 TO DO BEFORE STATES:
 1. Recalibrate Limelight Color Threshold Pipelines
