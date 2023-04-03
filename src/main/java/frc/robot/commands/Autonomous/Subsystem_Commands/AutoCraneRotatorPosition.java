@@ -4,13 +4,13 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoRotatorPosition extends CommandBase{
+public class AutoCraneRotatorPosition extends CommandBase{
     
     double rotatorSetPoint;
     Timer timer = null;
 
     /** Creates a new Rotation Positioning Command. */
-    public AutoRotatorPosition(double setPoint) {
+    public AutoCraneRotatorPosition(double setPoint) {
         this.rotatorSetPoint = setPoint;
     }
 

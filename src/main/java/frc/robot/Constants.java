@@ -67,7 +67,7 @@ public final class Constants {
         public static final int kDrivetrainCurrentLimit = 30;
         public static final double kDropWheelDistance = 0.5;
         public static final double kSnapRange = 1;
-        public static final double kSnapSpeed = 0.5;
+        public static final double kSnapSpeed = 0.08;
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;

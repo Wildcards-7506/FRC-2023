@@ -6,12 +6,12 @@ import com.revrobotics.CANSparkMax.ControlType;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoExtenderPosition extends CommandBase{
+public class AutoCraneExtenderPosition extends CommandBase{
     
     double extenderSetPoint;
 
     /** Creates a new Extention Positioning Command. */
-    public AutoExtenderPosition(double m_setPoint) {
+    public AutoCraneExtenderPosition(double m_setPoint) {
         this.extenderSetPoint = m_setPoint;
     }
 

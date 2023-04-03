@@ -4,14 +4,14 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoStingerAction extends CommandBase{
+public class AutoCraneStingerAction extends CommandBase{
     
     double action;
     boolean actionFlag;
     Timer timer = null;
 
     /** Creates a new Claw Positioning Command. */
-    public AutoStingerAction(double setPoint, boolean intake) {
+    public AutoCraneStingerAction(double setPoint, boolean intake) {
         this.action = setPoint;
         this.actionFlag = intake;
     }

@@ -3,11 +3,11 @@ package frc.robot.commands.Autonomous.Autonomous_Actions;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoStingerAction;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoRotatorPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneStingerAction;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneRotatorPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoScoringAlign;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoWristPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneWristPosition;
 
 public class AutoScore extends SequentialCommandGroup {
 
@@ -15,17 +15,17 @@ public class AutoScore extends SequentialCommandGroup {
 
     addCommands(
       new AutoScoringAlign(pipeline),
-      new AutoStingerAction(-8+16*pipeline, true),
+      new AutoCraneStingerAction(-8+16*pipeline, true),
       new ParallelCommandGroup(
-        new AutoRotatorPosition(Constants.kRotatorHi),
-        new AutoWristPosition(Constants.kWristHi-10)
+        new AutoCraneRotatorPosition(Constants.kRotatorHi),
+        new AutoCraneWristPosition(Constants.kWristHi-10)
       ),
-      new AutoExtenderPosition(Constants.kExtenderHi + offset),
-      new AutoStingerAction(12 - 24 * pipeline, false),
+      new AutoCraneExtenderPosition(Constants.kExtenderHi + offset),
+      new AutoCraneStingerAction(12 - 24 * pipeline, false),
       new ParallelCommandGroup(
-        new AutoRotatorPosition(Constants.kRotatorGround),
-        new AutoExtenderPosition(-1),
-        new AutoWristPosition(Constants.kWristGround)
+        new AutoCraneRotatorPosition(Constants.kRotatorGround),
+        new AutoCraneExtenderPosition(-1),
+        new AutoCraneWristPosition(Constants.kWristGround)
       )
     );
   }

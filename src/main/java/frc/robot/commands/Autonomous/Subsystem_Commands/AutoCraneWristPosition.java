@@ -3,12 +3,12 @@ package frc.robot.commands.Autonomous.Subsystem_Commands;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoWristPosition extends CommandBase{
+public class AutoCraneWristPosition extends CommandBase{
     
     double wristSetPoint;
 
     /** Creates a new Extention Positioning Command. */
-    public AutoWristPosition(double setPoint) {
+    public AutoCraneWristPosition(double setPoint) {
         this.wristSetPoint = setPoint;
     }
 
