@@ -21,21 +21,25 @@ public class AutoPitchCorrect extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        angle = Robot.drivetrain.getPitch();
-        if(angle < -3){tilted = true;}
-        Robot.drivetrain.drive(-0.2, 0.0, 0, false);
+        angle = Robot.drivetrain.getRoll();
+        if(angle > 9){
+            tilted = true;
+            Robot.drivetrain.drive(0.25, 0.0, 0, false);
+        } else {
+            Robot.drivetrain.drive(0.3, 0.0, 0, false);
+        }
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         System.out.println("Balance Complete");
-        Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.drive(-0.1,0,0,true);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return tilted & Robot.drivetrain.getPitch() > -3;
+        return tilted & Robot.drivetrain.getRoll() < 5;
     }
 }

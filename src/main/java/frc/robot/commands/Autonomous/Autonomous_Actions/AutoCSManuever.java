@@ -28,9 +28,9 @@ public class AutoCSManuever extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        angle = Robot.drivetrain.getPitch();
-        if(angle > 3){ascending = true;}
-        if(angle < -3){descending = true;}
+        angle = Robot.drivetrain.getRoll();
+        if(angle > 10){ascending = true;}
+        if(angle < -10){descending = true;}
         if(ascending & descending){
             timer.start();
         }
