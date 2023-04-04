@@ -3,9 +3,10 @@ package frc.robot.commands.Autonomous.Autonomous_Routines;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoDropWheelPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoExtenderPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoRotatorPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoStingerAction;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneRotatorPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneStingerAction;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneWristPosition;
 import frc.robot.Constants;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCSManuever;
@@ -16,12 +17,21 @@ public class OverTheTopCharge extends SequentialCommandGroup {
     
     addCommands(
         new ParallelCommandGroup(
-          new AutoRotatorPosition(Constants.kRotatorCollect),
-          new AutoExtenderPosition(Constants.kExtenderHi)
+          new AutoCraneStingerAction(8, true),
+          new AutoCraneRotatorPosition(Constants.kRotatorCollect + Constants.kRotatorCubeOffset),
+          new AutoCraneWristPosition(Constants.kWristGround)
         ),
-        new AutoStingerAction(-8, false),
-        new AutoDropWheelPosition(Constants.kDropWheelDistance),
-        new AutoCSManuever(),
+        new AutoCraneExtenderPosition(Constants.kExtenderCollect),
+        new AutoCraneStingerAction(-8, false),
+        new ParallelCommandGroup(
+          new AutoCraneExtenderPosition(Constants.kExtenderClosed),
+          new AutoDropWheelPosition(Constants.kDropWheelDistance)
+        ),
+        new ParallelCommandGroup(
+          new AutoCraneRotatorPosition(Constants.kRotatorClosed),
+          new AutoCraneWristPosition(Constants.kWristClosed),
+          new AutoCSManuever(-0.6)
+        ),
         new AutoBalance(0)
       );
   }

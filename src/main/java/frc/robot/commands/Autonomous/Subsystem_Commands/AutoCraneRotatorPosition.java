@@ -1,39 +1,41 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoWristPosition extends CommandBase{
+public class AutoCraneRotatorPosition extends CommandBase{
     
-    double wristSetPoint;
+    double rotatorSetPoint;
+    Timer timer = null;
 
-    /** Creates a new Extention Positioning Command. */
-    public AutoWristPosition(double setPoint) {
-        this.wristSetPoint = setPoint;
+    /** Creates a new Rotation Positioning Command. */
+    public AutoCraneRotatorPosition(double setPoint) {
+        this.rotatorSetPoint = setPoint;
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("Wrist Started");
+        System.out.println("Rotation Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.crane.setWrist(wristSetPoint);
+        Robot.crane.setRotator(rotatorSetPoint);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Wrist Complete");
-        Robot.crane.setWrist(wristSetPoint);
+        System.out.println("Rotate Complete");
+        Robot.crane.setRotator(rotatorSetPoint);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.crane.getWristEncoder() - wristSetPoint) <= 10;
+        return Math.abs(Robot.crane.getRotatorLEncoder() - rotatorSetPoint) <= 15;
     }
 }

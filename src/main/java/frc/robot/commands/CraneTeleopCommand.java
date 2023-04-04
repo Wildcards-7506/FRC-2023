@@ -40,7 +40,7 @@ public class CraneTeleopCommand extends CommandBase {
         if (PlayerConfigs.groundGrab) {
             Robot.crane.setRotator(Constants.kRotatorGround);
             extenderSetpoint = Constants.kExtenderGround;
-            Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * Robot.limelight.getPipeline());
+            Robot.crane.setWrist(Constants.kWristGround + Constants.cubeOffset * (Robot.limelight.getPipeline() - 1));
         } else if (PlayerConfigs.collectPos){
             Robot.crane.setRotator(Constants.kRotatorCollect + (Constants.kRotatorCubeOffset * Robot.limelight.getPipeline()));
             extenderSetpoint = Constants.kExtenderCollect;
@@ -62,7 +62,7 @@ public class CraneTeleopCommand extends CommandBase {
         } else if (PlayerConfigs.cubeHold) {
             Robot.crane.setRotator(Constants.kRotatorCubeHold);
             Robot.crane.setWrist(Constants.kWristCubeHold);
-        } else {
+        } else if(Robot.controller1.getPOV() == -1) {
             Robot.crane.setRotator(Constants.kRotatorClosed);
             extenderSetpoint = Constants.kExtenderClosed;
             Robot.crane.setWrist(Constants.kWristClosed);
@@ -95,7 +95,7 @@ public class CraneTeleopCommand extends CommandBase {
                 Robot.crane.setExtender(Robot.crane.getExtenderEncoder());
                 SmartDashboard.putNumber("extenderSetpoint", Robot.crane.getExtenderEncoder());
             }
-        } else {
+        } else if (Robot.controller1.getPOV() == -1){
             SmartDashboard.putString("Extender State", "Neutral");
             Robot.crane.setExtender(Constants.kExtenderClosed);
             SmartDashboard.putNumber("extenderSetpoint", Constants.kExtenderClosed);

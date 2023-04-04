@@ -89,7 +89,7 @@ public class Drivetrain extends SubsystemBase{
     public void periodic(){
         //Update the odometry in the periodic block
         updatePos();
-        System.out.println(odometry.getPoseMeters());
+        //System.out.println(odometry.getPoseMeters());
     }
 
     public void updatePos() {

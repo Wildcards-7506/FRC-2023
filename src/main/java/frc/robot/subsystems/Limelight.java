@@ -14,7 +14,7 @@ public class Limelight extends SubsystemBase {
     public double distance;
     public double offset;
 
-    private NetworkTable table;
+    public NetworkTable table;
     private NetworkTableEntry tx;
     private NetworkTableEntry ta;
     private NetworkTableEntry tv;
