@@ -36,7 +36,7 @@ public class AutoGroundTarget extends CommandBase{
         ySpeed = -Robot.limelight.getTX();  
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
         System.out.println(Robot.limelight.getTX());
-        Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, false);
+        Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, true);
         Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
     }
