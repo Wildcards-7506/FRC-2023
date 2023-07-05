@@ -17,7 +17,7 @@ public class ChargeMobility extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new AutoCraneStingerAction(8, true),
-        new AutoCraneRotatorPosition(Constants.kRotatorDoubleSub + Constants.kRotatorCubeOffset),
+        new AutoCraneRotatorPosition(Constants.kRotatorDoubleSub + Constants.kRotatorDoubleCubeOffset),
         new AutoCraneWristPosition(Constants.kWristGround)
       ),
       new AutoCraneExtenderPosition(Constants.kExtenderCollect),
