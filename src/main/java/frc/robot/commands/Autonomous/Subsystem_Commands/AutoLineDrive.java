@@ -15,7 +15,7 @@ public class AutoLineDrive extends CommandBase{
     /** Creates a new Auto Pitch Correction Command. */
     public AutoLineDrive(double setPoint) {
         this.setpoint = setPoint;
-        this.xspeed = 0.3 * Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/(Robot.drivetrain.getWheelPositions().frontLeftMeters - setPoint);
+        this.xspeed = Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/(Robot.drivetrain.getWheelPositions().frontLeftMeters - setPoint);
     }
 
     // Called when the command is initially scheduled.
@@ -30,7 +30,13 @@ public class AutoLineDrive extends CommandBase{
     @Override
     public void execute() {      
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
-        Robot.drivetrain.drive(driveSpeed, 0, 0, false);
+        if(driveSpeed < xspeed){
+            Robot.drivetrain.drive(driveSpeed, 0, 0, true);
+        }
+        else {
+            driveSpeed = xspeed * Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/setpoint;
+            Robot.drivetrain.drive(driveSpeed, 0, 0, true);
+        }
         Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
     }

@@ -10,7 +10,7 @@ public class DevelopmentMode extends SequentialCommandGroup {
   public DevelopmentMode(){
     addCommands(
       new AutoScore(0, 0),
-      new AutoCollect(5,8)
+      new AutoCollect(5,8,1)
     );
   }
 }

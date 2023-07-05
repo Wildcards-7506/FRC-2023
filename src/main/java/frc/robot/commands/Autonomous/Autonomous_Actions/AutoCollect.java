@@ -4,22 +4,28 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPosition;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoGroundTarget;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoLineDrive;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoLook;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoStrafe;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneRotatorPosition;
+import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneStingerAction;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneWristPosition;
 
 public class AutoCollect extends SequentialCommandGroup {
   int pipeline;
   
-  public AutoCollect(double distance, double intake){
+  public AutoCollect(double distance, double intake, double direction){
     addCommands(
       new ParallelCommandGroup(
         new AutoLook(Constants.kLookCollect, 3),
+        new AutoStrafe(direction * 0.3, 0.7)
+        ),
+      new AutoLineDrive(5),
+      new ParallelCommandGroup(
         new AutoCraneRotatorPosition(Constants.kRotatorGround-5),
         new AutoCraneExtenderPosition(Constants.kExtenderGround),
         new AutoCraneWristPosition(Constants.kWristGround),
-        new AutoGroundTarget(distance, intake)
+        new AutoCraneStingerAction(intake, true)
       ));
   }
 } 

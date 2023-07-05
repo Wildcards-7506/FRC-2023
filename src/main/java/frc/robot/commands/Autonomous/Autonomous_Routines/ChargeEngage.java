@@ -11,14 +11,14 @@ import frc.robot.Constants;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoBalance;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCSManuever;
 
-public class OverTheTopCharge extends SequentialCommandGroup {
+public class ChargeEngage extends SequentialCommandGroup {
 
-  public OverTheTopCharge(){
+  public ChargeEngage(){
     
     addCommands(
         new ParallelCommandGroup(
           new AutoCraneStingerAction(8, true),
-          new AutoCraneRotatorPosition(Constants.kRotatorCollect + Constants.kRotatorCubeOffset),
+          new AutoCraneRotatorPosition(Constants.kRotatorDoubleSub + Constants.kRotatorCubeOffset),
           new AutoCraneWristPosition(Constants.kWristGround)
         ),
         new AutoCraneExtenderPosition(Constants.kExtenderCollect),
