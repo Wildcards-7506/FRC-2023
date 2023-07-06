@@ -25,6 +25,7 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LimelightRotator;
 import frc.robot.subsystems.Pinchers;
 import frc.robot.subsystems.LEDs;
+import frc.robot.util.Logger;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -82,6 +83,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     limelight.updateData();
     HDD.initBot();
+    Logger.info("Robot Started");
   }
 
   /**
@@ -99,6 +101,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    Logger.info("Autonomous Started");
     teamColor = DriverStation.getAlliance();
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
@@ -117,6 +120,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    Logger.info("Teleop Started");
     drivetrain.m_drive.feed();
     CommandScheduler.getInstance().cancelAll();
     teamColor = DriverStation.getAlliance();
@@ -140,7 +144,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    Logger.info("Robot Disabled");
+  }
 
   /** This function is called periodically when disabled. */
   @Override

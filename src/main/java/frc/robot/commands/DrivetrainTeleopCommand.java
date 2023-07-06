@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 
 public class DrivetrainTeleopCommand extends CommandBase{
 
@@ -11,6 +12,7 @@ public class DrivetrainTeleopCommand extends CommandBase{
     double prevYspeed = 0;
     double prevXspeed = 0;
     boolean mecanumDrive = true;
+    String payload;
     private boolean prev_MecanumDrive = false;
 
 
@@ -92,5 +94,7 @@ public class DrivetrainTeleopCommand extends CommandBase{
         } else {
             Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
         }   
+        payload = Double.toString(yspeed) + " " + Double.toString(xspeed) + " " + Double.toString(rot);
+        Logger.info(payload);
     }
 }
