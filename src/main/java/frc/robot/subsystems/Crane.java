@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.util.Logger;
 
 public class Crane extends SubsystemBase {
     private CANSparkMax stinger;
@@ -133,5 +134,13 @@ public class Crane extends SubsystemBase {
 
     public void setStinger (double setPoint) {
         stinger.setVoltage(setPoint);
+    }
+
+    public void errorCheck(){
+        if(stinger.getFaults()!=0){Logger.warn("STNGR: " + Short.toString(stinger.getFaults()));}
+        if(wrist.getFaults()!=0){Logger.warn("WRIST: " + Short.toString(wrist.getFaults()));}
+        if(extender.getFaults()!=0){Logger.warn("EXTND: " + Short.toString(extender.getFaults()));}
+        if(rotatorFollower.getFaults()!=0){Logger.warn("ROTRF: " + Short.toString(rotatorFollower.getFaults()));}
+        if(rotatorLeader.getFaults()!=0){Logger.warn("ROTRL: " + Short.toString(rotatorLeader.getFaults()));}
     }
 }

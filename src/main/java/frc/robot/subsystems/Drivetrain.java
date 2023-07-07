@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.util.Logger;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
@@ -241,5 +242,14 @@ public class Drivetrain extends SubsystemBase{
 
     public double getDWR(){
         return dwrEncoder.getPosition();
+    }
+
+    public void errorCheck(){
+        if(dropWheelLeft.getFaults()!=0){Logger.warn("DRPWL: " + Short.toString(dropWheelLeft.getFaults()));}
+        if(dropWheelRight.getFaults()!=0){Logger.warn("DRPWR: " + Short.toString(dropWheelRight.getFaults()));}
+        if(motorLeftFront.getFaults()!=0){Logger.warn("DTWLF" + Short.toString(motorLeftFront.getFaults()));}
+        if(motorLeftBack.getFaults()!=0){Logger.warn("DTWLB" + Short.toString(motorLeftBack.getFaults()));}
+        if(motorRightFront.getFaults()!=0){Logger.warn("DTWRF" + Short.toString(motorRightFront.getFaults()));}
+        if(motorRightBack.getFaults()!=0){Logger.warn("DTWRB" + Short.toString(motorRightBack.getFaults()));}
     }
 }

@@ -148,5 +148,6 @@ public class CraneTeleopCommand extends CommandBase {
         + " (Setpoint, Position, Error)");
         
         Robot.crane.updateEncoderValues();
+        Robot.crane.errorCheck();
     }
 }

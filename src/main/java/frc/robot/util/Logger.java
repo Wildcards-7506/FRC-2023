@@ -33,7 +33,7 @@ public class Logger{
     private Logger(){
         try{    
             // "/U" is the default directory for RoboRIO flash drives
-            File logFile = new File("/U/logs/latest.txt");
+            File logFile = new File("U/logs/latest.txt");
 
             // If there is already a "latest" log file, rename it
             // to its id before creating a new one.
@@ -41,7 +41,7 @@ public class Logger{
                 Scanner getName = new Scanner(logFile);
                 if(getName.hasNext()){
                     id = Integer.parseInt(getName.nextLine());
-                    File saved = new File("/U/logs/" + id + ".txt");
+                    File saved = new File("U/logs/" + id + ".txt");
                     logFile.renameTo(saved);
                 }
                 

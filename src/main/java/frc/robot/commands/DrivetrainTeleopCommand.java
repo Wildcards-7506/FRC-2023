@@ -100,6 +100,8 @@ public class DrivetrainTeleopCommand extends CommandBase{
          + " " + df.format(xspeed)
          + " " + df.format(rot)
          + " (Y,X,R)";
-        Logger.info("DRIVE", payload);
+        
+         Logger.info("DRIVE", payload);
+        Robot.drivetrain.errorCheck();
     }
 }
