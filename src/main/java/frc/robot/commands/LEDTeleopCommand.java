@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.util.Logger;
 import frc.robot.Robot;
 
 public class LEDTeleopCommand extends CommandBase{
@@ -23,8 +24,10 @@ public class LEDTeleopCommand extends CommandBase{
         } else if ( PlayerConfigs.collectPos | PlayerConfigs.groundGrab) {
             if(Robot.crane.getStingerCurrent() > 20){
                 Robot.ledSystem.solid(90,255,255);
+                Logger.info("CRANE", "TARGET ACQUIRED");
             } else {
                 Robot.ledSystem.rainbow();
+                Logger.info("CRANE", "COLLECTING...");
             }
         } else {
             Robot.ledSystem.solid(0,0,0);

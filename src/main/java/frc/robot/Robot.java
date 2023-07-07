@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     limelight.updateData();
     HDD.initBot();
-    Logger.info("Robot Started");
+    Logger.info("SYSTEM","Robot Started");
   }
 
   /**
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    Logger.info("Autonomous Started");
+    Logger.info("SYSTEM","Autonomous Started");
     teamColor = DriverStation.getAlliance();
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
@@ -120,7 +120,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    Logger.info("Teleop Started");
+    Logger.info("SYSTEM","Teleop Started");
     drivetrain.m_drive.feed();
     CommandScheduler.getInstance().cancelAll();
     teamColor = DriverStation.getAlliance();
@@ -145,7 +145,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when the robot is disabled. */
   @Override
   public void disabledInit() {
-    Logger.info("Robot Disabled");
+    Logger.info("SYSTEM", "Robot Disabled");
   }
 
   /** This function is called periodically when disabled. */

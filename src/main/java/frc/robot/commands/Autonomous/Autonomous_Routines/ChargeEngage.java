@@ -14,7 +14,6 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCSManuever;
 public class ChargeEngage extends SequentialCommandGroup {
 
   public ChargeEngage(){
-    
     addCommands(
         new ParallelCommandGroup(
           new AutoCraneStingerAction(8, true),

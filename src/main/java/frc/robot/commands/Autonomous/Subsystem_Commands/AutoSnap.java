@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoSnap extends CommandBase{
@@ -16,7 +17,7 @@ public class AutoSnap extends CommandBase{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("Alignment Started");
+        Logger.info("DSNAP", "Snap Started");
     }
 
 
@@ -24,14 +25,14 @@ public class AutoSnap extends CommandBase{
     @Override
     public void execute() {
         double rotation = -0.1 * Math.abs(angle-Robot.drivetrain.getHeading())/(angle-Robot.drivetrain.getHeading());
-        System.out.println(angle-Robot.drivetrain.getHeading());
+        Logger.info("DSNAP", Double.toString(angle-Robot.drivetrain.getHeading()) + " Degrees");
         Robot.drivetrain.drive(0.0, 0.0, rotation, false);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Snap Complete");
+        Logger.info("DSNAP", "Snap Complete");
         Robot.drivetrain.drive(0,0,0,true);
         Robot.drivetrain.resetEncoders();
     }

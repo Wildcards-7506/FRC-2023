@@ -13,7 +13,6 @@ import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCSManuever;
 public class ChargeMobility extends SequentialCommandGroup {
 
   public ChargeMobility(){
-    
     addCommands(
       new ParallelCommandGroup(
         new AutoCraneStingerAction(8, true),

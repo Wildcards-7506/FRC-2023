@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import java.text.DecimalFormat;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.Robot;
@@ -14,7 +16,7 @@ public class DrivetrainTeleopCommand extends CommandBase{
     boolean mecanumDrive = true;
     String payload;
     private boolean prev_MecanumDrive = false;
-
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public DrivetrainTeleopCommand() {
         addRequirements(Robot.drivetrain);
@@ -94,7 +96,10 @@ public class DrivetrainTeleopCommand extends CommandBase{
         } else {
             Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
         }   
-        payload = Double.toString(yspeed) + " " + Double.toString(xspeed) + " " + Double.toString(rot);
-        Logger.info(payload);
+        payload = df.format(yspeed)
+         + " " + df.format(xspeed)
+         + " " + df.format(rot)
+         + " (Y,X,R)";
+        Logger.info("DRIVE", payload);
     }
 }

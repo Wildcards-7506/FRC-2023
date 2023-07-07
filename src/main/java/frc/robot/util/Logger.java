@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -27,22 +28,20 @@ public class Logger{
     private int id = 100000;
     private boolean empty = true;
     private boolean flushed = true;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     private Logger(){
         try{    
             // "/U" is the default directory for RoboRIO flash drives
-            File logFile = new File("C:/Users/acdel/Desktop/Robotics/FRC_2023/FRC-2023/src/main/java/frc/robot/util/latest.txt");
+            File logFile = new File("/U/logs/latest.txt");
 
             // If there is already a "latest" log file, rename it
             // to its id before creating a new one.
-            System.out.println(logFile.exists());
             if(logFile.exists()){
-                System.out.println("FOUND");
                 Scanner getName = new Scanner(logFile);
-                System.out.println(getName.hasNext());
                 if(getName.hasNext()){
                     id = Integer.parseInt(getName.nextLine());
-                    File saved = new File("C:/Users/acdel/Desktop/Robotics/FRC_2023/FRC-2023/src/main/java/frc/robot/util/" + id + ".txt");
+                    File saved = new File("/U/logs/" + id + ".txt");
                     logFile.renameTo(saved);
                 }
                 
@@ -73,7 +72,7 @@ public class Logger{
             // Use StringBuilder for efficiency.
             StringBuilder msgBuilder = new StringBuilder(64);
             msgBuilder.append("[")
-                .append(Timer.getFPGATimestamp())
+                .append(df.format(Timer.getFPGATimestamp()))
                 .append("] [")
                 .append(tag)
                 .append("]: ")
@@ -101,10 +100,10 @@ public class Logger{
     /**
      * Log message at the INFO importance level.
      */
-    public static void info(String message){
+    public static void info(String subsystem_or_function, String message){
         if(message.isEmpty())
             return;
-        instance.log("INFO", message);
+        instance.log(subsystem_or_function, message);
     }
 
     /**

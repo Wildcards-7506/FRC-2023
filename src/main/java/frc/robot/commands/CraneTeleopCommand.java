@@ -1,10 +1,13 @@
 package frc.robot.commands;
 
+import java.text.DecimalFormat;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.util.Logger;
 
 public class CraneTeleopCommand extends CommandBase {
     double rotatorSetpoint;
@@ -13,6 +16,7 @@ public class CraneTeleopCommand extends CommandBase {
     private int prev_CraneState = -1;
     private boolean latch = false;
     private boolean release = false;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public CraneTeleopCommand() {
         addRequirements(Robot.crane);
@@ -127,8 +131,22 @@ public class CraneTeleopCommand extends CommandBase {
             SmartDashboard.putNumber("Extender Setpoint", Constants.kExtenderClosed);
         }
 
-        SmartDashboard.putNumber("POV", prev_CraneState);
-
+        Logger.info("ROTTR", 
+        df.format(rotatorSetpoint)
+        + " " + df.format(Robot.crane.getRotatorLEncoder())
+        + " " + df.format(Robot.crane.getRotatorLEncoder() - rotatorSetpoint)
+        + " (Setpoint, Position, Error)");
+        Logger.info("EXTND", 
+        df.format(extenderSetpoint)
+        + " " + df.format(Robot.crane.getExtenderEncoder())
+        + " " + df.format(Robot.crane.getExtenderEncoder() - extenderSetpoint)
+        + " (Setpoint, Position, Error)");
+        Logger.info("WRIST", 
+        df.format(wristSetpoint)
+        + " " + df.format(Robot.crane.getWristEncoder())
+        + " " + df.format(Robot.crane.getWristEncoder() - wristSetpoint)
+        + " (Setpoint, Position, Error)");
+        
         Robot.crane.updateEncoderValues();
     }
 }
