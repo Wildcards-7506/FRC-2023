@@ -18,7 +18,7 @@ public class ChargeEngage extends SequentialCommandGroup {
         new ParallelCommandGroup(
           new AutoCraneStingerAction(8, true),
           new AutoCraneRotatorPosition(Constants.kRotatorDoubleSub + Constants.kRotatorDoubleCubeOffset),
-          new AutoCraneWristPosition(Constants.kWristGround)
+          new AutoCraneWristPosition(Constants.kWristDoubleSub + Constants.kWristCubeDoubleOffset)
         ),
         new AutoCraneExtenderPosition(Constants.kExtenderCollect),
         new AutoCraneStingerAction(-8, false),

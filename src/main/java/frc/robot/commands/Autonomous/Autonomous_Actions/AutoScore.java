@@ -22,9 +22,9 @@ public class AutoScore extends SequentialCommandGroup {
       new AutoCraneExtenderPosition(Constants.kExtenderHi + offset),
       new AutoCraneStingerAction(12 - 24 * pipeline, false),
       new ParallelCommandGroup(
-        new AutoCraneRotatorPosition(Constants.kRotatorGround),
+        new AutoCraneRotatorPosition(Constants.kRotatorClosed),
         new AutoCraneExtenderPosition(-1),
-        new AutoCraneWristPosition(Constants.kWristGround)
+        new AutoCraneWristPosition(Constants.kWristClosed)
       )
     );
   }

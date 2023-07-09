@@ -22,7 +22,7 @@ public class AutoCraneStingerAction extends CommandBase{
     public void initialize() {
         timer = new Timer();
         timer.start();
-        Logger.info("STING", "Claw Started");
+        Logger.info("STING", "Stinger Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
