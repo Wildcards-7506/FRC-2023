@@ -52,7 +52,7 @@ public class Ricardo extends PlayerConfigs {
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.fineExtender = Robot.controller1.getRightStickButton();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
-        PlayerConfigs.cubeHold = Robot.controller1.getLeftBumper();
+        PlayerConfigs.singleSub = Robot.controller1.getLeftBumper();
 
         //Pinchers
         PlayerConfigs.leftPinch = Robot.controller1.getXButton();

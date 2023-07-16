@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -25,7 +26,7 @@ public class AutoGroundTarget extends CommandBase{
     @Override
     public void initialize() {
         Robot.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
-        System.out.println("Drive initialized");
+        Logger.info("DTRGT", "Starting...");
         Robot.drivetrain.resetEncoders();
     }
 
@@ -35,7 +36,7 @@ public class AutoGroundTarget extends CommandBase{
         Robot.crane.setStinger(intake);
         ySpeed = Robot.limelight.getTX();  
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
-        System.out.println(Robot.limelight.getTX());
+        Logger.info("DTRGT", Double.toString(Robot.limelight.getTX()) + " Degrees");
         Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, true);
         Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
@@ -44,7 +45,7 @@ public class AutoGroundTarget extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("ended");
+        Logger.info("DTRGT", "Ending...");
         Robot.drivetrain.drive(0,0,0,true);
         Robot.crane.setStinger(intake/Math.abs(intake));
     }

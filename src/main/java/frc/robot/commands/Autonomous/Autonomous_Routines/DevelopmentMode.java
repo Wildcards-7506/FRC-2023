@@ -10,9 +10,8 @@ public class DevelopmentMode extends SequentialCommandGroup {
 
   public DevelopmentMode(){
     addCommands(
-      new AutoDropWheelPosition(Constants.kDropWheelDistance),
-      // new AutoCSManuever(.3)
-      new AutoBalance(0)
+      new AutoScore(0, 0),
+      new AutoCollect(5,8,1)
     );
   }
 }

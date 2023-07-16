@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -21,22 +22,30 @@ public class AutoCraneStingerAction extends CommandBase{
     public void initialize() {
         timer = new Timer();
         timer.start();
-        System.out.println("Claw Started");
+        Logger.info("STING", "Stinger Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
             Robot.crane.setStinger(action);
+            Logger.info("STING", 
+            Double.toString(Robot.crane.getStingerCurrent()) + " Amps");
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Claw Complete");
+        
         if (actionFlag){
+            if(timer.get() >= 5){
+                Logger.info("STING", "Intake Complete - Target Missed");
+            } else{
+                Logger.info("STING", "Intake Complete - Target Acquired");
+            }
             Robot.crane.setStinger(action/Math.abs(action));
         } else if (!actionFlag){
+            Logger.info("STINGER", "Outtake Complete");
             Robot.crane.setStinger(0);
         }
     }

@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.util.Logger;
 
 public class Pinchers extends SubsystemBase{
     private CANSparkMax leftPincher;
@@ -77,5 +78,10 @@ public class Pinchers extends SubsystemBase{
     public void resetEncoders() {
         pincherLEncoder.setPosition(0);
         pincherREncoder.setPosition(0);
+    }
+
+    public void errorCheck(){
+        if(rightPincher.getFaults()!=0){Logger.warn("PINCL: " + Short.toString(rightPincher.getFaults()));}
+        if(leftPincher.getFaults()!=0){Logger.warn("PINCR: " + Short.toString(leftPincher.getFaults()));}
     }
 }

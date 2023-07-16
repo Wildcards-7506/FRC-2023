@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -17,19 +18,24 @@ public class AutoCraneRotatorPosition extends CommandBase{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("Rotation Started");
+        Logger.info("ROTTR","Rotation Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         Robot.crane.setRotator(rotatorSetPoint);
+        Logger.info("ROTTR", 
+            Double.toString(Robot.crane.getRotatorLEncoder())
+            + " " + Double.toString(Robot.crane.getRotatorLEncoder() - rotatorSetPoint)
+            + " (Position, Error)"
+        );
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Rotate Complete");
+        Logger.info("ROTTR","Rotation Complete");
         Robot.crane.setRotator(rotatorSetPoint);
     }
 

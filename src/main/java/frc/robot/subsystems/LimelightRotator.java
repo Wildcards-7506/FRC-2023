@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.util.Logger;
 
 public class LimelightRotator extends SubsystemBase{
 
@@ -39,5 +40,9 @@ public class LimelightRotator extends SubsystemBase{
 
     public double getPosition () {
         return llRotatorEncoder.getPosition();
+    }
+
+    public void errorCheck(){
+        if(llRotator.getFaults()!=0){Logger.warn("LLROT: " + Short.toString(llRotator.getFaults()));}
     }
 }

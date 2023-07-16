@@ -7,7 +7,6 @@ import frc.robot.commands.Autonomous.Subsystem_Commands.AutoLineDrive;
 public class PlaceMoveStop extends SequentialCommandGroup {
 
   public PlaceMoveStop(){
-    
     addCommands(
         new AutoScore(0,0),
         new AutoLineDrive(3)

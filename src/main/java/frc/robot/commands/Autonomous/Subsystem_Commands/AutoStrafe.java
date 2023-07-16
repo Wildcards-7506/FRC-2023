@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -19,6 +20,7 @@ public class AutoStrafe extends CommandBase{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        Logger.info("STRAFE","Strafe Started");
         time.reset();
         time.start();
     }
@@ -28,12 +30,13 @@ public class AutoStrafe extends CommandBase{
     public void execute() {        
         Robot.drivetrain.drive(0, this.setpoint, 0, true);
         Robot.drivetrain.m_drive.feed();
+        Logger.info("STRAFE",Double.toString(time.get()) + " Seconds");
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("ended");
+        Logger.info("STRAFE","Strafe Complete");
         Robot.drivetrain.drive(0,0,0,true);   
     }
 

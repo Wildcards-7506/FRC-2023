@@ -1,6 +1,7 @@
 package frc.robot.commands.Autonomous.Subsystem_Commands;
 
 import frc.robot.Robot;
+import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoScoringAlign extends CommandBase{
@@ -21,13 +22,14 @@ public class AutoScoringAlign extends CommandBase{
         if(pipeline == 0){
             Robot.limelight.conePipeline();
         } else {Robot.limelight.cubePipeline();}
-        System.out.println("Alignment Started");
+        Logger.info("ALIGN", "Alignment Started");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         Robot.limelight.updateData();
+        Logger.info("ALIGN", Double.toString(Robot.limelight.getTX()) + " Degrees");
         xOffset = 0.2 * Robot.limelight.getTX()/Math.abs(Robot.limelight.getTX());
         Robot.drivetrain.drive(0, xOffset, 0, true);
     }
@@ -35,7 +37,7 @@ public class AutoScoringAlign extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Align Complete");
+        Logger.info("ALIGN", "Alignment Complete");
         Robot.drivetrain.drive(0,0,0,true);
     }
 

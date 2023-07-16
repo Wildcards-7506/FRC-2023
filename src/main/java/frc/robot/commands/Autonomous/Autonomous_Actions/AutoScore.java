@@ -12,7 +12,6 @@ import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneWristPosition;
 public class AutoScore extends SequentialCommandGroup {
 
   public AutoScore(int pipeline, double offset){
-
     addCommands(
       new AutoScoringAlign(pipeline),
       new AutoCraneStingerAction(-8+16*pipeline, true),
@@ -23,9 +22,9 @@ public class AutoScore extends SequentialCommandGroup {
       new AutoCraneExtenderPosition(Constants.kExtenderHi + offset),
       new AutoCraneStingerAction(12 - 24 * pipeline, false),
       new ParallelCommandGroup(
-        new AutoCraneRotatorPosition(Constants.kRotatorGround),
+        new AutoCraneRotatorPosition(Constants.kRotatorClosed),
         new AutoCraneExtenderPosition(-1),
-        new AutoCraneWristPosition(Constants.kWristGround)
+        new AutoCraneWristPosition(Constants.kWristClosed)
       )
     );
   }

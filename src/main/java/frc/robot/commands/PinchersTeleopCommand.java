@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
+import frc.robot.util.Logger;
 
 public class PinchersTeleopCommand extends CommandBase {
 
@@ -21,12 +22,14 @@ public class PinchersTeleopCommand extends CommandBase {
             prev_pinchLeftUp = PlayerConfigs.leftPinch;
             if(PlayerConfigs.leftPinch){
                 pinchLeftUp = !pinchLeftUp;
+                Logger.info("PINCH", "Move Left Pincher");
             }
         }
         if(PlayerConfigs.rightPinch != prev_pinchRightUp){
             prev_pinchRightUp = PlayerConfigs.rightPinch;
             if(PlayerConfigs.rightPinch){
                 pinchRightUp = !pinchRightUp;
+                Logger.info("PINCH", "Move Right Pincher");
             }
         }
 

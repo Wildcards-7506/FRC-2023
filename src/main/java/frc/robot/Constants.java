@@ -127,19 +127,20 @@ public final class Constants {
         public static final int kRotateCurrentLimit = 30;
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.007;
-        public static final double kRotatorCubeHold = 20.0;
+        public static final double kRotatorSingleSub = 40;
         public static final double kRotatorGround = 15.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
-        public static final double kRotatorCollect = 85.0;
-        public static final double kRotatorCubeOffset = -30;
+        public static final double kRotatorDoubleSub = 85.0;
+        public static final double kRotatorDoubleCubeOffset = -30;
+        public static final double kRotatorSingleCubeOffset = -20;
         public static final double kRotatorVertical = 115.0;
         public static final double kRotatorClosed = 0.0;
         public static final double rotatorHorizontalOffset = 60;
 
         public static final int kExtenderCurrentLimit = 40;
         public static final double kExtendEncoderDistancePerPulse = 2.256*Math.PI/15.0;
-        public static final double kExtenderKP = 0.09;
+        public static final double kExtenderKP = 0.1;
         public static final double kExtenderGround = -23.0;
         public static final double kExtenderLo = -4.0;
         public static final double kExtenderHi = -22.0;
@@ -151,14 +152,15 @@ public final class Constants {
         public static final int kWristCurrentLimit = 10;
         public static final double kWristEncoderDistancePerPulse = 1.0/25 * 360;
         public static final double kWristKP = 0.1;
-        public static final double cubeOffset = 130.0;
         public static final double kWristHi = -200.0;
         public static final double kWristMid = -190.0;
-        public static final double kWristCollect = -35.0;
-        public static final double kWristGround = 115.0;
-        public static final double kWristCubeHold = -115.0;
+        public static final double kWristDoubleSub = -35.0;
+        public static final double kWristGround = 90.0;
+        public static final double kWristSingleSub= 90;
         public static final double kWristClosed = -10.0;
-
+        public static final double kWristCubeDoubleOffset = 130.0;
+        public static final double kWristCubeSingleOffset = -205;
+        public static final double kWristCubeGroundOffset = 40;
     //Pincher constants
         public static final double kHookLeft = 90.0;
         public static final double kHookRight = -90.0;

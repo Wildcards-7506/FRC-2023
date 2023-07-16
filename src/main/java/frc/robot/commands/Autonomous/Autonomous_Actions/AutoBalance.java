@@ -9,7 +9,6 @@ import frc.robot.commands.Autonomous.Subsystem_Commands.AutoSnap;
 public class AutoBalance extends SequentialCommandGroup {
 
   public AutoBalance(int angle){
-    
     addCommands(
       new AutoSnap(angle),
       new AutoDropWheelPosition(Constants.kDropWheelDistance),

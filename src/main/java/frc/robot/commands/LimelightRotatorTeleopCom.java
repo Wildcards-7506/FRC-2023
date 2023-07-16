@@ -20,5 +20,7 @@ public class LimelightRotatorTeleopCom extends CommandBase {
         } else {
             Robot.ll_rotator.setEyes(Constants.kLookGoal);
         }
+
+        Robot.ll_rotator.errorCheck();
     }
 }
