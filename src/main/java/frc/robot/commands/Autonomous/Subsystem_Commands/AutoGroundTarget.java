@@ -34,7 +34,7 @@ public class AutoGroundTarget extends CommandBase{
     @Override
     public void execute() {      
         Robot.crane.setStinger(intake);
-        ySpeed = -Robot.limelight.getTX();  
+        ySpeed = Robot.limelight.getTX();  
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
         Logger.info("DTRGT", Double.toString(Robot.limelight.getTX()) + " Degrees");
         Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, true);

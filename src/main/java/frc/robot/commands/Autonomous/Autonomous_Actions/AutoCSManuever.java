@@ -31,8 +31,8 @@ public class AutoCSManuever extends CommandBase{
     public void execute() {
         angle = Robot.drivetrain.getPitch();
         Logger.info("CSTRV", Double.toString(angle));
-        if(angle > 3){ascending = true;}
-        if(angle < -3){descending = true;}
+        if(angle > 10){ascending = true;}
+        if(angle < -10){descending = true;}
         if(ascending & descending){
             timer.start();
         }

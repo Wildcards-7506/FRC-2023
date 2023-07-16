@@ -43,7 +43,7 @@ public class AutoDropWheelPosition extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return  Math.abs(Robot.drivetrain.getDWL() - dropWheelSetPoint) >= 0.2 &&
-                Math.abs(Robot.drivetrain.getDWR() - dropWheelSetPoint) >= 0.2;
+        return  Math.abs(Robot.drivetrain.getDWL() - dropWheelSetPoint) <= 0.2 &&
+                Math.abs(Robot.drivetrain.getDWR() - dropWheelSetPoint) <= 0.2;
     }
 }

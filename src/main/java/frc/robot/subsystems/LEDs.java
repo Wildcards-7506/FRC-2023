@@ -66,7 +66,7 @@ public class LEDs extends SubsystemBase{
       int hue = (isRed == Alliance.Red) ? 0 : 120;
       for (var i = 0; i < 18; i++) {
         // Set the value
-        ledBuffer.setHSV(i, 255, 0, 130);
+        ledBuffer.setHSV(i, 255, 0, 15);
       }
       ledBuffer.setHSV(irisLoc, hue, 255, 255);
       ledBuffer.setHSV(irisLoc + 9, hue, 255, 255);
