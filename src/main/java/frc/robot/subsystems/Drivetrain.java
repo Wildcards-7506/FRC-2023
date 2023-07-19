@@ -5,6 +5,7 @@ import frc.robot.Constants;
 import frc.robot.util.Logger;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.math.kinematics.MecanumDriveOdometry;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelPositions;
@@ -95,6 +96,7 @@ public class Drivetrain extends SubsystemBase{
 
     public void updatePos() {
         odometry.update(gyro.getRotation2d(), getWheelPositions());
+        SmartDashboard.putNumber("Pitch", gyro.getRoll());
     }
 
     public Pose2d getPose(){
@@ -225,9 +227,9 @@ public class Drivetrain extends SubsystemBase{
         return -gyro.getAngle();
     }
 
-    public double getPitch(){
+    public double getRoll(){
         // get the property
-        return gyro.getPitch();
+        return gyro.getRoll();
     }
 
     /**

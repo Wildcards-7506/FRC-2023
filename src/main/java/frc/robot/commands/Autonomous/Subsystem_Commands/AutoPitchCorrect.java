@@ -29,7 +29,7 @@ public class AutoPitchCorrect extends CommandBase{
         Logger.info("PITCH", Double.toString(angle) + " Degrees");
         if(angle < -3 || angle > 3){
             tilted = true;
-            driveSpeed = 0.2 * angle/15;
+            driveSpeed = 0.23 * angle/15;
             time.reset();
         } else if(tilted) {
             time.start();

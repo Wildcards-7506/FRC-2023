@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 
   public static final LimelightRotator ll_rotator = new LimelightRotator(Constants.LIMELIGHT_ROTATOR);
 
-  public static final LEDs ledSystem = new LEDs(9,48);
+  public static final LEDs ledSystem = new LEDs(0,48);
 
   //Controllers
   public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
