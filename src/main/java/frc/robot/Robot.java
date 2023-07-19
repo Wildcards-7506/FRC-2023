@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    Logger.info("SYSTEM","Autonomous Started");
+    Logger.info("SYSTEM","Autonomous Program " + HDD.desiredMode.getName() + " Started");
     teamColor = DriverStation.getAlliance();
     CommandScheduler.getInstance().cancelAll();
     //Need LED Indicator Here
