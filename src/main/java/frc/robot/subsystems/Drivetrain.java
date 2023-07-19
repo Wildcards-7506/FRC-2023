@@ -94,7 +94,7 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void updatePos() {
-        odometry.update(gyro.getRotation2d(), wheelPositions);
+        odometry.update(gyro.getRotation2d(), getWheelPositions());
     }
 
     public Pose2d getPose(){
@@ -107,6 +107,9 @@ public class Drivetrain extends SubsystemBase{
      * @param pose The pose to which to set the odometry.
      */
     public void resetOdometry(Pose2d pose) {
+        Logger.info("DRIVE", "RESETTING TO " + pose);
+        resetEncoders();
+        zeroHeading();
         odometry.resetPosition(gyro.getRotation2d(), getWheelPositions(), pose);
     }
 

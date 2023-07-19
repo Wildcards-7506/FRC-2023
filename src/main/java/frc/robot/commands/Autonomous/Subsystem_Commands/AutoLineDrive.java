@@ -16,7 +16,7 @@ public class AutoLineDrive extends CommandBase{
     /** Creates a new Auto Pitch Correction Command. */
     public AutoLineDrive(double setPoint) {
         this.setpoint = setPoint;
-        this.xspeed = Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/(Robot.drivetrain.getWheelPositions().frontLeftMeters - setPoint);
+        this.xspeed = Math.abs(Robot.drivetrain.getPose().getX() - setpoint)/(Robot.drivetrain.getPose().getX() - setPoint);
     }
 
     // Called when the command is initially scheduled.
@@ -35,13 +35,13 @@ public class AutoLineDrive extends CommandBase{
             Robot.drivetrain.drive(driveSpeed, 0, 0, true);
         }
         else {
-            driveSpeed = xspeed * Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/setpoint;
+            driveSpeed = xspeed * Math.abs(Robot.drivetrain.getPose().getX() - setpoint)/setpoint;
             Robot.drivetrain.drive(driveSpeed, 0, 0, true);
         }
         Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
         Logger.info("DLINE", 
-            Double.toString(Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)) + " Meters"
+            Double.toString(Math.abs(Robot.drivetrain.getPose().getX() - setpoint)) + " Meters"
         );
     }
 
@@ -55,6 +55,6 @@ public class AutoLineDrive extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint) < 0.1;
+        return Math.abs(Robot.drivetrain.getPose().getX() - setpoint) < 0.1;
     }
 }

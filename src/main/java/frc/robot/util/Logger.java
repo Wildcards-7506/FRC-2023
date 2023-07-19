@@ -101,9 +101,9 @@ public class Logger{
      * Log message at the INFO importance level.
      */
     public static void info(String subsystem_or_function, String message){
-        if(message.isEmpty())
-            return;
-        instance.log(subsystem_or_function, message);
+        // if(message.isEmpty())
+        //     return;
+        // instance.log(subsystem_or_function, message);
     }
 
     /**

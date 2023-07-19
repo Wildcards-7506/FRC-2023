@@ -37,9 +37,6 @@ public class AutoPathDrive {
                 Robot.drivetrain::setDriveMotorControllersVolts, // Consumer for the output motor voltages
                 Robot.drivetrain);
     
-        // Reset odometry to the starting pose of the trajectory.
-        Robot.drivetrain.resetOdometry(trajectory.getInitialPose());
-    
         // Run path following command, then stop at the end.
         return mecanumControllerCommand.andThen(() -> Robot.drivetrain.drive(0, 0, 0, false));
       }

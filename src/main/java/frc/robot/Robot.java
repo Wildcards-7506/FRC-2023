@@ -81,7 +81,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    limelight.updateData();
     HDD.initBot();
     Logger.info("SYSTEM","Robot Started");
   }

@@ -19,7 +19,7 @@ public class AutoGroundTarget extends CommandBase{
     public AutoGroundTarget(double setPoint, double intakeSpeed) {
         this.setpoint = setPoint;
         this.intake = intakeSpeed;
-        this.xspeed = 0.3 * Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint)/(Robot.drivetrain.getWheelPositions().frontLeftMeters - setPoint);
+        this.xspeed = 0.3 * Math.abs(Robot.drivetrain.getPose().getX() - setpoint)/(Robot.drivetrain.getPose().getX() - setPoint);
     }
 
     // Called when the command is initially scheduled.
@@ -53,7 +53,7 @@ public class AutoGroundTarget extends CommandBase{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return (Math.abs(Robot.drivetrain.getWheelPositions().frontLeftMeters - setpoint) < 0.1) ||
+        return (Math.abs(Robot.drivetrain.getPose().getX() - setpoint) < 0.1) ||
                 Robot.crane.getStingerCurrent() > 30;
     }
 }
