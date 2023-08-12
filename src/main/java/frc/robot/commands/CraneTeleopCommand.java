@@ -58,9 +58,13 @@ public class CraneTeleopCommand extends CommandBase {
 
         //Craneworks
         if (prev_CraneState == 180) {
-            rotatorSetpoint = Constants.kRotatorGround;
             extenderSetpoint = Constants.kExtenderGround;
             wristSetpoint = Constants.kWristGround + Constants.kWristCubeGroundOffset * Robot.limelight.getPipeline();
+            if(Robot.crane.getWristEncoder() - wristSetpoint < 10 && Robot.crane.getExtenderEncoder() - extenderSetpoint < 1){
+                rotatorSetpoint = Constants.kRotatorGround;
+            } else {
+                rotatorSetpoint = Constants.kRotatorGroundClear;
+            }
         } else if (prev_CraneState == 270){
             rotatorSetpoint = Constants.kRotatorDoubleSub + (Constants.kRotatorDoubleCubeOffset * Robot.limelight.getPipeline());
             extenderSetpoint = Constants.kExtenderCollect;

@@ -4,7 +4,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Autonomous.Subsystem_Commands.AutoDropWheelPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneRotatorPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneStingerAction;
@@ -25,10 +24,7 @@ public class ChargeEngage extends SequentialCommandGroup {
         ),
         new AutoCraneExtenderPosition(Constants.kExtenderCollect),
         new AutoCraneStingerAction(-8, false),
-        new ParallelCommandGroup(
-          new AutoCraneExtenderPosition(Constants.kExtenderClosed),
-          new AutoDropWheelPosition(Constants.kDropWheelDistance)
-        ),
+        new AutoCraneExtenderPosition(Constants.kExtenderClosed),
         new ParallelCommandGroup(
           new AutoCraneRotatorPosition(Constants.kRotatorClosed),
           new AutoCraneWristPosition(Constants.kWristClosed),

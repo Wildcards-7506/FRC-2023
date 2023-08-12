@@ -128,7 +128,8 @@ public final class Constants {
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.007;
         public static final double kRotatorSingleSub = 40;
-        public static final double kRotatorGround = 15.0;
+        public static final double kRotatorGroundClear = 15.0;
+        public static final double kRotatorGround = -5.0;
         public static final double kRotatorHi = 160.0;
         public static final double kRotatorMid = 165.0;
         public static final double kRotatorDoubleSub = 85.0;
