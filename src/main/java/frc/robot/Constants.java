@@ -10,12 +10,14 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 public final class Constants {
     //Motor IDs
         //Drivetrain
-        public static final int LEFT_DRIVE_TRAIN_BACK = 11;
-        public static final int LEFT_DRIVE_TRAIN_FORWARD = 10;
-        public static final int RIGHT_DRIVE_TRAIN_BACK = 1;
-        public static final int RIGHT_DRIVE_TRAIN_FORWARD = 20;
-        public static final int DROP_WHEEL_LEFT = 4;
-        public static final int DROP_WHEEL_RIGHT = 5;
+        public static final int FRONT_LEFT_DRIVE = 0;
+        public static final int FRONT_LEFT_STEER = 0;
+        public static final int FRONT_RIGHT_DRIVE = 0;
+        public static final int FRONT_RIGHT_STEER = 0;
+        public static final int BACK_LEFT_DRIVE = 0;
+        public static final int BACK_LEFT_STEER = 0;
+        public static final int BACK_RIGHT_DRIVE = 0;
+        public static final int BACK_RIGHT_STEER = 0;
         
         //Crane
         public static final int CRANE_EXTENDER = 19;

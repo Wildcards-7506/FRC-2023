@@ -64,33 +64,33 @@ public class HDD {
         SmartDashboard.putData(auto_chooser);
     }
 
-    public static void updateStartupConfig(){
-        desiredMode = auto_chooser.getSelected();
-        if(desiredMode.getName() != autoModePrev){
-            switch (desiredMode.getName()){
-                case "ScoreOnly" : 
-                    Robot.drivetrain.resetOdometry(scoreOnly.pose);
-                    break;
-                case "PlaceMoveStop" :
-                    Robot.drivetrain.resetOdometry(placeMoveStop.pose);
-                    break;
-                case "TwoPieceAutoLeft" : 
-                    Robot.drivetrain.resetOdometry(twoPieceLeft.pose);
-                    break;
-                case "TwoPieceAutoRight" : 
-                    Robot.drivetrain.resetOdometry(twoPieceRight.pose);
-                    break;
-                case "ChargeEngage" : 
-                    Robot.drivetrain.resetOdometry(chargeEngage.pose);
-                    break;
-                case "ChargeMobility" : 
-                    Robot.drivetrain.resetOdometry(chargeMobility.pose);
-                    break;
-                case "DevelopmentMode" : 
-                    Robot.drivetrain.resetOdometry(test.pose);
-                    break;
-            }
-            autoModePrev = desiredMode.getName();
-        }
-    }
+    // public static void updateStartupConfig(){
+    //     desiredMode = auto_chooser.getSelected();
+    //     if(desiredMode.getName() != autoModePrev){
+    //         switch (desiredMode.getName()){
+    //             case "ScoreOnly" : 
+    //                 Robot.drivetrain.resetOdometry(scoreOnly.pose);
+    //                 break;
+    //             case "PlaceMoveStop" :
+    //                 Robot.drivetrain.resetOdometry(placeMoveStop.pose);
+    //                 break;
+    //             case "TwoPieceAutoLeft" : 
+    //                 Robot.drivetrain.resetOdometry(twoPieceLeft.pose);
+    //                 break;
+    //             case "TwoPieceAutoRight" : 
+    //                 Robot.drivetrain.resetOdometry(twoPieceRight.pose);
+    //                 break;
+    //             case "ChargeEngage" : 
+    //                 Robot.drivetrain.resetOdometry(chargeEngage.pose);
+    //                 break;
+    //             case "ChargeMobility" : 
+    //                 Robot.drivetrain.resetOdometry(chargeMobility.pose);
+    //                 break;
+    //             case "DevelopmentMode" : 
+    //                 Robot.drivetrain.resetOdometry(test.pose);
+    //                 break;
+    //         }
+    //         autoModePrev = desiredMode.getName();
+    //     }
+    // }
 }

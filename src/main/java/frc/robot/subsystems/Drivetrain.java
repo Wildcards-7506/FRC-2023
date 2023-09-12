@@ -21,83 +21,65 @@ import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain extends SubsystemBase{
-    private CANSparkMax motorLeftFront;
-    private CANSparkMax motorLeftBack;
-    private CANSparkMax motorRightFront;
-    private CANSparkMax motorRightBack;
-    private CANSparkMax dropWheelLeft;
-    private CANSparkMax dropWheelRight;
-    public RelativeEncoder m_leftEncoder0;
-    public RelativeEncoder m_rightEncoder0; 
-    public RelativeEncoder m_leftEncoder1;
-    public RelativeEncoder m_rightEncoder1; 
-    public RelativeEncoder dwlEncoder;
-    public RelativeEncoder dwrEncoder; 
+    private CANSparkMax motorFrontLeftDrive;
+    private CANSparkMax motorFrontLeftSteer;
+    private CANSparkMax motorFrontRightDrive;
+    private CANSparkMax motorFrontRightSteer;
+    private CANSparkMax motorBackLeftDrive;
+    private CANSparkMax motorBackLeftSteer;
+    private CANSparkMax motorBackRightDrive;
+    private CANSparkMax motorBackRightSteer;
+    public RelativeEncoder frontLeftEncoder;
+    public RelativeEncoder frontRightEncoder; 
+    public RelativeEncoder backLeftEncoder;
+    public RelativeEncoder backRightEncoder; 
     
-    public final MecanumDrive m_drive;
+    //public final MecanumDrive m_drive;
 
     public AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
     public MecanumDriveOdometry odometry;
     public MecanumDriveWheelPositions wheelPositions = new MecanumDriveWheelPositions();
 
-    public Drivetrain (int lf, int lb, int rf, int rb, int dwl, int dwr){
-        motorLeftFront = new CANSparkMax(lf, MotorType.kBrushless);
-        motorLeftBack = new CANSparkMax(lb, MotorType.kBrushless);
-        motorRightFront = new CANSparkMax(rf, MotorType.kBrushless);
-        motorRightBack = new CANSparkMax(rb, MotorType.kBrushless);
-        dropWheelLeft = new CANSparkMax(dwl, MotorType.kBrushless);
-        dropWheelRight = new CANSparkMax(dwr, MotorType.kBrushless);
+    public Drivetrain(int fld, int fls, int frd, int frs, int bld, int bls, int brd, int brs){
+        motorFrontLeftDrive = new CANSparkMax(fld, MotorType.kBrushless);
+        motorFrontLeftSteer = new CANSparkMax(fls, MotorType.kBrushless);
+        motorFrontRightDrive = new CANSparkMax(frd, MotorType.kBrushless);
+        motorFrontRightSteer = new CANSparkMax(frs, MotorType.kBrushless);
+        motorBackLeftDrive = new CANSparkMax(bld, MotorType.kBrushless);
+        motorBackLeftSteer = new CANSparkMax(bls, MotorType.kBrushless);
+        motorBackRightDrive = new CANSparkMax(brd, MotorType.kBrushless);
+        motorBackRightSteer = new CANSparkMax(brs, MotorType.kBrushless);
 
-        m_leftEncoder0 = motorLeftFront.getEncoder();
-        m_rightEncoder0 = motorRightFront.getEncoder();
-        m_leftEncoder1 = motorLeftBack.getEncoder();
-        m_rightEncoder1 = motorRightBack.getEncoder();
-        dwlEncoder = dropWheelLeft.getEncoder();
-        dwrEncoder = dropWheelRight.getEncoder();
-
-        motorRightBack.setInverted(true);
-        motorRightFront.setInverted(true);
-        dropWheelLeft.setInverted(true);
-        dropWheelRight.setInverted(true);
-
-        dropWheelLeft.enableSoftLimit(SoftLimitDirection.kForward, false);
-        dropWheelLeft.enableSoftLimit(SoftLimitDirection.kReverse, false);
-        dropWheelRight.enableSoftLimit(SoftLimitDirection.kForward, false);
-        dropWheelRight.enableSoftLimit(SoftLimitDirection.kReverse, false);
-
-        m_drive = new MecanumDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
+        frontLeftEncoder = motorFrontLeftSteer.getEncoder();
+        frontRightEncoder = motorFrontRightSteer.getEncoder();
+        backLeftEncoder = motorBackLeftSteer.getEncoder();
+        backRightEncoder = motorBackRightSteer.getEncoder();
 
         resetEncoders();
 
-        odometry = new MecanumDriveOdometry(Constants.kinematics, Rotation2d.fromDegrees(getHeading()), getWheelPositions());
-        m_leftEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        m_rightEncoder0.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        m_leftEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        m_rightEncoder1.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-        dwlEncoder.setPositionConversionFactor(Constants.dropWheelGearRatio);
-        dwrEncoder.setPositionConversionFactor(Constants.dropWheelGearRatio);
-
-        motorLeftFront.burnFlash();
-        motorLeftBack.burnFlash();
-        motorRightFront.burnFlash();
-        motorRightBack.burnFlash();
-        dropWheelLeft.burnFlash();
-        dropWheelRight.burnFlash();
+        motorFrontLeftDrive.burnFlash();
+        motorFrontLeftSteer.burnFlash();
+        motorFrontRightDrive.burnFlash();
+        motorFrontRightSteer.burnFlash();
+        motorBackLeftDrive.burnFlash();
+        motorBackLeftSteer.burnFlash();
+        motorBackRightDrive.burnFlash();
+        motorBackRightSteer.burnFlash();
     }
 
     //Every scheduler cycle, we pass our XBox controls so we can control the drivetrain and update its pose in the dashboards
     @Override
     public void periodic(){
         //Update the odometry in the periodic block
-        updatePos();
+        // updatePos();
         //System.out.println(odometry.getPoseMeters());
     }
 
-    public void updatePos() {
-        odometry.update(gyro.getRotation2d(), getWheelPositions());
-        SmartDashboard.putNumber("Pitch", gyro.getRoll());
-    }
+    // public void updatePos() {
+    //     odometry.update(gyro.getRotation2d(), getWheelPositions());
+    //     SmartDashboard.putNumber("Pitch", gyro.getRoll());
+    // }
 
     public Pose2d getPose(){
         return odometry.getPoseMeters();
@@ -108,30 +90,13 @@ public class Drivetrain extends SubsystemBase{
      *
      * @param pose The pose to which to set the odometry.
      */
-    public void resetOdometry(Pose2d pose) {
-        Logger.info("DRIVE", "RESETTING TO " + pose);
-        resetEncoders();
-        zeroHeading();
-        odometry.resetPosition(gyro.getRotation2d(), getWheelPositions(), pose);
-    }
 
-    public MecanumDriveWheelSpeeds getWheelSpeeds(){
-        return new MecanumDriveWheelSpeeds(
-            m_leftEncoder0.getVelocity(), 
-            m_leftEncoder1.getVelocity(), 
-            m_rightEncoder0.getVelocity(), 
-            m_rightEncoder1.getVelocity()
-        ); 
-    }
-
-    public MecanumDriveWheelPositions getWheelPositions() {
-        return new MecanumDriveWheelPositions(
-            m_leftEncoder0.getPosition(),
-            m_rightEncoder0.getPosition(),
-            m_leftEncoder1.getPosition(),
-            m_rightEncoder1.getPosition()
-        );
-    }
+    // public void resetOdometry(Pose2d pose) {
+    //     Logger.info("DRIVE", "RESETTING TO " + pose);
+    //     resetEncoders();
+    //     zeroHeading();
+    //     odometry.resetPosition(gyro.getRotation2d(), getWheelPositions(), pose);
+    // }
 
     /**
      * Drives the robot at given x, y and theta speeds. Speeds range from [-1, 1] and the linear
@@ -144,21 +109,21 @@ public class Drivetrain extends SubsystemBase{
      */
     @SuppressWarnings("ParameterName")
     public void drive(double ySpeed, double xSpeed, double rot, boolean fieldRelative) {
-        if (fieldRelative) {
-        m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(Math.toRadians(gyro.getAngle())));
-        } else {
-        m_drive.driveCartesian(-ySpeed, xSpeed, rot);
-        }
+        // if (fieldRelative) {
+        // m_drive.driveCartesian(-ySpeed, xSpeed, rot, new Rotation2d(Math.toRadians(gyro.getAngle())));
+        // } else {
+        // m_drive.driveCartesian(-ySpeed, xSpeed, rot);
+        // }
     }
 
     
     /** Sets the front left drive MotorController to a voltage. FOR USE IN AUTO ONLY */
-    public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
-        motorLeftFront.setVoltage(volts.frontLeftVoltage);
-        motorRightFront.setVoltage(volts.rearLeftVoltage);
-        motorLeftBack.setVoltage(volts.frontRightVoltage);
-        motorRightBack.setVoltage(volts.rearRightVoltage);
-    }
+    // public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
+    //     motorLeftFront.setVoltage(volts.frontLeftVoltage);
+    //     motorRightFront.setVoltage(volts.rearLeftVoltage);
+    //     motorLeftBack.setVoltage(volts.frontRightVoltage);
+    //     motorRightBack.setVoltage(volts.rearRightVoltage);
+    // }
 
     public void snap(double angle){
         if(Math.abs(getHeading() % 360 - angle) > Constants.kSnapRange){
@@ -186,36 +151,16 @@ public class Drivetrain extends SubsystemBase{
         drive(linear, strafe, rotation, true);
     }
 
-    public void setDropWheels(double level){
-        double marginL = level - dwlEncoder.getPosition();
-        double marginR = level - dwrEncoder.getPosition();
-
-        if(Math.abs(marginL) > 0.1){
-            dropWheelLeft.setVoltage(12*marginL/Math.abs(marginL));
-        } else {dropWheelLeft.setVoltage(0);}
-        if(Math.abs(marginR) > 0.1){
-            dropWheelRight.setVoltage(12*marginR/Math.abs(marginR));
-        } else {dropWheelRight.setVoltage(0);}
-    }
-
-    public void setLDropWheelVoltage (double voltAmt) {
-        dropWheelLeft.setVoltage(voltAmt);
-    }
-
-    public void setRDropWheelVoltage (double voltAmt) {
-        dropWheelRight.setVoltage(voltAmt);
-    }
-
     public void resetEncoders() {
-        m_leftEncoder0.setPosition(0);
-        m_rightEncoder0.setPosition(0);
-        m_leftEncoder1.setPosition(0);
-        m_rightEncoder1.setPosition(0);
+        frontLeftEncoder.setPosition(0);
+        frontRightEncoder.setPosition(0);
+        backLeftEncoder.setPosition(0);
+        backRightEncoder.setPosition(0);
     }
 
-    public void setMaxOutput(double maxOutput) {
-        m_drive.setMaxOutput(maxOutput);
-    }
+    // public void setMaxOutput(double maxOutput) {
+    //     m_drive.setMaxOutput(maxOutput);
+    // }
 
     /** Zeroes the heading of the robot. */
     public void zeroHeading() {
@@ -239,22 +184,5 @@ public class Drivetrain extends SubsystemBase{
      */
     public double getTurnRate() {
         return -gyro.getRate();
-    }
-
-    public double getDWL(){
-        return dwlEncoder.getPosition();
-    }
-
-    public double getDWR(){
-        return dwrEncoder.getPosition();
-    }
-
-    public void errorCheck(){
-        if(dropWheelLeft.getFaults()!=0){Logger.warn("DRPWL: " + Short.toString(dropWheelLeft.getFaults()));}
-        if(dropWheelRight.getFaults()!=0){Logger.warn("DRPWR: " + Short.toString(dropWheelRight.getFaults()));}
-        if(motorLeftFront.getFaults()!=0){Logger.warn("DTWLF" + Short.toString(motorLeftFront.getFaults()));}
-        if(motorLeftBack.getFaults()!=0){Logger.warn("DTWLB" + Short.toString(motorLeftBack.getFaults()));}
-        if(motorRightFront.getFaults()!=0){Logger.warn("DTWRF" + Short.toString(motorRightFront.getFaults()));}
-        if(motorRightBack.getFaults()!=0){Logger.warn("DTWRB" + Short.toString(motorRightBack.getFaults()));}
     }
 }

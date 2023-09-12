@@ -33,7 +33,7 @@ public class DrivetrainTeleopCommand extends CommandBase{
         
         //Mecanum Drive
         if(mecanumDrive){
-            Robot.drivetrain.setDropWheels(0);
+            //Robot.drivetrain.setDropWheels(0);
             double xInputSpeed = PlayerConfigs.fineControlToggle ? 
                 PlayerConfigs.fineDriveSpeed * PlayerConfigs.fineControlX :
                 PlayerConfigs.driveSpeed * PlayerConfigs.xMovement;
@@ -63,17 +63,17 @@ public class DrivetrainTeleopCommand extends CommandBase{
                 PlayerConfigs.fineTurnSpeed * PlayerConfigs.fineTurnMovement : 
                 PlayerConfigs.driveSpeed * PlayerConfigs.turnMovement * PlayerConfigs.turnSpeed;
             //Fine Control
-            if(PlayerConfigs.fineControlToggle){
-                xspeed = 0;
-                yspeed = yInputSpeed;
-                rot = inputRot;
-                Robot.drivetrain.setDropWheels(0.5);
-            } else {
-                Robot.drivetrain.setDropWheels(0.3);
-                xspeed = 0;
-                yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
-                rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;
-            }    
+            // if(PlayerConfigs.fineControlToggle){
+            //     xspeed = 0;
+            //     yspeed = yInputSpeed;
+            //     rot = inputRot;
+            //     Robot.drivetrain.setDropWheels(0.5);
+            // } else {
+            //     Robot.drivetrain.setDropWheels(0.3);
+            //     xspeed = 0;
+            //     yspeed = PlayerConfigs.rampRate * yInputSpeed + (1 - PlayerConfigs.rampRate) * prevYspeed;
+            //     rot = PlayerConfigs.rampRate * inputRot + (1 - PlayerConfigs.rampRate) * prevRot;
+            // }    
         }
 
         prevXspeed = xspeed;
@@ -81,27 +81,27 @@ public class DrivetrainTeleopCommand extends CommandBase{
         prevRot = rot;
 
         //Snap if needed, otherwise set drive motors
-        if(PlayerConfigs.snapZero){
-            Robot.drivetrain.snap(0);
-        } else if(PlayerConfigs.snap90) {
-            Robot.drivetrain.snap(90);
-        } else if(PlayerConfigs.snap180) {
-            Robot.drivetrain.snap(180);
-        } else if(PlayerConfigs.snap270){
-            Robot.drivetrain.snap(270);
-        } else if((PlayerConfigs.align)){
-            Robot.drivetrain.align(Robot.limelight.getTX());
-        } else if (PlayerConfigs.brake) {
-            Robot.drivetrain.drive(0, 0, 0, true);
-        } else {
-            Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
-        }   
-        payload = df.format(yspeed)
-         + " " + df.format(xspeed)
-         + " " + df.format(rot)
-         + " (Y,X,R)";
+        // if(PlayerConfigs.snapZero){
+        //     Robot.drivetrain.snap(0);
+        // } else if(PlayerConfigs.snap90) {
+        //     Robot.drivetrain.snap(90);
+        // } else if(PlayerConfigs.snap180) {
+        //     Robot.drivetrain.snap(180);
+        // } else if(PlayerConfigs.snap270){
+        //     Robot.drivetrain.snap(270);
+        // } else if((PlayerConfigs.align)){
+        //     Robot.drivetrain.align(Robot.limelight.getTX());
+        // } else if (PlayerConfigs.brake) {
+        //     Robot.drivetrain.drive(0, 0, 0, true);
+        // } else {
+        //     Robot.drivetrain.drive(yspeed, xspeed, rot, !PlayerConfigs.modeSwitch);
+        // }   
+        // payload = df.format(yspeed)
+        //  + " " + df.format(xspeed)
+        //  + " " + df.format(rot)
+        //  + " (Y,X,R)";
         
-         Logger.info("DRIVE", payload);
-        Robot.drivetrain.errorCheck();
+        //  Logger.info("DRIVE", payload);
+        // Robot.drivetrain.errorCheck();
     }
 }

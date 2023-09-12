@@ -40,12 +40,14 @@ public class Robot extends TimedRobot {
   //Subsystem Declarations
 
   public static final Drivetrain drivetrain = new Drivetrain(
-    Constants.LEFT_DRIVE_TRAIN_FORWARD,
-    Constants.LEFT_DRIVE_TRAIN_BACK,
-    Constants.RIGHT_DRIVE_TRAIN_FORWARD,
-    Constants.RIGHT_DRIVE_TRAIN_BACK,
-    Constants.DROP_WHEEL_LEFT,
-    Constants.DROP_WHEEL_RIGHT
+    Constants.FRONT_LEFT_DRIVE,
+    Constants.FRONT_LEFT_STEER,
+    Constants.FRONT_RIGHT_DRIVE,
+    Constants.FRONT_RIGHT_STEER,
+    Constants.BACK_LEFT_DRIVE,
+    Constants.BACK_LEFT_STEER,
+    Constants.BACK_RIGHT_DRIVE,
+    Constants.BACK_RIGHT_STEER
   );
 
   public static final Crane crane = new Crane(
@@ -94,7 +96,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    drivetrain.m_drive.feed();
+    //drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }
 
@@ -120,7 +122,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     Logger.info("SYSTEM","Teleop Started");
-    drivetrain.m_drive.feed();
+    //drivetrain.m_drive.feed();
     CommandScheduler.getInstance().cancelAll();
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
@@ -160,7 +162,7 @@ public class Robot extends TimedRobot {
     } else{
       ledSystem.blinkingEyes(DriverStation.getAlliance(),4,false);
     }
-    HDD.updateStartupConfig();
+    //HDD.updateStartupConfig();
   }
 
   /** This function is called once when test mode is enabled. */
@@ -171,17 +173,17 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    if (Math.abs(controller1.getLeftY()) > 0.1) {
-      Robot.drivetrain.setLDropWheelVoltage(2 * controller1.getLeftY());
-    } else {
-      Robot.drivetrain.setLDropWheelVoltage(0);
-    }
+    // if (Math.abs(controller1.getLeftY()) > 0.1) {
+    //   Robot.drivetrain.setLDropWheelVoltage(2 * controller1.getLeftY());
+    // } else {
+    //   Robot.drivetrain.setLDropWheelVoltage(0);
+    // }
 
-    if (Math.abs(controller1.getRightY()) > 0.1) {
-      Robot.drivetrain.setRDropWheelVoltage(2 * controller1.getRightY());
-    } else {
-      Robot.drivetrain.setRDropWheelVoltage(0);
-    }
+    // if (Math.abs(controller1.getRightY()) > 0.1) {
+    //   Robot.drivetrain.setRDropWheelVoltage(2 * controller1.getRightY());
+    // } else {
+    //   Robot.drivetrain.setRDropWheelVoltage(0);
+    // }
   }
 
   /** This function is called once when the robot is first started up. */
