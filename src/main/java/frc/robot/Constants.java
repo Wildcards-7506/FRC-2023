@@ -1,21 +1,24 @@
 package frc.robot;
 
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 public final class Constants {
-    //Motor IDs
+    public static final class CANID {
         //Drivetrain
-        public static final int LEFT_DRIVE_TRAIN_BACK = 11;
-        public static final int LEFT_DRIVE_TRAIN_FORWARD = 10;
-        public static final int RIGHT_DRIVE_TRAIN_BACK = 1;
-        public static final int RIGHT_DRIVE_TRAIN_FORWARD = 20;
-        public static final int DROP_WHEEL_LEFT = 4;
-        public static final int DROP_WHEEL_RIGHT = 5;
+        public static final int LEFT_FRONT_DRIVE = 11;
+        public static final int LEFT_REAR_DRIVE = 10;
+        public static final int RIGHT_FRONT_DRIVE = 1;
+        public static final int RIGHT_REAR_DRIVE = 20;
+        public static final int LEFT_FRONT_TURN = 12;
+        public static final int LEFT_REAR_TURN = 13;
+        public static final int RIGHT_FRONT_TURN = 14;
+        public static final int RIGHT_REAR_TURN = 15;
         
         //Crane
         public static final int CRANE_EXTENDER = 19;
@@ -30,8 +33,10 @@ public final class Constants {
 
         //Limelight Rotator
         public static final int LIMELIGHT_ROTATOR = 23;
+    }
 
-    //Controller Assignments
+    public static final class IOConstants {
+        //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
         public static final int DRIVER_CONTROLLER_1 = 1;
         
@@ -60,70 +65,115 @@ public final class Constants {
         public static final int BUTTON_START = 10;
         public static final int LEFT_JOYSTICK_BUTTON = 11;
         public static final int RIGHT_JOYSTICK_BUTTON = 12;
+    }
 
-    //Drive Constants   
-
-        //Speed, Power, Movement Limits
-        public static final int kDrivetrainCurrentLimit = 30;
-        public static final double kDropWheelDistance = 0.5;
+    public static final class DriveConstants {
+        // Driving Parameters - Note that these are not the maximum capable speeds of
+        // the robot, rather the allowed maximum speeds
+        public static final double kMaxSpeedMetersPerSecond = 4.8;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3.0;
+        public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    
+        public static final double kDirectionSlewRate = 1.2; // radians per second
+        public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%)
+        public static final double kRotationalSlewRate = 2.0; // percent per second (1 = 100%)
+    
+        // Chassis configuration
+        public static final double kTrackWidth = Units.inchesToMeters(20.176);
+        // Distance between centers of right and left wheels on robot
+        public static final double kWheelBase = Units.inchesToMeters(21.911);
+        // Distance between front and back wheels on robot
+        public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
+            new Translation2d(kWheelBase / 2, kTrackWidth / 2),
+            new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
+            new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
+            new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+    
+        // Angular offsets of the modules relative to the chassis in radians
+        public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;
+        public static final double kFrontRightChassisAngularOffset = 0;
+        public static final double kBackLeftChassisAngularOffset = Math.PI;
+        public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+    
+        public static final boolean kGyroReversed = false;
+        
         public static final double kSnapRange = 1;
         public static final double kSnapSpeed = 0.08;
+        public static final double kAlignKP = 0.3;
+      }
+    
+      public static final class ModuleConstants {
+        // The MAXSwerve module can be configured with one of three pinion gears: 12T, 13T, or 14T.
+        // This changes the drive speed of the module (a pinion gear with more teeth will result in a
+        // robot that drives faster).
+        public static final int kDrivingMotorPinionTeeth = 14;
+    
+        // Invert the turning encoder, since the output shaft rotates in the opposite direction of
+        // the steering motor in the MAXSwerve Module.
+        public static final boolean kTurningEncoderInverted = true;
+    
+        // Calculations required for driving motor conversion factors and feed forward
+        public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60;
+        public static final double kWheelDiameterMeters = 0.0762;
+        public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
+        // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15 teeth on the bevel pinion
+        public static final double kDrivingMotorReduction = (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
+        public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters)
+            / kDrivingMotorReduction;
+    
+        public static final double kDrivingEncoderPositionFactor = (kWheelDiameterMeters * Math.PI)
+            / kDrivingMotorReduction; // meters
+        public static final double kDrivingEncoderVelocityFactor = ((kWheelDiameterMeters * Math.PI)
+            / kDrivingMotorReduction) / 60.0; // meters per second
+    
+        public static final double kTurningEncoderPositionFactor = (2 * Math.PI); // radians
+        public static final double kTurningEncoderVelocityFactor = (2 * Math.PI) / 60.0; // radians per second
+    
+        public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
+        public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
+    
+        public static final double kDrivingP = 0.04;
+        public static final double kDrivingI = 0;
+        public static final double kDrivingD = 0;
+        public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
+        public static final double kDrivingMinOutput = -1;
+        public static final double kDrivingMaxOutput = 1;
+    
+        public static final double kTurningP = 1;
+        public static final double kTurningI = 0;
+        public static final double kTurningD = 0;
+        public static final double kTurningFF = 0;
+        public static final double kTurningMinOutput = -1;
+        public static final double kTurningMaxOutput = 1;
+    
+        public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
+        public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
+    
+        public static final int kDrivingMotorCurrentLimit = 50; // amps
+        public static final int kTurningMotorCurrentLimit = 20; // amps
+      }
+    
+      public static final class AutoConstants {
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+    
+        public static final double kPXController = 1;
+        public static final double kPYController = 1;
+        public static final double kPThetaController = 1;
+    
+        // Constraint for the motion profiled robot angle controller
+        public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
+            kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+      }
+    
+      public static final class NeoMotorConstants {
+        public static final double kFreeSpeedRpm = 5676;
+      }
 
-        //Movement Controller Constants
-            //Change to match Forward/Backward SysID Results
-        public static final double kPXController = 0.1;
-            //Need to run horizontal SysID Test for this constant
-        public static final double kPYController = 0.5;
-            //Need to run spin SysID Test for this constant
-        public static final double kPThetaController = 0.5;
-            //No change Needed
-        public static final double kAlignKP = 0.01;
 
-            //Change these to match Forward/Back SysID Results
-        public static final double ffKS = 1;
-        public static final double ffKV = 0.8;
-        public static final double ffKA = 0.15;
-        
-        //Wheel Controller Constants
-            //Match kP from kPX Controller to start, adjust as needed
-        public static final double kPFrontLeftVel = 0.5;
-        public static final double kPRearLeftVel = 0.5;
-        public static final double kPFrontRightVel = 0.5;
-        public static final double kPRearRightVel = 0.5;
-        
-        //Robot Size Parameters
-        public static final double kTrackwidthMeters = Units.inchesToMeters(20.176);
-        public static final double kTrackLengthMeters = Units.inchesToMeters(21.911);;
-        public static final double driveTrainGearRatio = 1.0/12;
-        public static final double dropWheelGearRatio = 1.0/9/8;
-        public static final double kEncoderDistancePerPulse = driveTrainGearRatio * Math.PI * Units.inchesToMeters(8);
-
-        // Robot Movement Profile and Kinematics
-        public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
-            new TrapezoidProfile.Constraints(
-                kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
-
-        public static MecanumDriveKinematics kinematics = new MecanumDriveKinematics(
-            new Translation2d(kTrackLengthMeters / 2.0, kTrackwidthMeters / 2.0),
-            new Translation2d(kTrackLengthMeters / 2.0, -kTrackwidthMeters / 2.0),
-            new Translation2d(-kTrackLengthMeters / 2.0, kTrackwidthMeters / 2.0),
-            new Translation2d(-kTrackLengthMeters / 2.0, -kTrackwidthMeters / 2.0));
-
-        public static final  TrajectoryConfig kconfig =  
-            new TrajectoryConfig(
-                kMaxSpeedMetersPerSecond,
-                kMaxAccelerationMetersPerSecondSquared)
-                // Add kinematics to ensure max speed is actually obeyed
-                .setKinematics(kinematics);
-
-        public static final SimpleMotorFeedforward kFeedforward =
-        new SimpleMotorFeedforward(ffKS, ffKV, ffKA);
-
-    //Crane Constants
+      public static final class CraneConstants {
         public static final int kRotateCurrentLimit = 30;
         public static final double kRotateEncoderDistancePerPulse = 1.0/125 * 12.0/15 * 360;
         public static final double kRotatorKP = 0.007;
@@ -162,18 +212,21 @@ public final class Constants {
         public static final double kWristCubeDoubleOffset = 130.0;
         public static final double kWristCubeSingleOffset = -205;
         public static final double kWristCubeGroundOffset = 40;
-    //Pincher constants
+      }
+      public static final class PincherConstants{
         public static final double kHookLeft = 90.0;
         public static final double kHookRight = -90.0;
         public static final double kPullLeft = 270;
         public static final double kPullRight = -270;
         public static final double kPincherEncoderDistancePerPulse = 1.0/64 * 360;
-    
-    //Limelight Rotator Constants
+      }
+
+    public static final class LLRConstants {
         public static final int kLookForward = -180;
         public static final int kLookCollect = -160;
         public static final int kLookGoal = 0;
         public static final int kLimeLightCurrentLimit = 10;
         public static final double kLimelightRotatorEncoderDistancePerPulse = 1.0 / 3 * 360;
         public static final double kLimeLightRotatorKP = 0.05;
+    }
 }

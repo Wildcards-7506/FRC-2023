@@ -15,14 +15,12 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getLeftTriggerAxis() > 0.2;
         PlayerConfigs.brake = Robot.controller0.getBButton();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 90;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.align = Robot.controller0.getLeftBumper();
-        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;
@@ -47,6 +45,7 @@ public class Ryan extends PlayerConfigs {
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 270;
         PlayerConfigs.collectPos = Robot.controller1.getPOV() == 90;
+        PlayerConfigs.singleSub = Robot.controller1.getLeftBumper();
 
         //Claw or Roller
         PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;

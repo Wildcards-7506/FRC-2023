@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.LLRConstants;
 import frc.robot.util.Logger;
 
 public class LimelightRotator extends SubsystemBase{
@@ -21,14 +21,14 @@ public class LimelightRotator extends SubsystemBase{
         llRotator = new CANSparkMax(m, MotorType.kBrushless);
 
         llRotatorEncoder = llRotator.getEncoder();
-        llRotatorEncoder.setPositionConversionFactor(Constants.kLimelightRotatorEncoderDistancePerPulse);
+        llRotatorEncoder.setPositionConversionFactor(LLRConstants.kLimelightRotatorEncoderDistancePerPulse);
 
         llRotator.enableSoftLimit(SoftLimitDirection.kForward, false);
         llRotator.enableSoftLimit(SoftLimitDirection.kReverse, false);
-        llRotator.setSmartCurrentLimit(Constants.kLimeLightCurrentLimit);
+        llRotator.setSmartCurrentLimit(LLRConstants.kLimeLightCurrentLimit);
 
         llRotatorPID = llRotator.getPIDController();
-        llRotatorPID.setP(Constants.kLimeLightRotatorKP);
+        llRotatorPID.setP(LLRConstants.kLimeLightRotatorKP);
         llRotatorPID.setOutputRange(-1, 1);
 
         llRotator.burnFlash();

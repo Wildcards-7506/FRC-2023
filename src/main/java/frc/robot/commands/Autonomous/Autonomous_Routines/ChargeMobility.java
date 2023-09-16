@@ -8,7 +8,7 @@ import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPositio
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneRotatorPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneStingerAction;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneWristPosition;
-import frc.robot.Constants;
+import frc.robot.Constants.CraneConstants;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoCSManuever;
 
 public class ChargeMobility extends SequentialCommandGroup {
@@ -18,15 +18,15 @@ public class ChargeMobility extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new AutoCraneStingerAction(8, true),
-        new AutoCraneRotatorPosition(Constants.kRotatorDoubleSub + Constants.kRotatorDoubleCubeOffset),
-        new AutoCraneWristPosition(Constants.kWristGround)
+        new AutoCraneRotatorPosition(CraneConstants.kRotatorDoubleSub + CraneConstants.kRotatorDoubleCubeOffset),
+        new AutoCraneWristPosition(CraneConstants.kWristGround)
       ),
-      new AutoCraneExtenderPosition(Constants.kExtenderCollect),
+      new AutoCraneExtenderPosition(CraneConstants.kExtenderCollect),
       new AutoCraneStingerAction(-8, false),
-      new AutoCraneExtenderPosition(Constants.kExtenderClosed),
+      new AutoCraneExtenderPosition(CraneConstants.kExtenderClosed),
       new ParallelCommandGroup(
-        new AutoCraneRotatorPosition(Constants.kRotatorClosed),
-        new AutoCraneWristPosition(Constants.kWristClosed),
+        new AutoCraneRotatorPosition(CraneConstants.kRotatorClosed),
+        new AutoCraneWristPosition(CraneConstants.kWristClosed),
         new AutoCSManuever(-0.6)
       )      
     );

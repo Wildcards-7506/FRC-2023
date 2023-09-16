@@ -14,12 +14,12 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.xMovement = Robot.controller0.getLeftX();
         PlayerConfigs.yMovement = Robot.controller0.getLeftY();
         PlayerConfigs.turnMovement = Robot.controller0.getRightX();
-        PlayerConfigs.modeSwitch = Robot.controller0.getXButton();
+        PlayerConfigs.brake = Robot.controller0.getBButton();
         PlayerConfigs.snapZero = Robot.controller0.getPOV() == 0;
         PlayerConfigs.snap90 = Robot.controller0.getPOV() == 270;
         PlayerConfigs.snap180 = Robot.controller0.getPOV() == 180;
         PlayerConfigs.snap270 = Robot.controller0.getPOV() == 90;
-        PlayerConfigs.rampMode = Robot.controller0.getLeftStickButton();
+        PlayerConfigs.align = Robot.controller0.getLeftBumper();
 
         //Constants turn speed drive speed
         PlayerConfigs.fineTurnSpeed = 0.175;
@@ -30,7 +30,6 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.fineControlY = Robot.controller0.getLeftY();
         PlayerConfigs.fineTurnMovement = Robot.controller0.getRightX();
         PlayerConfigs.fineControlToggle = Robot.controller0.getLeftTriggerAxis() > 0.2;
-        PlayerConfigs.redundantCraneControl = Robot.controller0.getBackButton();
 
         //Signal object
         PlayerConfigs.signalCone = Robot.controller0.getYButton();
@@ -44,6 +43,7 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.highGoal = Robot.controller1.getPOV() == 0;
         PlayerConfigs.lowGoal = Robot.controller1.getPOV() == 90;
         PlayerConfigs.collectPos = Robot.controller1.getPOV() == 270;
+        PlayerConfigs.singleSub = Robot.controller1.getLeftBumper();
 
         //Claw or Roller
         PlayerConfigs.intake = Robot.controller1.getRightTriggerAxis() > 0.2;
@@ -52,7 +52,6 @@ public class Anthony extends PlayerConfigs {
         PlayerConfigs.cranePos = Robot.controller1.getLeftY();
         PlayerConfigs.fineExtender = Robot.controller1.getRightStickButton();
         PlayerConfigs.extendPos = Robot.controller1.getRightY();
-        PlayerConfigs.singleSub = Robot.controller1.getLeftBumper();
 
         //Pinchers
         PlayerConfigs.leftPinch = Robot.controller1.getXButton();

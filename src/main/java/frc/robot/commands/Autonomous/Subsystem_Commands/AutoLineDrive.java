@@ -30,16 +30,7 @@ public class AutoLineDrive extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {      
-        double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
-        if(driveSpeed < xspeed){
-            Robot.drivetrain.drive(driveSpeed, 0, 0, true);
-        }
-        else {
-            driveSpeed = xspeed * Math.abs(Robot.drivetrain.getPose().getX() - setpoint)/setpoint;
-            Robot.drivetrain.drive(driveSpeed, 0, 0, true);
-        }
-        Robot.drivetrain.m_drive.feed();
-        prevSpeed = driveSpeed;
+        Robot.drivetrain.drive(0.6, 0, 0, true,true);
         Logger.info("DLINE", 
             Double.toString(Math.abs(Robot.drivetrain.getPose().getX() - setpoint)) + " Meters"
         );
@@ -49,7 +40,7 @@ public class AutoLineDrive extends CommandBase{
     @Override
     public void end(boolean interrupted) {
         Logger.info("DLINE", "Robot Stopping...");
-        Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.drive(0,0,0,true,true);
     }
 
     // Returns true when the command should end.

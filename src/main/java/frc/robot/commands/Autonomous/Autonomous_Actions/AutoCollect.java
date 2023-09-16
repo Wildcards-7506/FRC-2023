@@ -15,10 +15,10 @@ public class AutoCollect extends SequentialCommandGroup {
   public AutoCollect(double intake, double direction){
     addCommands(
       new ParallelCommandGroup(
-        new AutoLook(Constants.kLookCollect, 3),
-        new AutoCraneRotatorPosition(Constants.kRotatorGround),
-        new AutoCraneExtenderPosition(Constants.kExtenderGround),
-        new AutoCraneWristPosition(Constants.kWristGround),
+        new AutoLook(Constants.LLRConstants.kLookCollect, 3),
+        new AutoCraneRotatorPosition(Constants.CraneConstants.kRotatorGround),
+        new AutoCraneExtenderPosition(Constants.CraneConstants.kExtenderGround),
+        new AutoCraneWristPosition(Constants.CraneConstants.kWristGround),
         new AutoCraneStingerAction(intake, true)
       )
     );

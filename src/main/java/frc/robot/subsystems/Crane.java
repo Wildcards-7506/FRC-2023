@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.CraneConstants;
 import frc.robot.util.Logger;
 
 public class Crane extends SubsystemBase {
@@ -44,10 +44,10 @@ public class Crane extends SubsystemBase {
         extenderEncoder = extender.getEncoder();
         wristEncoder = wrist.getEncoder();
 
-        rotatorLEncoder.setPositionConversionFactor(Constants.kRotateEncoderDistancePerPulse);
-        rotatorFEncoder.setPositionConversionFactor(Constants.kRotateEncoderDistancePerPulse);
-        extenderEncoder.setPositionConversionFactor(Constants.kExtendEncoderDistancePerPulse);
-        wristEncoder.setPositionConversionFactor(Constants.kWristEncoderDistancePerPulse);
+        rotatorLEncoder.setPositionConversionFactor(CraneConstants.kRotateEncoderDistancePerPulse);
+        rotatorFEncoder.setPositionConversionFactor(CraneConstants.kRotateEncoderDistancePerPulse);
+        extenderEncoder.setPositionConversionFactor(CraneConstants.kExtendEncoderDistancePerPulse);
+        wristEncoder.setPositionConversionFactor(CraneConstants.kWristEncoderDistancePerPulse);
 
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
@@ -58,11 +58,11 @@ public class Crane extends SubsystemBase {
         stinger.enableSoftLimit(SoftLimitDirection.kForward, false);
         stinger.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
-        rotatorLeader.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
-        rotatorFollower.setSmartCurrentLimit(Constants.kRotateCurrentLimit);
-        extender.setSmartCurrentLimit(Constants.kExtenderCurrentLimit);
-        stinger.setSmartCurrentLimit(Constants.kStingerCurrentLimit);
-        wrist.setSmartCurrentLimit(Constants.kWristCurrentLimit);
+        rotatorLeader.setSmartCurrentLimit(CraneConstants.kRotateCurrentLimit);
+        rotatorFollower.setSmartCurrentLimit(CraneConstants.kRotateCurrentLimit);
+        extender.setSmartCurrentLimit(CraneConstants.kExtenderCurrentLimit);
+        stinger.setSmartCurrentLimit(CraneConstants.kStingerCurrentLimit);
+        wrist.setSmartCurrentLimit(CraneConstants.kWristCurrentLimit);
 
         rotatorFollower.follow(rotatorLeader, true);
 
@@ -77,9 +77,9 @@ public class Crane extends SubsystemBase {
         wristPID = wrist.getPIDController();
         extenderPID = extender.getPIDController();
 
-        rotatorPID.setP(Constants.kRotatorKP);
-        wristPID.setP(Constants.kWristKP);
-        extenderPID.setP(Constants.kExtenderKP);
+        rotatorPID.setP(CraneConstants.kRotatorKP);
+        wristPID.setP(CraneConstants.kWristKP);
+        extenderPID.setP(CraneConstants.kExtenderKP);
 
         rotatorPID.setOutputRange(-1, 1);
         wristPID.setOutputRange(-1, 1);
@@ -119,7 +119,7 @@ public class Crane extends SubsystemBase {
     }
 
     public void setRotator(double setPoint) {
-        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.rotatorHorizontalOffset));
+        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - CraneConstants.rotatorHorizontalOffset));
         rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
         SmartDashboard.putNumber("Rotator Setpoint", setPoint);
     }

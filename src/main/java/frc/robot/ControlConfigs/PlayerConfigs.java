@@ -11,14 +11,12 @@ public class PlayerConfigs {
     public static double turnSpeed;
     public static double driveSpeed;
     public static double rampRate;
-    public static boolean modeSwitch;
     public static boolean snapZero;
     public static boolean brake;
     public static boolean snap90;
     public static boolean snap180;
     public static boolean snap270;
     public static boolean align;
-    public static boolean rampMode;
 
     //secondary drive train controls
     public static double fineControlX;
@@ -56,18 +54,7 @@ public class PlayerConfigs {
     public static boolean intake;
     public static boolean release;
 
-    public void getDriverConfig(){
-        
-    }
+    public void getDriverConfig(){}
 
-    /*Need to add Co-Driver controls
-     * Arm Positioning (Ground, Middle Score, High Score, Shelf Pickup)
-     * Arm Extension (Ground, Middle Score, High Score, Shelf Pickup)
-     * Claw/Pincher Release
-     * Fine-Detail Driving control (Scoring and Endgame)
-    */
-
-    public void getCoDriverConfig(){  
-        
-    }
+    public void getCoDriverConfig(){}
 }

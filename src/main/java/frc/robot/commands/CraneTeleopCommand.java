@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.Constants.CraneConstants;
 import frc.robot.Robot;
 import frc.robot.ControlConfigs.PlayerConfigs;
 import frc.robot.util.Logger;
@@ -58,29 +58,29 @@ public class CraneTeleopCommand extends CommandBase {
 
         //Craneworks
         if (prev_CraneState == 180) {
-            extenderSetpoint = Constants.kExtenderGround;
-            wristSetpoint = Constants.kWristGround + Constants.kWristCubeGroundOffset * Robot.limelight.getPipeline();
+            extenderSetpoint = CraneConstants.kExtenderGround;
+            wristSetpoint = CraneConstants.kWristGround + CraneConstants.kWristCubeGroundOffset * Robot.limelight.getPipeline();
             if(Robot.crane.getWristEncoder() - wristSetpoint < 10 && Robot.crane.getExtenderEncoder() - extenderSetpoint < 1){
-                rotatorSetpoint = Constants.kRotatorGround;
+                rotatorSetpoint = CraneConstants.kRotatorGround;
             } else {
-                rotatorSetpoint = Constants.kRotatorGroundClear;
+                rotatorSetpoint = CraneConstants.kRotatorGroundClear;
             }
         } else if (prev_CraneState == 270){
-            rotatorSetpoint = Constants.kRotatorDoubleSub + (Constants.kRotatorDoubleCubeOffset * Robot.limelight.getPipeline());
-            extenderSetpoint = Constants.kExtenderCollect;
-            wristSetpoint = Constants.kWristDoubleSub + Constants.kWristCubeDoubleOffset * Robot.limelight.getPipeline();
+            rotatorSetpoint = CraneConstants.kRotatorDoubleSub + (CraneConstants.kRotatorDoubleCubeOffset * Robot.limelight.getPipeline());
+            extenderSetpoint = CraneConstants.kExtenderCollect;
+            wristSetpoint = CraneConstants.kWristDoubleSub + CraneConstants.kWristCubeDoubleOffset * Robot.limelight.getPipeline();
         } else if (prev_CraneState == 90) {
-            rotatorSetpoint = Constants.kRotatorMid;
-            extenderSetpoint = Constants.kExtenderLo;
-            wristSetpoint = Constants.kWristMid;
+            rotatorSetpoint = CraneConstants.kRotatorMid;
+            extenderSetpoint = CraneConstants.kExtenderLo;
+            wristSetpoint = CraneConstants.kWristMid;
         } else if (prev_CraneState == 0) {
-            rotatorSetpoint = Constants.kRotatorHi;
+            rotatorSetpoint = CraneConstants.kRotatorHi;
             if(Robot.limelight.getPipeline() == 0.0){
-                extenderSetpoint = Constants.kExtenderHi;
+                extenderSetpoint = CraneConstants.kExtenderHi;
             } else {
-                extenderSetpoint = Constants.kExtenderLo;
+                extenderSetpoint = CraneConstants.kExtenderLo;
             }
-            wristSetpoint = Constants.kWristHi;
+            wristSetpoint = CraneConstants.kWristHi;
         } else if (PlayerConfigs.craneControl){
             if (Math.abs(PlayerConfigs.cranePos) > 0.2){
                 rotatorSetpoint = Robot.crane.getRotatorLEncoder() + (30 * PlayerConfigs.cranePos);
@@ -88,13 +88,13 @@ public class CraneTeleopCommand extends CommandBase {
                 rotatorSetpoint = Robot.crane.getRotatorLEncoder();
             }
         } else if (PlayerConfigs.singleSub) {
-            rotatorSetpoint = Constants.kRotatorSingleSub;
-            extenderSetpoint = Constants.kExtenderClosed;
-            wristSetpoint = Constants.kWristSingleSub + Constants.kWristCubeSingleOffset * Robot.limelight.getPipeline();
+            rotatorSetpoint = CraneConstants.kRotatorSingleSub;
+            extenderSetpoint = CraneConstants.kExtenderClosed;
+            wristSetpoint = CraneConstants.kWristSingleSub + CraneConstants.kWristCubeSingleOffset * Robot.limelight.getPipeline();
         } else if(prev_CraneState == -1) {
-            rotatorSetpoint = Constants.kRotatorClosed;
-            extenderSetpoint = Constants.kExtenderClosed;
-            wristSetpoint = Constants.kWristClosed;
+            rotatorSetpoint = CraneConstants.kRotatorClosed;
+            extenderSetpoint = CraneConstants.kExtenderClosed;
+            wristSetpoint = CraneConstants.kWristClosed;
         }
 
         Robot.crane.setRotator(rotatorSetpoint);
@@ -113,7 +113,7 @@ public class CraneTeleopCommand extends CommandBase {
             }
         } else if (prev_CraneState == 0 || prev_CraneState == 90){
             SmartDashboard.putString("Crane State", "Scoring");
-            if (Robot.crane.getRotatorLEncoder() > Constants.kRotatorVertical) {
+            if (Robot.crane.getRotatorLEncoder() > CraneConstants.kRotatorVertical) {
                 Robot.crane.setExtender(extenderSetpoint);
                 SmartDashboard.putNumber("Extender Setpoint", extenderSetpoint);
             } else {
@@ -131,8 +131,8 @@ public class CraneTeleopCommand extends CommandBase {
             }
         } else if (prev_CraneState == -1){
             SmartDashboard.putString("Crane State", "Neutral");
-            Robot.crane.setExtender(Constants.kExtenderClosed);
-            SmartDashboard.putNumber("Extender Setpoint", Constants.kExtenderClosed);
+            Robot.crane.setExtender(CraneConstants.kExtenderClosed);
+            SmartDashboard.putNumber("Extender Setpoint", CraneConstants.kExtenderClosed);
         }
 
         Logger.info("ROTTR", 

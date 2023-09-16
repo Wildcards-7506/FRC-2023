@@ -26,14 +26,14 @@ public class AutoSnap extends CommandBase{
     public void execute() {
         double rotation = -0.1 * Math.abs(angle-Robot.drivetrain.getHeading())/(angle-Robot.drivetrain.getHeading());
         Logger.info("DSNAP", Double.toString(angle-Robot.drivetrain.getHeading()) + " Degrees");
-        Robot.drivetrain.drive(0.0, 0.0, rotation, false);
+        Robot.drivetrain.drive(0.0, 0.0, rotation, false,false);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         Logger.info("DSNAP", "Snap Complete");
-        Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.drive(0,0,0,true,false);
         Robot.drivetrain.resetEncoders();
     }
 

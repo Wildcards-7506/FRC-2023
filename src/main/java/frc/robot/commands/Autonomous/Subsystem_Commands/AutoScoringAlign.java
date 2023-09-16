@@ -31,14 +31,14 @@ public class AutoScoringAlign extends CommandBase{
         Robot.limelight.updateData();
         Logger.info("ALIGN", Double.toString(Robot.limelight.getTX()) + " Degrees");
         xOffset = 0.2 * Robot.limelight.getTX()/Math.abs(Robot.limelight.getTX());
-        Robot.drivetrain.drive(0, xOffset, 0, true);
+        Robot.drivetrain.drive(0, xOffset, 0, true,false);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         Logger.info("ALIGN", "Alignment Complete");
-        Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.drive(0,0,0,true,false);
     }
 
     // Returns true when the command should end.

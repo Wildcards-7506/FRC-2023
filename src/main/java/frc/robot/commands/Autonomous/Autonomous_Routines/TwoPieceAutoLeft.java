@@ -5,7 +5,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+import frc.robot.Constants.CraneConstants;
 import frc.robot.commands.Autonomous.Autonomous_Actions.AutoScore;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoCraneExtenderPosition;
 import frc.robot.commands.Autonomous.Subsystem_Commands.AutoPathDrive;
@@ -30,9 +30,9 @@ public class TwoPieceAutoLeft extends SequentialCommandGroup {
       ),
       new ParallelCommandGroup(
         movementB,
-        new AutoCraneExtenderPosition(Constants.kExtenderClosed)
+        new AutoCraneExtenderPosition(CraneConstants.kExtenderClosed)
       ),
-      new AutoScore(1,Constants.kExtenderHi)
+      new AutoScore(1,CraneConstants.kExtenderHi)
     );
   }
 } 

@@ -20,7 +20,7 @@ import frc.robot.commands.LimelightRotatorTeleopCom;
 import frc.robot.commands.LimelightTeleopCommand;
 import frc.robot.commands.PinchersTeleopCommand;
 import frc.robot.subsystems.Crane;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LimelightRotator;
 import frc.robot.subsystems.Pinchers;
@@ -39,36 +39,29 @@ public class Robot extends TimedRobot {
   public PlayerConfigs coDriver;
   //Subsystem Declarations
 
-  public static final Drivetrain drivetrain = new Drivetrain(
-    Constants.LEFT_DRIVE_TRAIN_FORWARD,
-    Constants.LEFT_DRIVE_TRAIN_BACK,
-    Constants.RIGHT_DRIVE_TRAIN_FORWARD,
-    Constants.RIGHT_DRIVE_TRAIN_BACK,
-    Constants.DROP_WHEEL_LEFT,
-    Constants.DROP_WHEEL_RIGHT
-  );
+  public static final DriveSubsystem drivetrain = new DriveSubsystem();
 
   public static final Crane crane = new Crane(
-    Constants.CRANE_ROTATION_LEAD,
-    Constants.CRANE_ROTATION_FOLLOW,
-    Constants.CRANE_EXTENDER,
-    Constants.CRANE_STINGER,
-    Constants.CRANE_WRIST
+    Constants.CANID.CRANE_ROTATION_LEAD,
+    Constants.CANID.CRANE_ROTATION_FOLLOW,
+    Constants.CANID.CRANE_EXTENDER,
+    Constants.CANID.CRANE_STINGER,
+    Constants.CANID.CRANE_WRIST
   );
   
   public static final Pinchers pinchers = new Pinchers(
-    Constants.PINCH_LEFT,
-    Constants.PINCH_RIGHT
+    Constants.CANID.PINCH_LEFT,
+    Constants.CANID.PINCH_RIGHT
   );
   public static final Limelight limelight = new Limelight();
 
-  public static final LimelightRotator ll_rotator = new LimelightRotator(Constants.LIMELIGHT_ROTATOR);
+  public static final LimelightRotator ll_rotator = new LimelightRotator(Constants.CANID.LIMELIGHT_ROTATOR);
 
   public static final LEDs ledSystem = new LEDs(0,48);
 
   //Controllers
-  public static final XboxController controller0 = new XboxController(Constants.DRIVER_CONTROLLER_0);
-  public static final XboxController controller1 = new XboxController(Constants.DRIVER_CONTROLLER_1);
+  public static final XboxController controller0 = new XboxController(Constants.IOConstants.DRIVER_CONTROLLER_0);
+  public static final XboxController controller1 = new XboxController(Constants.IOConstants.DRIVER_CONTROLLER_1);
 
   //Test Timer & Flag
   Timer timer = new Timer();
@@ -94,7 +87,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    drivetrain.m_drive.feed();
     SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
   }
 
@@ -120,7 +112,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     Logger.info("SYSTEM","Teleop Started");
-    drivetrain.m_drive.feed();
     CommandScheduler.getInstance().cancelAll();
     teamColor = DriverStation.getAlliance();
     driver = HDD.driver_chooser.getSelected();
@@ -171,17 +162,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    if (Math.abs(controller1.getLeftY()) > 0.1) {
-      Robot.drivetrain.setLDropWheelVoltage(2 * controller1.getLeftY());
-    } else {
-      Robot.drivetrain.setLDropWheelVoltage(0);
-    }
-
-    if (Math.abs(controller1.getRightY()) > 0.1) {
-      Robot.drivetrain.setRDropWheelVoltage(2 * controller1.getRightY());
-    } else {
-      Robot.drivetrain.setRDropWheelVoltage(0);
-    }
   }
 
   /** This function is called once when the robot is first started up. */

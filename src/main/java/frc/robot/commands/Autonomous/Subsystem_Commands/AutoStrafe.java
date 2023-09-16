@@ -28,8 +28,7 @@ public class AutoStrafe extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {        
-        Robot.drivetrain.drive(0, this.setpoint, 0, true);
-        Robot.drivetrain.m_drive.feed();
+        Robot.drivetrain.drive(0, this.setpoint, 0, true,true);
         Logger.info("STRAFE",Double.toString(time.get()) + " Seconds");
     }
 
@@ -37,7 +36,7 @@ public class AutoStrafe extends CommandBase{
     @Override
     public void end(boolean interrupted) {
         Logger.info("STRAFE","Strafe Complete");
-        Robot.drivetrain.drive(0,0,0,true);   
+        Robot.drivetrain.drive(0,0,0,true,false);   
     }
 
     // Returns true when the command should end.

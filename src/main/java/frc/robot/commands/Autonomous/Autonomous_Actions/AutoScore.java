@@ -16,15 +16,15 @@ public class AutoScore extends SequentialCommandGroup {
       new AutoScoringAlign(pipeline),
       new AutoCraneStingerAction(-8+16*pipeline, true),
       new ParallelCommandGroup(
-        new AutoCraneRotatorPosition(Constants.kRotatorHi),
-        new AutoCraneWristPosition(Constants.kWristHi-10)
+        new AutoCraneRotatorPosition(Constants.CraneConstants.kRotatorHi),
+        new AutoCraneWristPosition(Constants.CraneConstants.kWristHi-10)
       ),
-      new AutoCraneExtenderPosition(Constants.kExtenderHi + offset),
+      new AutoCraneExtenderPosition(Constants.CraneConstants.kExtenderHi + offset),
       new AutoCraneStingerAction(12 - 24 * pipeline, false),
       new ParallelCommandGroup(
-        new AutoCraneRotatorPosition(Constants.kRotatorClosed),
+        new AutoCraneRotatorPosition(Constants.CraneConstants.kRotatorClosed),
         new AutoCraneExtenderPosition(-1),
-        new AutoCraneWristPosition(Constants.kWristClosed)
+        new AutoCraneWristPosition(Constants.CraneConstants.kWristClosed)
       )
     );
   }

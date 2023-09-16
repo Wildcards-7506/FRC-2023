@@ -34,14 +34,14 @@ public class AutoAngleCorrect extends CommandBase{
         } else if(tilted) {
             time.start();
         }
-        Robot.drivetrain.drive(driveSpeed, 0.0, 0, false);
+        Robot.drivetrain.drive(driveSpeed, 0.0, 0, false,false);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         Logger.info("ANGLE", "Balance Complete");
-        Robot.drivetrain.drive(0,0,0,true);
+        Robot.drivetrain.setX();
     }
 
     // Returns true when the command should end.

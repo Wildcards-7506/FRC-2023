@@ -7,7 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.PincherConstants;
 import frc.robot.util.Logger;
 
 public class Pinchers extends SubsystemBase{
@@ -25,8 +25,8 @@ public class Pinchers extends SubsystemBase{
         pincherLEncoder = leftPincher.getEncoder();
         pincherREncoder = rightPincher.getEncoder();
 
-        pincherLEncoder.setPositionConversionFactor(Constants.kPincherEncoderDistancePerPulse);
-        pincherREncoder.setPositionConversionFactor(Constants.kPincherEncoderDistancePerPulse);
+        pincherLEncoder.setPositionConversionFactor(PincherConstants.kPincherEncoderDistancePerPulse);
+        pincherREncoder.setPositionConversionFactor(PincherConstants.kPincherEncoderDistancePerPulse);
 
         leftPincher.setSoftLimit(SoftLimitDirection.kForward, 0);
         leftPincher.setSoftLimit(SoftLimitDirection.kReverse, -270);
