@@ -10,28 +10,28 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 public final class Constants {
     //Motor IDs
         //Drivetrain
-        public static final int FRONT_LEFT_DRIVE = 0;
-        public static final int FRONT_LEFT_STEER = 0;
-        public static final int FRONT_RIGHT_DRIVE = 0;
-        public static final int FRONT_RIGHT_STEER = 0;
-        public static final int BACK_LEFT_DRIVE = 0;
-        public static final int BACK_LEFT_STEER = 0;
-        public static final int BACK_RIGHT_DRIVE = 0;
-        public static final int BACK_RIGHT_STEER = 0;
+        public static final int FRONT_LEFT_DRIVE = 1;
+        public static final int FRONT_LEFT_STEER = 2;
+        public static final int FRONT_RIGHT_DRIVE = 3;
+        public static final int FRONT_RIGHT_STEER = 4;
+        public static final int BACK_LEFT_DRIVE = 5;
+        public static final int BACK_LEFT_STEER = 6;
+        public static final int BACK_RIGHT_DRIVE = 7;
+        public static final int BACK_RIGHT_STEER = 8;
         
         //Crane
-        public static final int CRANE_EXTENDER = 19;
-        public static final int CRANE_ROTATION_LEAD = 2;
-        public static final int CRANE_ROTATION_FOLLOW = 3;
-        public static final int CRANE_STINGER = 18;
-        public static final int CRANE_WRIST = 17;
+        public static final int CRANE_EXTENDER = 9;
+        public static final int CRANE_ROTATION_LEAD = 10;
+        public static final int CRANE_ROTATION_FOLLOW = 11;
+        public static final int CRANE_STINGER = 12;
+        public static final int CRANE_WRIST = 13;
 
         //Pinchers
-        public static final int PINCH_LEFT = 21;
-        public static final int PINCH_RIGHT = 22;
+        public static final int PINCH_LEFT = 14;
+        public static final int PINCH_RIGHT = 15;
 
         //Limelight Rotator
-        public static final int LIMELIGHT_ROTATOR = 23;
+        public static final int LIMELIGHT_ROTATOR = 16;
 
     //Controller Assignments
         public static final int DRIVER_CONTROLLER_0 = 0;
