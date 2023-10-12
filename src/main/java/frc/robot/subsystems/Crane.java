@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.util.Logger;
 
 public class Crane extends SubsystemBase {
@@ -92,12 +93,6 @@ public class Crane extends SubsystemBase {
         wrist.burnFlash();
     }
 
-    public void updateEncoderValues() {
-        SmartDashboard.putNumber("Rotator Position", getRotatorLEncoder());
-        SmartDashboard.putNumber("Extender Position", getExtenderEncoder());
-        SmartDashboard.putNumber("Wrist Position", getWristEncoder());
-    }
-
     public double getRotatorLEncoder() {
         return rotatorLEncoder.getPosition();
     }
@@ -134,6 +129,36 @@ public class Crane extends SubsystemBase {
 
     public void setStinger (double setPoint) {
         stinger.setVoltage(setPoint);
+    }
+
+    public double getSelectedCraneScoringPosition(int code){
+        if (code>30){
+            return Constants.kRotatorHi;
+        } else if (code<30 & code >20){
+            return Constants.kRotatorMid;
+        } else {
+            return Constants.kRotatorGroundClear;
+        }
+    }
+
+    public double getSelectedExtenderScoringPosition(int code){
+        if (code>30){
+            return Constants.kExtenderHi * (Robot.limelight.getPipeline() - 1);
+        } else if (code<30 & code >20){
+            return Constants.kExtenderLo;
+        } else {
+            return Constants.kExtenderClosed;
+        }
+    }
+
+    public double getSelectedWristScoringPosition(int code){
+        if (code>30){
+            return Constants.kWristHi;
+        } else if (code<30 & code >20){
+            return Constants.kWristMid + (45 * Robot.limelight.getPipeline());
+        } else {
+            return Constants.kRotatorGround + 100 * Robot.limelight.getPipeline();
+        }
     }
 
     public void errorCheck(){

@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.subsystems.HDD;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,6 +38,8 @@ public class HDD {
 
     public static SequentialCommandGroup desiredMode;
 
+    public static Grid grid;
+
     public static void initBot(){
         // Auto choosers
         auto_chooser.setDefaultOption("Score, Don't Move", scoreOnly);
@@ -62,6 +64,37 @@ public class HDD {
         SmartDashboard.putData(driver_chooser);
         SmartDashboard.putData(coDriver_chooser);
         SmartDashboard.putData(auto_chooser);
+
+        SmartDashboard.putBoolean("H1", false);
+        SmartDashboard.putBoolean("H2", false);
+        SmartDashboard.putBoolean("H3", false);
+        SmartDashboard.putBoolean("H4", false);
+        SmartDashboard.putBoolean("H5", false);
+        SmartDashboard.putBoolean("H6", false);
+        SmartDashboard.putBoolean("H7", false);
+        SmartDashboard.putBoolean("H8", false);
+        SmartDashboard.putBoolean("H9", false);
+        SmartDashboard.putBoolean("M1", false);
+        SmartDashboard.putBoolean("M2", false);
+        SmartDashboard.putBoolean("M3", false);
+        SmartDashboard.putBoolean("M4", false);
+        SmartDashboard.putBoolean("M5", false);
+        SmartDashboard.putBoolean("M6", false);
+        SmartDashboard.putBoolean("M7", false);
+        SmartDashboard.putBoolean("M8", false);
+        SmartDashboard.putBoolean("M9", false);
+        SmartDashboard.putBoolean("L1", false);
+        SmartDashboard.putBoolean("L2", false);
+        SmartDashboard.putBoolean("L3", false);
+        SmartDashboard.putBoolean("L4", false);
+        SmartDashboard.putBoolean("L5", false);
+        SmartDashboard.putBoolean("L6", false);
+        SmartDashboard.putBoolean("L7", false);
+        SmartDashboard.putBoolean("L8", false);
+        SmartDashboard.putBoolean("L9", false);
+    }
+
+    public void updateScoringStatus() {
     }
 
     // public static void updateStartupConfig(){

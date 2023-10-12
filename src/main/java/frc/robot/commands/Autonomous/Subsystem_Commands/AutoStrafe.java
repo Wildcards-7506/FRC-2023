@@ -29,7 +29,7 @@ public class AutoStrafe extends CommandBase{
     @Override
     public void execute() {        
         Robot.drivetrain.drive(0, this.setpoint, 0, true);
-        Robot.drivetrain.m_drive.feed();
+        //Robot.drivetrain.m_drive.feed();
         Logger.info("STRAFE",Double.toString(time.get()) + " Seconds");
     }
 

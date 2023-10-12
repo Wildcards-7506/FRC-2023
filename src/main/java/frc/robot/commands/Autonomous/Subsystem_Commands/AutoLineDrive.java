@@ -22,7 +22,7 @@ public class AutoLineDrive extends CommandBase{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        Robot.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
+        //Robot.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
         Logger.info("DLINE","Robot Driving...");
         Robot.drivetrain.resetEncoders();
     }
@@ -38,7 +38,7 @@ public class AutoLineDrive extends CommandBase{
             driveSpeed = xspeed * Math.abs(Robot.drivetrain.getPose().getX() - setpoint)/setpoint;
             Robot.drivetrain.drive(driveSpeed, 0, 0, true);
         }
-        Robot.drivetrain.m_drive.feed();
+        //Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
         Logger.info("DLINE", 
             Double.toString(Math.abs(Robot.drivetrain.getPose().getX() - setpoint)) + " Meters"

@@ -24,6 +24,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LimelightRotator;
 import frc.robot.subsystems.Pinchers;
+import frc.robot.subsystems.HDD.HDD;
 import frc.robot.subsystems.LEDs;
 import frc.robot.util.Logger;
 

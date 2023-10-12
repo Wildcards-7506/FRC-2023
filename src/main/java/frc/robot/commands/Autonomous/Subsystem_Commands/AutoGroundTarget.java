@@ -25,7 +25,7 @@ public class AutoGroundTarget extends CommandBase{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        Robot.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
+        //Robot.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
         Logger.info("DTRGT", "Starting...");
         Robot.drivetrain.resetEncoders();
     }
@@ -38,7 +38,7 @@ public class AutoGroundTarget extends CommandBase{
         double driveSpeed = this.rampSpeed * xspeed + (1 - rampSpeed) * prevSpeed;
         Logger.info("DTRGT", Double.toString(Robot.limelight.getTX()) + " Degrees");
         Robot.drivetrain.drive(driveSpeed, ySpeed/40, 0, true);
-        Robot.drivetrain.m_drive.feed();
+        //Robot.drivetrain.m_drive.feed();
         prevSpeed = driveSpeed;
     }
 
