@@ -8,7 +8,6 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class AutoPathDrive {
