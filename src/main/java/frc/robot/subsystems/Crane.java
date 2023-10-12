@@ -9,7 +9,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.CraneConstants;
+import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.util.Logger;
 
 public class Crane extends SubsystemBase {
@@ -44,10 +45,10 @@ public class Crane extends SubsystemBase {
         extenderEncoder = extender.getEncoder();
         wristEncoder = wrist.getEncoder();
 
-        rotatorLEncoder.setPositionConversionFactor(CraneConstants.kRotateEncoderDistancePerPulse);
-        rotatorFEncoder.setPositionConversionFactor(CraneConstants.kRotateEncoderDistancePerPulse);
-        extenderEncoder.setPositionConversionFactor(CraneConstants.kExtendEncoderDistancePerPulse);
-        wristEncoder.setPositionConversionFactor(CraneConstants.kWristEncoderDistancePerPulse);
+        rotatorLEncoder.setPositionConversionFactor(Constants.CraneConstants.kRotateEncoderDistancePerPulse);
+        rotatorFEncoder.setPositionConversionFactor(Constants.CraneConstants.kRotateEncoderDistancePerPulse);
+        extenderEncoder.setPositionConversionFactor(Constants.CraneConstants.kExtendEncoderDistancePerPulse);
+        wristEncoder.setPositionConversionFactor(Constants.CraneConstants.kWristEncoderDistancePerPulse);
 
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kForward, true);
         rotatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
@@ -58,11 +59,11 @@ public class Crane extends SubsystemBase {
         stinger.enableSoftLimit(SoftLimitDirection.kForward, false);
         stinger.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
-        rotatorLeader.setSmartCurrentLimit(CraneConstants.kRotateCurrentLimit);
-        rotatorFollower.setSmartCurrentLimit(CraneConstants.kRotateCurrentLimit);
-        extender.setSmartCurrentLimit(CraneConstants.kExtenderCurrentLimit);
-        stinger.setSmartCurrentLimit(CraneConstants.kStingerCurrentLimit);
-        wrist.setSmartCurrentLimit(CraneConstants.kWristCurrentLimit);
+        rotatorLeader.setSmartCurrentLimit(Constants.CraneConstants.kRotateCurrentLimit);
+        rotatorFollower.setSmartCurrentLimit(Constants.CraneConstants.kRotateCurrentLimit);
+        extender.setSmartCurrentLimit(Constants.CraneConstants.kExtenderCurrentLimit);
+        stinger.setSmartCurrentLimit(Constants.CraneConstants.kStingerCurrentLimit);
+        wrist.setSmartCurrentLimit(Constants.CraneConstants.kWristCurrentLimit);
 
         rotatorFollower.follow(rotatorLeader, true);
 
@@ -77,9 +78,9 @@ public class Crane extends SubsystemBase {
         wristPID = wrist.getPIDController();
         extenderPID = extender.getPIDController();
 
-        rotatorPID.setP(CraneConstants.kRotatorKP);
-        wristPID.setP(CraneConstants.kWristKP);
-        extenderPID.setP(CraneConstants.kExtenderKP);
+        rotatorPID.setP(Constants.CraneConstants.kRotatorKP);
+        wristPID.setP(Constants.CraneConstants.kWristKP);
+        extenderPID.setP(Constants.CraneConstants.kExtenderKP);
 
         rotatorPID.setOutputRange(-1, 1);
         wristPID.setOutputRange(-1, 1);
@@ -90,12 +91,6 @@ public class Crane extends SubsystemBase {
         extender.burnFlash();
         stinger.burnFlash();
         wrist.burnFlash();
-    }
-
-    public void updateEncoderValues() {
-        SmartDashboard.putNumber("Rotator Position", getRotatorLEncoder());
-        SmartDashboard.putNumber("Extender Position", getExtenderEncoder());
-        SmartDashboard.putNumber("Wrist Position", getWristEncoder());
     }
 
     public double getRotatorLEncoder() {
@@ -119,7 +114,7 @@ public class Crane extends SubsystemBase {
     }
 
     public void setRotator(double setPoint) {
-        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - CraneConstants.rotatorHorizontalOffset));
+        double arbFF = 0 * Math.cos(Math.toRadians(getRotatorLEncoder() - Constants.CraneConstants.rotatorHorizontalOffset));
         rotatorPID.setReference(setPoint, ControlType.kPosition, 0, arbFF);
         SmartDashboard.putNumber("Rotator Setpoint", setPoint);
     }
@@ -134,6 +129,36 @@ public class Crane extends SubsystemBase {
 
     public void setStinger (double setPoint) {
         stinger.setVoltage(setPoint);
+    }
+
+    public double getSelectedCraneScoringPosition(int code){
+        if (code>30){
+            return Constants.CraneConstants.kRotatorHi;
+        } else if (code<30 & code >20){
+            return Constants.CraneConstants.kRotatorMid;
+        } else {
+            return Constants.CraneConstants.kRotatorGroundClear;
+        }
+    }
+
+    public double getSelectedExtenderScoringPosition(int code){
+        if (code>30){
+            return Constants.CraneConstants.kExtenderHi * (Robot.limelight.getPipeline() - 1);
+        } else if (code<30 & code >20){
+            return Constants.CraneConstants.kExtenderLo;
+        } else {
+            return Constants.CraneConstants.kExtenderClosed;
+        }
+    }
+
+    public double getSelectedWristScoringPosition(int code){
+        if (code>30){
+            return Constants.CraneConstants.kWristHi;
+        } else if (code<30 & code >20){
+            return Constants.CraneConstants.kWristMid + (45 * Robot.limelight.getPipeline());
+        } else {
+            return Constants.CraneConstants.kRotatorGround + 100 * Robot.limelight.getPipeline();
+        }
     }
 
     public void errorCheck(){
