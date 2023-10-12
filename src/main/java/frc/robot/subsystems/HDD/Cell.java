@@ -2,11 +2,11 @@ package frc.robot.subsystems.HDD;
 
 public class Cell {
     
-    private boolean cellSelected;
-    private boolean cellScored;
-    private double cranePosition;
-    private double wristPosition;
-    private double extenderPosition;
+    private boolean cellSelected = false;
+    private boolean cellScored = false;
+    private double cranePosition = 0.0;
+    private double wristPosition = 0.0;
+    private double extenderPosition = 0.0;
 
     public boolean getSelected(){
         return cellSelected;

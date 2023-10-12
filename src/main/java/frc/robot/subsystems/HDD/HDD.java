@@ -39,7 +39,7 @@ public class HDD {
 
     public static SequentialCommandGroup desiredMode;
 
-    public static Grid grid;
+    public static Grid grid = new Grid();
 
     public static void initBot(){
         // Auto choosers
@@ -93,9 +93,6 @@ public class HDD {
         SmartDashboard.putBoolean("L7", false);
         SmartDashboard.putBoolean("L8", false);
         SmartDashboard.putBoolean("L9", false);
-    }
-
-    public void updateScoringStatus() {
     }
 
     public static void updateStartupConfig(){

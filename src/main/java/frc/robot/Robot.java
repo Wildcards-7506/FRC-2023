@@ -88,7 +88,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
+    //SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
+    HDD.updateStartupConfig();
+    HDD.grid.updateCells();
   }
 
   @Override
