@@ -91,7 +91,6 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Match Time",Timer.getMatchTime());
     HDD.updateStartupConfig();
     HDD.grid.updateCells();
-    HDD.grid.clearPrevSelect(HDD.grid.getSelectedCell());
   }
 
   @Override

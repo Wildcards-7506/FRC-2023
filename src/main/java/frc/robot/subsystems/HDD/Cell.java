@@ -1,7 +1,7 @@
 package frc.robot.subsystems.HDD;
 
 public class Cell {
-    boolean cellSelected = false;
+    boolean cellSelected;
     String cellName;
     int ID;
 
