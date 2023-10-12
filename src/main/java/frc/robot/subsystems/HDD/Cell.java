@@ -1,12 +1,17 @@
 package frc.robot.subsystems.HDD;
 
 public class Cell {
-    
-    private boolean cellSelected = false;
-    private boolean cellScored = false;
-    private double cranePosition = 0.0;
-    private double wristPosition = 0.0;
-    private double extenderPosition = 0.0;
+    boolean cellSelected = false;
+    boolean cellScored = false;
+    double cranePosition = 0.0;
+    double wristPosition = 0.0;
+    double extenderPosition = 0.0;
+    int ID;
+
+    public Cell(boolean enabled, int ID){
+        this.cellSelected = enabled;
+        this.ID = ID;
+    }
 
     public boolean getSelected(){
         return cellSelected;
@@ -23,8 +28,13 @@ public class Cell {
     public double getwristPosition(){
         return wristPosition;
     }
+
     public double getextenderPosition(){
         return extenderPosition;
+    }
+
+    public int getID(){
+        return ID;
     }
 
     public void setSelected(boolean setpoint){

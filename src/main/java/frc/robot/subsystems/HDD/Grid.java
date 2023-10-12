@@ -1,125 +1,130 @@
 package frc.robot.subsystems.HDD;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
 
 public class Grid {
     
-    public Cell H1 = new Cell();
-    public Cell H2 = new Cell();
-    public Cell H3 = new Cell();
-    public Cell H4 = new Cell();
-    public Cell H5 = new Cell();
-    public Cell H6 = new Cell();
-    public Cell H7 = new Cell();
-    public Cell H8 = new Cell();
-    public Cell H9 = new Cell();
-    public Cell M1 = new Cell();
-    public Cell M2 = new Cell();
-    public Cell M3 = new Cell();
-    public Cell M4 = new Cell();
-    public Cell M5 = new Cell();
-    public Cell M6 = new Cell();
-    public Cell M7 = new Cell();
-    public Cell M8 = new Cell();
-    public Cell M9 = new Cell();
-    public Cell L1 = new Cell();
-    public Cell L2 = new Cell();
-    public Cell L3 = new Cell();
-    public Cell L4 = new Cell();
-    public Cell L5 = new Cell();
-    public Cell L6 = new Cell();
-    public Cell L7 = new Cell();
-    public Cell L8 = new Cell();
-    public Cell L9 = new Cell();
+    public Cell H1 = new Cell(false, 31);
+    public Cell H2 = new Cell(false, 32);
+    public Cell H3 = new Cell(false, 33);
+    public Cell H4 = new Cell(false, 34);
+    public Cell H5 = new Cell(false, 35);
+    public Cell H6 = new Cell(false, 36);
+    public Cell H7 = new Cell(false, 37);
+    public Cell H8 = new Cell(false, 38);
+    public Cell H9 = new Cell(false, 39);
+    public Cell M1 = new Cell(false, 21);
+    public Cell M2 = new Cell(false, 22);
+    public Cell M3 = new Cell(false, 23);
+    public Cell M4 = new Cell(false, 24);
+    public Cell M5 = new Cell(false, 25);
+    public Cell M6 = new Cell(false, 26);
+    public Cell M7 = new Cell(false, 27);
+    public Cell M8 = new Cell(false, 28);
+    public Cell M9 = new Cell(false, 29);
+    public Cell L1 = new Cell(false, 11);
+    public Cell L2 = new Cell(false, 12);
+    public Cell L3 = new Cell(false, 13);
+    public Cell L4 = new Cell(false, 14);
+    public Cell L5 = new Cell(false, 15);
+    public Cell L6 = new Cell(false, 16);
+    public Cell L7 = new Cell(false, 17);
+    public Cell L8 = new Cell(false, 18);
+    public Cell L9 = new Cell(false, 19);
 
     public void updateCells(){
-        H1.setScored(SmartDashboard.getBoolean("H1", false));
-        H2.setScored(SmartDashboard.getBoolean("H2", false));
-        H3.setScored(SmartDashboard.getBoolean("H3", false));
-        H4.setScored(SmartDashboard.getBoolean("H4", false));
-        H5.setScored(SmartDashboard.getBoolean("H5", false));
-        H6.setScored(SmartDashboard.getBoolean("H6", false));
-        H7.setScored(SmartDashboard.getBoolean("H7", false));
-        H8.setScored(SmartDashboard.getBoolean("H8", false));
-        H9.setScored(SmartDashboard.getBoolean("H9", false));
-        M1.setScored(SmartDashboard.getBoolean("M1", false));
-        M2.setScored(SmartDashboard.getBoolean("M2", false));
-        M3.setScored(SmartDashboard.getBoolean("M3", false));
-        M4.setScored(SmartDashboard.getBoolean("M4", false));
-        M5.setScored(SmartDashboard.getBoolean("M5", false));
-        M6.setScored(SmartDashboard.getBoolean("M6", false));
-        M7.setScored(SmartDashboard.getBoolean("M7", false));
-        M8.setScored(SmartDashboard.getBoolean("M8", false));
-        M9.setScored(SmartDashboard.getBoolean("M9", false));
-        L1.setScored(SmartDashboard.getBoolean("L1", false));
-        L2.setScored(SmartDashboard.getBoolean("L2", false));
-        L3.setScored(SmartDashboard.getBoolean("L3", false));
-        L4.setScored(SmartDashboard.getBoolean("L4", false));
-        L5.setScored(SmartDashboard.getBoolean("L5", false));
-        L6.setScored(SmartDashboard.getBoolean("L6", false));
-        L7.setScored(SmartDashboard.getBoolean("L7", false));
-        L8.setScored(SmartDashboard.getBoolean("L8", false));
-        L9.setScored(SmartDashboard.getBoolean("L9", false));
+        H1.setSelected(SmartDashboard.getBoolean("H1", false));
+        H2.setSelected(SmartDashboard.getBoolean("H2", false));
+        H3.setSelected(SmartDashboard.getBoolean("H3", false));
+        H4.setSelected(SmartDashboard.getBoolean("H4", false));
+        H5.setSelected(SmartDashboard.getBoolean("H5", false));
+        H6.setSelected(SmartDashboard.getBoolean("H6", false));
+        H7.setSelected(SmartDashboard.getBoolean("H7", false));
+        H8.setSelected(SmartDashboard.getBoolean("H8", false));
+        H9.setSelected(SmartDashboard.getBoolean("H9", false));
+        M1.setSelected(SmartDashboard.getBoolean("M1", false));
+        M2.setSelected(SmartDashboard.getBoolean("M2", false));
+        M3.setSelected(SmartDashboard.getBoolean("M3", false));
+        M4.setSelected(SmartDashboard.getBoolean("M4", false));
+        M5.setSelected(SmartDashboard.getBoolean("M5", false));
+        M6.setSelected(SmartDashboard.getBoolean("M6", false));
+        M7.setSelected(SmartDashboard.getBoolean("M7", false));
+        M8.setSelected(SmartDashboard.getBoolean("M8", false));
+        M9.setSelected(SmartDashboard.getBoolean("M9", false));
+        L1.setSelected(SmartDashboard.getBoolean("L1", false));
+        L2.setSelected(SmartDashboard.getBoolean("L2", false));
+        L3.setSelected(SmartDashboard.getBoolean("L3", false));
+        L4.setSelected(SmartDashboard.getBoolean("L4", false));
+        L5.setSelected(SmartDashboard.getBoolean("L5", false));
+        L6.setSelected(SmartDashboard.getBoolean("L6", false));
+        L7.setSelected(SmartDashboard.getBoolean("L7", false));
+        L8.setSelected(SmartDashboard.getBoolean("L8", false));
+        L9.setSelected(SmartDashboard.getBoolean("L9", false));
     }
 
-    public int getSelectedCell(){
+    public Cell getSelectedCell(){
         if (H1.getSelected()) {
-            return 31;
+            return H1;
         } else if (H2.getSelected()) {
-            return 32;
+            return H2;
         } else if (H3.getSelected()) {
-            return 33;
+            return H3;
         } else if (H4.getSelected()) {
-            return 34;
+            return H4;
         } else if (H5.getSelected()) {
-            return 35;
+            return H5;
         } else if (H6.getSelected()) {
-            return 36;
+            return H6;
         } else if (H7.getSelected()) {
-            return 37;
+            return H7;
         } else if (H8.getSelected()) {
-            return 38;
+            return H8;
         } else if (H9.getSelected()) {
-            return 39;
+            return H9;
         } else if (M1.getSelected()) {
-            return 21;
+            return M1;
         } else if (M2.getSelected()) {
-            return 22;
+            return M2;
         } else if (M3.getSelected()) {
-            return 23;
+            return M3;
         } else if (M4.getSelected()) {
-            return 24;
+            return M4;
         } else if (M5.getSelected()) {
-            return 25;
+            return M5;
         } else if (M6.getSelected()) {
-            return 26;
+            return M6;
         } else if (M7.getSelected()) {
-            return 27;
+            return M7;
         } else if (M8.getSelected()) {
-            return 28;
+            return M8;
         } else if (M9.getSelected()) {
-            return 29;
+            return M9;
         } else if (L1.getSelected()) {
-            return 11;
+            return L1;
         } else if (L2.getSelected()) {
-            return 12;
+            return L2;
         } else if (L3.getSelected()) {
-            return 13;
+            return L3;
         } else if (L4.getSelected()) {
-            return 14;
+            return L4;
         } else if (L5.getSelected()) {
-            return 15;
+            return L5;
         } else if (L6.getSelected()) {
-            return 16;
+            return L6;
         } else if (L7.getSelected()) {
-            return 17;
+            return L7;
         } else if (L8.getSelected()) {
-            return 18;
+            return L8;
         } else if (L9.getSelected()) {
-            return 19;
+            return L9;
         } else { 
-            return 0;
+            return L1;
+        }
+    }
+
+    public void clearPrevSelect(Cell prevID){
+        if(prevID.getID() != getSelectedCell().getID()){
+            prevID.setSelected(false);
         }
     }
 

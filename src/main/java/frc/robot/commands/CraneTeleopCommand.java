@@ -25,9 +25,9 @@ public class CraneTeleopCommand extends CommandBase {
 
     @Override
     public void execute() {
-    rotatorSetpoint = Robot.crane.getSelectedCraneScoringPosition(HDD.grid.getSelectedCell());
-    extenderSetpoint = Robot.crane.getSelectedExtenderScoringPosition(HDD.grid.getSelectedCell());
-    wristSetpoint = Robot.crane.getSelectedWristScoringPosition(HDD.grid.getSelectedCell());
+    rotatorSetpoint = Robot.crane.getSelectedCraneScoringPosition(HDD.grid.getSelectedCell().getID());
+    extenderSetpoint = Robot.crane.getSelectedExtenderScoringPosition(HDD.grid.getSelectedCell().getID());
+    wristSetpoint = Robot.crane.getSelectedWristScoringPosition(HDD.grid.getSelectedCell().getID());
 
         // //State Selection
         // if(Robot.controller1.getPOV() != prev_CraneState && !release){
