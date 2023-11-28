@@ -27,10 +27,9 @@ public class PlayerConfigs {
     public static boolean fineControlToggle;
 
     //crane
-    public static boolean collectPos;
+    public static boolean doubleSub;
     public static boolean groundGrab;
-    public static boolean highGoal;
-    public static boolean lowGoal;
+    public static boolean score;
     public static boolean singleSub;
     public static double cranePos;
     public static double extendPos;
@@ -44,11 +43,6 @@ public class PlayerConfigs {
 
     //limelight
     public static boolean switchPipeline;
-
-    //LEDs
-    public static boolean signalCone;
-    public static boolean signalCube;
-    public static boolean toggleLeds;
 
     //Roller
     public static boolean intake;

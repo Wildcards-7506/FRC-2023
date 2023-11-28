@@ -67,13 +67,11 @@ public class Limelight extends SubsystemBase {
     public void conePipeline(){
         table.getEntry("pipeline").setNumber(0);
         SmartDashboard.putBoolean("Target Item", true);
-        targetArea = 0.1;
     }
 
     //Force Cube Mode
     public void cubePipeline(){
         table.getEntry("pipeline").setNumber(1);
         SmartDashboard.putBoolean("Target Item", false);
-        targetArea = 0.5;
     }
 }

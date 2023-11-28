@@ -50,6 +50,23 @@ public class LEDs extends SubsystemBase{
         update();
     }
 
+    public void bars(int piece, int alignment, int level) {
+      // For every pixel
+      for (var i = 18; i < 28; i++) {
+        // Set the value
+        ledBuffer.setHSV(i, piece, 255, 255);
+      }
+      for (var i = 28; i < 38; i++) {
+        // Set the value
+        ledBuffer.setHSV(i, 120, 255, alignment);
+      }
+      for (var i = 38; i < 48; i++) {
+        // Set the value
+        ledBuffer.setHSV(i, level, 255, 255);
+      }
+      update();
+  }
+
     public void solidEyes(int hue, Alliance isRed) {
       // For every pixel
       int irisHue = (isRed == Alliance.Red) ? 0 : 120;

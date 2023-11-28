@@ -15,7 +15,7 @@ public class LimelightRotatorTeleopCom extends CommandBase {
     public void execute () {
         if (PlayerConfigs.groundGrab) {
             Robot.ll_rotator.setEyes(LLRConstants.kLookForward);
-        } else if (PlayerConfigs.collectPos) {
+        } else if (PlayerConfigs.doubleSub) {
             Robot.ll_rotator.setEyes(LLRConstants.kLookCollect);
         } else {
             Robot.ll_rotator.setEyes(LLRConstants.kLookGoal);

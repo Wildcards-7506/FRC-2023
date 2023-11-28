@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.subsystems.HDD.HDD;
 import frc.robot.util.Logger;
 
 public class Crane extends SubsystemBase {
@@ -132,9 +133,9 @@ public class Crane extends SubsystemBase {
     }
 
     public double getSelectedCraneScoringPosition(int code){
-        if (code>30){
+        if (code > 17){
             return Constants.CraneConstants.kRotatorHi;
-        } else if (code<30 & code >20){
+        } else if (code < 18 & code > 8){
             return Constants.CraneConstants.kRotatorMid;
         } else {
             return Constants.CraneConstants.kRotatorGroundClear;
@@ -142,9 +143,9 @@ public class Crane extends SubsystemBase {
     }
 
     public double getSelectedExtenderScoringPosition(int code){
-        if (code>30){
-            return Constants.CraneConstants.kExtenderHi * (Robot.limelight.getPipeline() - 1);
-        } else if (code<30 & code >20){
+        if (code > 17){
+            return Constants.CraneConstants.kExtenderHi * (HDD.grid.selectedCell.getTarget() - 1);
+        } else if (code < 18 & code > 8){
             return Constants.CraneConstants.kExtenderLo;
         } else {
             return Constants.CraneConstants.kExtenderClosed;
@@ -152,12 +153,12 @@ public class Crane extends SubsystemBase {
     }
 
     public double getSelectedWristScoringPosition(int code){
-        if (code>30){
+        if (code > 17){
             return Constants.CraneConstants.kWristHi;
-        } else if (code<30 & code >20){
-            return Constants.CraneConstants.kWristMid + (45 * Robot.limelight.getPipeline());
+        } else if (code < 18 & code > 8){
+            return Constants.CraneConstants.kWristMid + (45 * HDD.grid.selectedCell.getTarget());
         } else {
-            return Constants.CraneConstants.kRotatorGround + 100 * Robot.limelight.getPipeline();
+            return Constants.CraneConstants.kRotatorGround + 100 * HDD.grid.selectedCell.getTarget();
         }
     }
 

@@ -66,6 +66,8 @@ public class HDD {
         SmartDashboard.putData(coDriver_chooser);
         SmartDashboard.putData(auto_chooser);
 
+        SmartDashboard.putBoolean("Target Item", false);
+
         SmartDashboard.putBoolean("H1", false);
         SmartDashboard.putBoolean("H2", false);
         SmartDashboard.putBoolean("H3", false);
